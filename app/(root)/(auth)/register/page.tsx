@@ -24,17 +24,17 @@ const page = () => {
                 <p className='text-sm font-medium text-stone-800' >Enter your credential to create your account</p>
 
                 {/* socials icons div */}
-                <div className='flex gap-4 mt-10' >
-                    <Button variant={'outline'} className='flex items-center justify-center gap-2'  >
+                <div className='flex gap-4 mt-10 w-full' >
+                    <Button variant={'outline'} className='flex items-center w-full justify-center gap-2'  >
                         <Github size={17} strokeWidth={1.75} /> <p className='text-sm text-slate-800' >Register with github</p>
                     </Button>
-                    <Button variant={'outline'} className='flex items-center justify-center gap-2'  >
+                    <Button variant={'outline'} className='flex items-center w-full justify-center gap-2'  >
                         <Linkedin size={17} strokeWidth={1.75} /> <p className='text-sm text-slate-800' >Register with Linkedin</p>
                     </Button>
                    
                 </div>
 
-                <div className='mt-10 flex justify-center items-center' >
+                <div className='mt-8 flex justify-center items-center' >
                     <hr className='h-1 w-full mr-10' />
                     <p>or</p>
                     <hr className='h-1 w-full ml-10' />

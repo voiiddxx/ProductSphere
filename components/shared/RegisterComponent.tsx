@@ -58,10 +58,10 @@ const RegisterComponent = () => {
 
             {/* socials icons div */}
             <div className='flex gap-4 mt-10' >
-                <Button variant={'outline'} className='flex items-center w-full justify-center gap-2'  >
+                <Button variant={'outline'} className='flex items-center text-indigo-700 w-full justify-center gap-2'  >
                     <Github size={17} strokeWidth={1.75} /> <p className='text-sm text-slate-800' >Register with github</p>
                 </Button>
-                <Button variant={'outline'} className='flex items-center w-full justify-center gap-2'  >
+                <Button variant={'outline'} className='flex items-center text-orange-700 w-full justify-center gap-2'  >
                     <Linkedin size={17} strokeWidth={1.75} /> <p className='text-sm text-slate-800' >Register with Linkedin</p>
                 </Button>
                
@@ -76,8 +76,13 @@ const RegisterComponent = () => {
 
             {/* components for the form */}
             <div>
+
+              {/* using react hook form with zod validation for registering the users */}
             <Form {...form}>
-  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+
+
+    {/* username */}
     <FormField
       control={form.control}
       name="username"
@@ -87,14 +92,44 @@ const RegisterComponent = () => {
           <FormControl>
             <Input placeholder="shadcn" {...field} />
           </FormControl>
-          <FormDescription>
-            This is your public display name.
-          </FormDescription>
           <FormMessage />
         </FormItem>
       )}
     />
-    <Button type="submit">Submit</Button>
+
+    {/* email */}
+    <FormField
+      control={form.control}
+      name="username"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel className='text-sm font-medium ' >Email address</FormLabel>
+          <FormControl>
+            <Input placeholder="johndev@gmail.com" {...field} />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+
+
+    {/* password */}
+    <FormField
+      control={form.control}
+      name="username"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Password</FormLabel>
+          <FormControl>
+            <Input placeholder="********" {...field} />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+
+    <Button className='w-full rounded-xl bg-indigo-700'  type="submit">Submit</Button>
+    <p className='text-sm font-medium' >Have an account? <span className='text-indigo-700' >Sign in</span> </p>
   </form>
 </Form>
             </div>

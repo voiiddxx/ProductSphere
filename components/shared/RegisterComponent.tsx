@@ -147,7 +147,13 @@ const RegisterComponent = () => {
 
     </div>
     {/* right div */}
-    <div className='min-h-screen w-1/2 bg-blue-700 rounded-md' ></div>
+    <div className='min-h-screen w-1/2 bg-blue-700 rounded-md flex items-center  pl-8 flex-col' >
+    <div>
+    <p className='text-2xl font-medium  mt-10 text-white ' >Inovate and Create with your cool teams</p>
+    <p className='text-sm font-light text-zinc-200 text-start' >Create your account and build cool stuff</p>
+    </div>
+      <Image className='h-[600px] w-auto mt-10' src={`/dashboard.svg`} height={900} width={900} alt='dashboard' />
+    </div>
 
   </div>
   

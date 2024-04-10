@@ -19,6 +19,8 @@ import { Input } from "@/components/ui/input"
  
 const formSchema = z.object({
   username: z.string().min(2).max(50),
+  email: z.string().min(2).max(50),
+  password: z.string().min(6).max(10),
 })
 const RegisterComponent = () => {
 
@@ -28,6 +30,8 @@ const RegisterComponent = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
+      email:"",
+      password:""
     },
   })
  
@@ -38,30 +42,30 @@ const RegisterComponent = () => {
     console.log(values)
   }
   return (
-    <div className='min-h-screen w-full bg-white' >
+    <div className='h-screen w-full bg-white' >
 
     {/* overlayed div with some paddings */}
-  <div className='mx-5 my-5 rounded-md min-h-screen bg-transparent flex justify-center items-center' >
+  <div className='mx-5 py-2 rounded-md min-h-screen bg-transparent flex justify-center items-center' >
     {/* dividing div into left and right div */}
     
     {/* left div */}
     <div className=' min-h-screen w-1/2 bg-white' >
         {/* upper div for logo */}
         <div className='h-20 w-full ' >
-            <Image className='h-24 w-auto' src={`/Mainlogo.svg`} height={900} width={900} alt='productspherelogo' />
+            <Image className='h-16 w-auto' src={`/Mainlogo.svg`} height={900} width={900} alt='productspherelogo' />
         </div>
 
         {/* upper heading and social button parts div */}
-        <div className='px-20 mt-20' >
+        <div className='px-20 mt-10' >
             <h1 className='text-2xl font-medium' >Get Start Now</h1>
-            <p className='text-sm font-medium text-stone-800' >Enter your credential to create your account</p>
+            <p className='text-sm font-medium text-stone-600' >Enter your credential to create your account</p>
 
             {/* socials icons div */}
             <div className='flex gap-4 mt-10' >
-                <Button variant={'outline'} className='flex items-center text-indigo-700 w-full justify-center gap-2'  >
+                <Button variant={'outline'} className='flex items-center rounded-xl text-indigo-700 w-full justify-center gap-2'  >
                     <Github size={17} strokeWidth={1.75} /> <p className='text-sm text-slate-800' >Register with github</p>
                 </Button>
-                <Button variant={'outline'} className='flex items-center text-orange-700 w-full justify-center gap-2'  >
+                <Button variant={'outline'} className='flex items-center text-orange-700 w-full justify-center gap-2 rounded-xl'  >
                     <Linkedin size={17} strokeWidth={1.75} /> <p className='text-sm text-slate-800' >Register with Linkedin</p>
                 </Button>
                
@@ -100,7 +104,7 @@ const RegisterComponent = () => {
     {/* email */}
     <FormField
       control={form.control}
-      name="username"
+      name="email"
       render={({ field }) => (
         <FormItem>
           <FormLabel className='text-sm font-medium ' >Email address</FormLabel>
@@ -116,7 +120,7 @@ const RegisterComponent = () => {
     {/* password */}
     <FormField
       control={form.control}
-      name="username"
+      name="password"
       render={({ field }) => (
         <FormItem>
           <FormLabel>Password</FormLabel>
@@ -132,6 +136,11 @@ const RegisterComponent = () => {
     <p className='text-sm font-medium' >Have an account? <span className='text-indigo-700' >Sign in</span> </p>
   </form>
 </Form>
+
+<div className=' w-full flex justify-center items-center mt-16' >
+  <p className=' font-medium text-[12px] text-zinc-700' >2023 ProductSphere, All right reserved</p>
+
+</div>
             </div>
         </div>
 

@@ -13,9 +13,9 @@ export const createUseronSuperbase = async({avatar , email , username}:CreateUse
     try {
         const res = await prisma.user.create({
             data:{
-              username:'void',
-              avatar:'thisisavatarurl',
-              email:'thisisemail@gmail.com',  
+              username:username,
+              avatar:email,
+              email:avatar,  
             },
             
         });

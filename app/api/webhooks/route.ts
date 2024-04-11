@@ -56,11 +56,11 @@ export async function POST(req: Request) {
     console.log("Everything is working fine");
     const id = evt.data.id;
     const email = evt.data.email_addresses[0].email_address;
-    const username = evt.data.username;
+    const username = evt.data.username!;
     const avarar = evt.data.image_url;
     console.log("this is the value:" , id , email , username);
 
-    const res = await createUseronSuperbase({email:email , avatar:avarar , username:'151511'});
+    const res = await createUseronSuperbase({email:email , avatar:avarar , username:username});
     console.log("value of res:" , res);
     
     

@@ -1,6 +1,7 @@
 import DashBoardNav from '@/components/shared/DashBoardNav'
 import DashboardSidebar from '@/components/shared/DashboardSidebar'
 import { Plus } from 'lucide-react'
+import Link from 'next/link'
 import React from 'react'
 
 const page = () => {
@@ -18,10 +19,11 @@ const page = () => {
                 <p className='text-sm font-medium' >No Projects </p>
                 <p className='text-xs font-medium text-zinc-500' >Get Start by creating your first project</p>
 
-                    <div className=' flex gap-1 mt-4 border px-2 py-2 rounded-md bg-indigo-700 text-white items-center' >
+                   <Link href={`/dashboard/products/create`} >
+                   <div className=' flex gap-1 mt-4 border px-2 py-2 rounded-md bg-indigo-700 text-white items-center' >
                         <Plus size={15} strokeWidth={1.5} />
                         <p className='text-xs font-medium' >New product</p>
-                    </div>
+                    </div></Link>
 
             </div>
         </div>

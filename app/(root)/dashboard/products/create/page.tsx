@@ -10,6 +10,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
   } from "@/components/ui/breadcrumb"
+import CreateProduct from "@/components/shared/CreateProduct";
     
 
 const page = () => {
@@ -54,7 +55,7 @@ const page = () => {
           <Inbox size={17} strokeWidth={1.5} />
         </div>
       </div>
-      this is crerate your product page.tsx file
+      <CreateProduct/>
     </div>
   );
 };

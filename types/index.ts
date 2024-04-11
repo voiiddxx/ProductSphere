@@ -6,3 +6,10 @@ export type RegisterParams = {
     email:string
     password:string
 }
+
+export type CreateUseronSuperbaseParams = {
+    username:string,
+    email:string,
+    avatar:string,
+    
+}

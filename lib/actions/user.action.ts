@@ -13,11 +13,11 @@ export const createUseronSuperbase = async({avatar , email , username}:CreateUse
     try {
         const res = await prisma.user.create({
             data:{
-              username:username,
-              avatar:avatar,
-              email:email,  
-              password:'4558'
-            }
+              username:'void',
+              avatar:'thisisavatarurl',
+              email:'thisisemail@gmail.com',  
+            },
+            
         });
         console.log("the data is created:" , res);
         return JSON.parse(JSON.stringify(res));

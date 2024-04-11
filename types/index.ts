@@ -12,4 +12,5 @@ export type CreateUseronSuperbaseParams = {
     email:string,
     avatar:string,
     
+
 }

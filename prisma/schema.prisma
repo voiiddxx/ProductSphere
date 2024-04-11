@@ -25,8 +25,20 @@ model User {
       username String @unique
       email String @unique
       avatar String
+      products Product[]
 
 }
 
 
+model Product {
+  productId Int @id @default(autoincrement())
+  name String
+  detail String
+  category String
+  members User[]
+  startData DateTime
+  endData DateTime
+  logo String
+  url String
+}
 

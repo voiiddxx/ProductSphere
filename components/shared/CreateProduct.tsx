@@ -5,6 +5,8 @@ import {
   ChevronRight,
   ChevronsRightLeft,
   Hash,
+  Image,
+  Link,
 } from "lucide-react";
 import React, { useState } from "react";
 import { z } from "zod";
@@ -35,16 +37,15 @@ const formSchema = z.object({
   username: z.string().min(2).max(50),
 });
 
-
-const colortheme  = [
-  {color:'#534bff'},
-  {color:'#09a57f'},
-  {color:'#eb007a'},
-  {color:'#eb0d00'},
-  {color:'#000000'},
-  {color:'#a300d1'},
-  {color:'#478d00'},
-]
+const colortheme = [
+  { color: "#534bff" },
+  { color: "#09a57f" },
+  { color: "#eb007a" },
+  { color: "#eb0d00" },
+  { color: "#000000" },
+  { color: "#a300d1" },
+  { color: "#478d00" },
+];
 
 const CreateProduct = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -82,7 +83,7 @@ const CreateProduct = () => {
         <p className="text-sm font-medium">Create a new product</p>
       </div>
 
-      <div className="w-full h-screen ">
+      <div className="w-full h-screen flex">
         {/* left div */}
 
         <div className="w-3/5 h-full  px-10 py-5">
@@ -153,19 +154,18 @@ const CreateProduct = () => {
               {/* third row */}
 
               <div>
-                <p className="text-sm font-medium" >Select theme</p>
+                <p className="text-sm font-medium">Select theme</p>
 
-                <div className="flex gap-3 mt-2" >
-                  {
-                    colortheme.map((curr:any)=>{
-                      return <div className={`h-8 w-8 rounded-full bg-[${curr.color}]`} ></div>
-                    })
-                  }
+                <div className="flex gap-3 mt-2">
+                  {colortheme.map((curr: any) => {
+                    return (
+                      <div
+                        className={`h-8 w-8 rounded-full bg-[${curr.color}]`}
+                      ></div>
+                    );
+                  })}
                 </div>
-
               </div>
-              
-
               {/* fourth row */}
 
               <div className="w-full flex gap-4">
@@ -195,7 +195,34 @@ const CreateProduct = () => {
           </Form>
         </div>
         {/* right div */}
-        <div></div>
+        <div className=" w-2/5 h-screen bg-white border-l my-4 px-4 pt-2" >
+          {/* row1 */}
+          <div  >
+            <p className="text-sm font-medium" >product image/document</p>
+
+            <div className="flex justify-start  gap-4  mt-4" >
+              {/* product image */}
+              <div className="h-60 w-60 border border-dashed rounded-lg flex justify-center items-center flex-col" >
+                <Image className="text-indigo-800 mb-2" size={19} strokeWidth={1.5} />
+                <p className="text-xs font-medium text-center mx-4 text-zinc-700" >Upload your product logo or any relavent image</p>
+              </div>
+              {/* product other documents */}
+              <div className=" flex flex-col gap-2" >
+              <div className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border" >
+              <Link className="text-indigo-800 mb-2" size={19} strokeWidth={1.5} />
+                <p className="text-xs font-medium text-center mx-4 text-zinc-700" >Attach any product relavent details file</p>
+              </div>
+              <div className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border" >
+              <Link className="text-indigo-800 mb-2" size={19} strokeWidth={1.5} />
+                <p className="text-xs font-medium text-center mx-4 text-zinc-700" >Attach any product relavent details file</p>
+              </div>
+              </div>
+              
+            </div>
+
+          </div>
+          {/* row2 */}
+        </div>
       </div>
     </div>
   );

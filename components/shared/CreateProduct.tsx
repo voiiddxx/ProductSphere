@@ -1,10 +1,16 @@
 "use client";
-import { Blocks, CalendarCheck, ChevronRight, ChevronsRightLeft, Hash } from "lucide-react";
-import React from "react";
+import {
+  Blocks,
+  CalendarCheck,
+  ChevronRight,
+  ChevronsRightLeft,
+  Hash,
+} from "lucide-react";
+import React, { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,28 +19,47 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
-import { Calendar } from "@/components/ui/calendar"
-
-
-
-
-
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Calendar } from "@/components/ui/calendar";
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
 });
 
+
+const colortheme  = [
+  {color:'#534bff'},
+  {color:'#09a57f'},
+  {color:'#eb007a'},
+  {color:'#eb0d00'},
+  {color:'#000000'},
+  {color:'#a300d1'},
+  {color:'#478d00'},
+]
+
 const CreateProduct = () => {
+  const [date, setDate] = useState<Date | undefined>(new Date());
+
+  const rendercalender = () => {
+    return (
+      <Calendar
+        mode="single"
+        selected={date}
+        onSelect={setDate}
+        className="rounded-md border"
+      />
+    );
+  };
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -87,7 +112,7 @@ const CreateProduct = () => {
                     <FormItem className="w-full">
                       <FormLabel>Product Visibility</FormLabel>
                       <FormControl>
-                        <Select onValueChange={field.onChange}  >
+                        <Select onValueChange={field.onChange}>
                           <SelectTrigger className="w-full">
                             <SelectValue placeholder="Theme" />
                           </SelectTrigger>
@@ -104,49 +129,65 @@ const CreateProduct = () => {
                 />
               </div>
 
-
               {/* second row */}
 
-            <div>
-            <FormField
+              <div>
+                <FormField
                   control={form.control}
                   name="username"
                   render={({ field }) => (
                     <FormItem className="w-full">
                       <FormLabel>Product Visibility</FormLabel>
                       <FormControl>
-                      <Textarea className="h-[150px]" placeholder="Platform build to enhance the product building experience in team , using this product you can enhanced the experince of product building experince⚡" />
+                        <Textarea
+                          className="h-[150px]"
+                          placeholder="Platform build to enhance the product building experience in team , using this product you can enhanced the experince of product building experince⚡"
+                        />
                       </FormControl>
 
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-            </div>
+              </div>
               {/* third row */}
-                  <div className="w-full flex gap-4" >
-                    <div className="w-full" >
-                      <p className="font-medium text-sm mb-2" >Start date</p>
-                    <div className="w-full h-10 flex rounded-lg border items-center px-2 text-zinc-500" >
-                      <CalendarCheck size={17} strokeWidth={1.5} />
-                      <p className="text-sm ml-3" >Thursday 5 nov , 2021</p>
-                      
-                    </div>
-                    </div>
-                    <div className="w-full" >
-                      <p className="font-medium text-sm mb-2" >Product Deadline</p>
-                    <div className="w-full h-10 flex rounded-lg border items-center px-2 text-zinc-500" >
-                      <CalendarCheck size={17} strokeWidth={1.5} />
-                      <p className="text-sm ml-3" >Thursday 5 nov , 2021</p>
-                      
-                    </div>
-                    </div>
-                    
-                    
-                  </div>
 
+              <div>
+                <p className="text-sm font-medium" >Select theme</p>
+
+                <div className="flex gap-3 mt-2" >
+                  {
+                    colortheme.map((curr:any)=>{
+                      return <div className={`h-8 w-8 rounded-full bg-[${curr.color}]`} ></div>
+                    })
+                  }
+                </div>
+
+              </div>
+              
 
               {/* fourth row */}
+
+              <div className="w-full flex gap-4">
+                <div className="w-full">
+                  <p className="font-medium text-sm mb-2">Start date</p>
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    onSelect={setDate}
+                    className="rounded-md border"
+                  />
+                </div>
+                <div className="w-full">
+                  <p className="font-medium text-sm mb-2">Start date</p>
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    onSelect={setDate}
+                    className="rounded-md border w-full"
+                  />
+                </div>
+              </div>
               {/* fifth row */}
 
               <Button type="submit">Submit</Button>

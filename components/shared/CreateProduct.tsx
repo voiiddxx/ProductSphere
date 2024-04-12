@@ -15,6 +15,17 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+
+
+
 const formSchema = z.object({
   username: z.string().min(2).max(50),
 });
@@ -46,50 +57,52 @@ const CreateProduct = () => {
         {/* left div */}
 
         <div className="w-3/5 h-full  px-10 py-5">
-          <p className="text-sm font-medium" >Genreal Information</p>
+          <p className="text-sm font-medium">Genreal Information</p>
           <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              {/* row 1 */}
+              <div className="flex justify-between gap-5 mt-5">
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormLabel>Product Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="ProductSphere" {...field} />
+                      </FormControl>
 
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormLabel>Product Visibility</FormLabel>
+                      <FormControl>
+                        <Select onValueChange={field.onChange}  >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Theme" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="private">Private</SelectItem>
+                            <SelectItem value="public">Public</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
 
-        {/* row 1 */}
-        <div className="flex justify-between gap-5 mt-5" >
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem className="w-full" >
-              <FormLabel>Product Name</FormLabel>
-              <FormControl>
-                <Input placeholder="ProductSphere" {...field} />
-              </FormControl>
-            
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-         <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem className="w-full" >
-              <FormLabel>Product Tagline</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        </div>
-       
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-          
-
-
+              <Button type="submit">Submit</Button>
+            </form>
+          </Form>
         </div>
         {/* right div */}
         <div></div>

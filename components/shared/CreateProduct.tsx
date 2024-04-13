@@ -196,7 +196,9 @@ const CreateProduct = () => {
         </div>
         {/* right div */}
         <div className=" w-2/5 h-screen bg-white border-l my-4 px-4 pt-2" >
-          {/* row1 */}
+          {/* this is row 1 */}
+
+
           <div  >
             <p className="text-sm font-medium" >product image/document</p>
 

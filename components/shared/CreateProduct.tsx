@@ -253,8 +253,12 @@ const CreateProduct = () => {
             </div>
             </div>
           </div>
-
           {/* row 3 */}
+              <div className="mt-5" >
+                <p className="text-sm font-medium" >Product Team members</p>
+              </div>
+          {/* row 4 */}
+
 
         </div>
       </div>

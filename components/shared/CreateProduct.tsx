@@ -138,7 +138,7 @@ const CreateProduct = () => {
                   name="username"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Product Visibility</FormLabel>
+                      <FormLabel>Product Description</FormLabel>
                       <FormControl>
                         <Textarea
                           className="h-[150px]"
@@ -160,8 +160,11 @@ const CreateProduct = () => {
                   {colortheme.map((curr: any) => {
                     return (
                       <div
-                        className={`h-8 w-8 rounded-full bg-[${curr.color}]`}
-                      ></div>
+                        className="h-8 w-8 rounded-full"
+                        style={{backgroundColor:curr.color}}
+                      >
+                        
+                      </div>
                     );
                   })}
                 </div>

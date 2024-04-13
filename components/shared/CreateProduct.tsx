@@ -7,6 +7,8 @@ import {
   Hash,
   Image,
   Link,
+  Plus,
+  Zap,
 } from "lucide-react";
 import React, { useState } from "react";
 import { z } from "zod";
@@ -47,6 +49,12 @@ const colortheme = [
   { color: "#478d00" },
 ];
 
+const productSkills = [
+  {skill:"Typescript"},
+  {skill:"Postgress"},
+  {skill:"Flutter"},
+  {skill:"Nextjs"}
+]
 const CreateProduct = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
@@ -163,7 +171,6 @@ const CreateProduct = () => {
                         className="h-8 w-8 rounded-full"
                         style={{backgroundColor:curr.color}}
                       >
-                        
                       </div>
                     );
                   })}
@@ -226,7 +233,29 @@ const CreateProduct = () => {
             </div>
 
           </div>
-          {/* row2 */}
+          {/* row2 */} 
+          <div className="mt-5" >
+            <p className="text-sm font-medium" >Product TechStack</p>
+            {/* product add array */}
+            <div className="w-full flex gap-4 mt-4"  >
+
+              {
+                productSkills.map((curr:any)=>{
+                  return <div className="flex bg-zinc-100 text-indigo-700 px-2 py-2 rounded-sm gap-1" >
+                  <Zap strokeWidth={1.5} size={17} />
+                  <p className="text-xs font-medium" >{curr.skill}</p>
+                </div>
+                })
+              }
+            <div className="w-auto border flex items-center justify-center px-2 py-1 rounded-md cursor-pointer" >
+              <Plus size={18} strokeWidth={1.5} />
+              <p className="text-xs font-medium" >Add TechStack</p>
+            </div>
+            </div>
+          </div>
+
+          {/* row 3 */}
+
         </div>
       </div>
     </div>

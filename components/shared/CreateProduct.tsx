@@ -10,7 +10,9 @@ import {
   Link,
   Linkedin,
   Plus,
+  Search,
   User,
+  Volume1,
   Zap,
 } from "lucide-react";
 import React, { useState } from "react";
@@ -268,6 +270,12 @@ const CreateProduct = () => {
               <div className="mt-5" >
                 <p className="text-sm font-medium" >Product Team members</p>
                 <div className=" flex flex-col gap-2 mt-2" >
+                  <div className="flex items-center gap-3" >
+                    <div className="h-10 w-12 bg-zinc-100 rounded-md flex items-center justify-center" >
+                      <Search className="text-indigo-700" strokeWidth={1.5} size={18} />
+                    </div>
+                    <Input placeholder="search members" />
+                  </div>
                   {
                     productteamMember.map((curr:any)=>{
                       return <div className="flex justify-between  gap-2 border px-2 py-2 rounded-lg" >
@@ -291,6 +299,18 @@ const CreateProduct = () => {
                 </div>
               </div>
           {/* row 4 */}
+                <div className="mt-5" >
+                  <p className="text-sm font-medium" >Product Code</p>
+                  <Input className="mt-2" placeholder="Enter Your Code here"/>
+                  <div className="flex text-zinc-600 mt-2" >
+                    <Volume1 strokeWidth={1.5} size={17} />
+                    <p className="text-xs font-normal" >You can share this team code to other members so that they can join the product and can contribute</p>
+                  </div>
+
+
+                </div>
+
+          {/* row 5 */}
 
 
         </div>

@@ -4,10 +4,13 @@ import {
   CalendarCheck,
   ChevronRight,
   ChevronsRightLeft,
+  Github,
   Hash,
   Image,
   Link,
+  Linkedin,
   Plus,
+  User,
   Zap,
 } from "lucide-react";
 import React, { useState } from "react";
@@ -54,6 +57,14 @@ const productSkills = [
   {skill:"Postgress"},
   {skill:"Flutter"},
   {skill:"Nextjs"}
+]
+
+
+const productteamMember = [
+  {member:"Nikhil"},
+  {member:"Rajjev"},
+  {member:"Pankaj"},
+  {member:"Govinda"},
 ]
 const CreateProduct = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -256,6 +267,28 @@ const CreateProduct = () => {
           {/* row 3 */}
               <div className="mt-5" >
                 <p className="text-sm font-medium" >Product Team members</p>
+                <div className=" flex flex-col gap-2 mt-2" >
+                  {
+                    productteamMember.map((curr:any)=>{
+                      return <div className="flex justify-between  gap-2 border px-2 py-2 rounded-lg" >
+                        <div className="flex items-center gap-2" >
+                          <div className="h-7 w-7 rounded-full border flex justify-center items-center" >
+                            <User size={17} strokeWidth={1.5} />
+                          </div>
+                          <p className="text-sm font-medium" >{curr.member}</p>
+                        </div>
+                        <div className="flex gap-4 items-center text-zinc-700" >
+                          <Github size={16} strokeWidth={1.5} />
+                          <Linkedin size={16} strokeWidth={1.5} />
+                          <div className="px-2 py-2 bg-indigo-700 rounded-md" >
+                            <Plus className="text-white" size={17} strokeWidth={1.5} />
+                          </div>
+                        </div>
+
+                      </div>
+                    })
+                  }
+                </div>
               </div>
           {/* row 4 */}
 

@@ -52,13 +52,13 @@ const formSchema = z.object({
 });
 
 const colortheme = [
-  { color: "#534bff" },
-  { color: "#09a57f" },
-  { color: "#eb007a" },
-  { color: "#eb0d00" },
-  { color: "#000000" },
-  { color: "#a300d1" },
-  { color: "#478d00" },
+  { color: "#534bff" , colorid:1 },
+  { color: "#09a57f" , colorid:2 },
+  { color: "#eb007a" , colorid:3 },
+  { color: "#eb0d00" , colorid:4 },
+  { color: "#000000" , colorid:5 },
+  { color: "#a300d1" , colorid:6 },
+  { color: "#478d00" , colorid:7 },
 ];
 
 const productSkills = [

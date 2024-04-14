@@ -13,7 +13,7 @@ import {
   Volume1,
   Zap,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -54,13 +54,13 @@ const formSchema = z.object({
 });
 
 const colortheme = [
-  { color: "#534bff" , colorid:1 },
-  { color: "#09a57f" , colorid:2 },
-  { color: "#eb007a" , colorid:3 },
-  { color: "#eb0d00" , colorid:4 },
-  { color: "#000000" , colorid:5 },
-  { color: "#a300d1" , colorid:6 },
-  { color: "#478d00" , colorid:7 },
+  { color: "#534bff", colorid: 1 },
+  { color: "#09a57f", colorid: 2 },
+  { color: "#eb007a", colorid: 3 },
+  { color: "#eb0d00", colorid: 4 },
+  { color: "#000000", colorid: 5 },
+  { color: "#a300d1", colorid: 6 },
+  { color: "#478d00", colorid: 7 },
 ];
 
 const productSkills = [
@@ -77,8 +77,14 @@ const productteamMember = [
   { member: "Govinda" },
 ];
 
+
+
+
+
+
 const CreateProduct = () => {
 
+  const handleProductlogoButton = useRef<any>(null);
   const [colorCode, setcolorCode] = useState<number>(2);
   const [ProductColor, setProductColor] = useState<string>("");
   const [productTechStack, setproductTechStack] = useState<[]>([]);
@@ -87,6 +93,20 @@ const CreateProduct = () => {
   const [members, setmembers] = useState<[]>([]);
   const [StartDate, setStartDate] = useState<Date>();
   const [endDate, setendDate] = useState<Date>();
+
+
+  const hanldeProcuctImage = (e:any)=>{
+    setUploadImage(e.target.files);
+
+    if(file){
+        const reader = new FileReader();
+        reader.onloadend = ()=>{
+            setAchImage(reader.result);
+        }
+        reader.readAsDataURL(file);
+    }
+
+  }
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -98,24 +118,21 @@ const CreateProduct = () => {
       visibility: "private",
     },
   });
+  
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    if(StartDate){
+    if (StartDate) {
       console.log(StartDate);
-    }else{
+    } else {
       console.log("Please select date");
     }
     console.log(values);
   }
 
-
-  const handleData = ()=>{
-    console.log("this is start data" , StartDate);
-    
-  }
-
-
+  const handleData = () => {
+    console.log("this is start data", StartDate);
+  };
 
   return (
     <div className="w-full min-h-screen ">
@@ -194,22 +211,20 @@ const CreateProduct = () => {
                   {colortheme.map((curr: any) => {
                     return (
                       <>
-                      
-                      <div
-                        className="h-8 w-8 rounded-full"
-                        style={{ backgroundColor: curr.color }}
-                       onClick={()=>{
-                        setcolorCode(curr.colorid);
-                        setProductColor(curr.color);
-                       }} >
-                        {
-                          colorCode == curr.colorid && (
-                            <div className="h-full text-white w-full flex justify-center items-center rounded-full" >
-                              <CheckCheck size={18} strokeWidth={1.5}  />
+                        <div
+                          className="h-8 w-8 rounded-full"
+                          style={{ backgroundColor: curr.color }}
+                          onClick={() => {
+                            setcolorCode(curr.colorid);
+                            setProductColor(curr.color);
+                          }}
+                        >
+                          {colorCode == curr.colorid && (
+                            <div className="h-full text-white w-full flex justify-center items-center rounded-full">
+                              <CheckCheck size={18} strokeWidth={1.5} />
                             </div>
-                          )
-                        }
-                      </div>
+                          )}
+                        </div>
                       </>
                     );
                   })}
@@ -230,7 +245,11 @@ const CreateProduct = () => {
                         )}
                       >
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {StartDate ? format(StartDate, "PPP") : <span>Pick a date</span>}
+                        {StartDate ? (
+                          format(StartDate, "PPP")
+                        ) : (
+                          <span>Pick a date</span>
+                        )}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0">
@@ -255,7 +274,11 @@ const CreateProduct = () => {
                         )}
                       >
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {endDate ? format(endDate, "PPP") : <span>Pick a date</span>}
+                        {endDate ? (
+                          format(endDate, "PPP")
+                        ) : (
+                          <span>Pick a date</span>
+                        )}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0">
@@ -284,7 +307,10 @@ const CreateProduct = () => {
 
             <div className="flex justify-start  gap-4  mt-4">
               {/* product image */}
-              <div className="h-60 w-60 border border-dashed rounded-lg flex justify-center items-center flex-col">
+              <input  type="file" hidden ref={handleProductlogoButton} />
+              <div onClick={()=>{
+                handleProductlogoButton.current.click();
+              }}  className="h-60 w-60 border border-dashed rounded-lg flex justify-center items-center flex-col">
                 <Image
                   className="text-indigo-800 mb-2"
                   size={19}

@@ -1,5 +1,7 @@
 "use client";
 import {
+  Check,
+  CheckCheck,
   Github,
   Hash,
   Image,
@@ -77,7 +79,7 @@ const productteamMember = [
 
 const CreateProduct = () => {
 
-
+  const [colorCode, setcolorCode] = useState<number>(2);
   const [ProductColor, setProductColor] = useState<string>("");
   const [productTechStack, setproductTechStack] = useState<[]>([]);
   const [productLogo, setproductLogo] = useState<string>("");
@@ -191,10 +193,24 @@ const CreateProduct = () => {
                 <div className="flex gap-3 mt-2">
                   {colortheme.map((curr: any) => {
                     return (
+                      <>
+                      
                       <div
                         className="h-8 w-8 rounded-full"
                         style={{ backgroundColor: curr.color }}
-                      ></div>
+                       onClick={()=>{
+                        setcolorCode(curr.colorid);
+                        setProductColor(curr.color);
+                       }} >
+                        {
+                          colorCode == curr.colorid && (
+                            <div className="h-full text-white w-full flex justify-center items-center rounded-full" >
+                              <CheckCheck size={18} strokeWidth={1.5}  />
+                            </div>
+                          )
+                        }
+                      </div>
+                      </>
                     );
                   })}
                 </div>

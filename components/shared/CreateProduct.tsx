@@ -98,13 +98,17 @@ const CreateProduct = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
+      detail:'',
+      endDate:'',
+      name:'',
+      startDate:'',
+      visibility:'private'
     },
   });
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+
     console.log(values);
   }
 

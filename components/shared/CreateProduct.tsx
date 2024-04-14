@@ -15,7 +15,6 @@ import React, { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -34,18 +33,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
-  name:z.string().min(2).max(15),
-  visibility:z.enum(["public" , "private"]),
-  detail:z.string().min(15).max(150),
-  startDate:z.date(),
-  endDate:z.date(),
-
-
-  
+  name: z.string().min(2).max(15),
+  visibility: z.enum(["public", "private"]),
+  detail: z.string().min(15).max(150),
 });
 
 const colortheme = [
@@ -74,43 +77,43 @@ const productteamMember = [
 
 const CreateProduct = () => {
 
-    const [ProductColor, setProductColor] = useState<string>('');
-    const [productTechStack, setproductTechStack] = useState<[]>([]);
-    const [productLogo, setproductLogo] = useState<string>("");
-    const [ProductDocument, setProductDocument] = useState<[]>([]);
-    const [members , setmembers] = useState<[]>([]);
 
-  const [date, setDate] = useState<Date | undefined>(new Date());
-
-  const rendercalender = () => {
-    return (
-      <Calendar
-        mode="single"
-        selected={date}
-        onSelect={setDate}
-        className="rounded-md border"
-      />
-    );
-  };
+  const [ProductColor, setProductColor] = useState<string>("");
+  const [productTechStack, setproductTechStack] = useState<[]>([]);
+  const [productLogo, setproductLogo] = useState<string>("");
+  const [ProductDocument, setProductDocument] = useState<[]>([]);
+  const [members, setmembers] = useState<[]>([]);
+  const [StartDate, setStartDate] = useState<Date>();
+  const [endDate, setendDate] = useState<Date>();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
-      detail:'',
-      endDate:'',
-      name:'',
-      startDate:'',
-      visibility:'private'
+      detail: "",
+      name: "",
+      visibility: "private",
     },
   });
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-
+    if(StartDate){
+      console.log(StartDate);
+    }else{
+      console.log("Please select date");
+    }
     console.log(values);
   }
+
+
+  const handleData = ()=>{
+    console.log("this is start data" , StartDate);
+    
+  }
+
+
 
   return (
     <div className="w-full min-h-screen ">
@@ -166,7 +169,7 @@ const CreateProduct = () => {
               <div>
                 <FormField
                   control={form.control}
-                  name="username"
+                  name="detail"
                   render={({ field }) => (
                     <FormItem className="w-full">
                       <FormLabel>Product Description</FormLabel>
@@ -201,21 +204,53 @@ const CreateProduct = () => {
               <div className="w-full flex gap-4">
                 <div className="w-full">
                   <p className="font-medium text-sm mb-2">Start date</p>
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    className="rounded-md border"
-                  />
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full justify-start text-left font-normal",
+                          !StartDate && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {StartDate ? format(StartDate, "PPP") : <span>Pick a date</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        selected={StartDate}
+                        onSelect={setStartDate}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </div>
                 <div className="w-full">
-                  <p className="font-medium text-sm mb-2">Start date</p>
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    className="rounded-md border w-full"
-                  />
+                  <p className="font-medium text-sm mb-2">Product Deadline</p>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full justify-start text-left font-normal",
+                          !endDate && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {endDate ? format(endDate, "PPP") : <span>Pick a date</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        selected={endDate}
+                        onSelect={setendDate}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </div>
               </div>
               {/* fifth row */}

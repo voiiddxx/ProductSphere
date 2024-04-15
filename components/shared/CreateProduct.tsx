@@ -4,7 +4,7 @@ import {
   CheckCheck,
   Github,
   Hash,
-  Image,
+  ImagePlus,
   Link,
   Linkedin,
   Plus,
@@ -45,6 +45,8 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
@@ -93,15 +95,16 @@ const CreateProduct = () => {
   const [members, setmembers] = useState<[]>([]);
   const [StartDate, setStartDate] = useState<Date>();
   const [endDate, setendDate] = useState<Date>();
+  const [showLogo, setshowLogo] = useState<any>(null);
 
 
   const hanldeProcuctImage = (e:any)=>{
-    setUploadImage(e.target.files);
-
+    setproductLogo(e.target.files);
+    const file = e.target.files[0];
     if(file){
         const reader = new FileReader();
         reader.onloadend = ()=>{
-            setAchImage(reader.result);
+            setshowLogo(reader.result);
         }
         reader.readAsDataURL(file);
     }
@@ -307,19 +310,34 @@ const CreateProduct = () => {
 
             <div className="flex justify-start  gap-4  mt-4">
               {/* product image */}
-              <input  type="file" hidden ref={handleProductlogoButton} />
-              <div onClick={()=>{
-                handleProductlogoButton.current.click();
-              }}  className="h-60 w-60 border border-dashed rounded-lg flex justify-center items-center flex-col">
-                <Image
-                  className="text-indigo-800 mb-2"
-                  size={19}
-                  strokeWidth={1.5}
-                />
-                <p className="text-xs font-medium text-center mx-4 text-zinc-700">
-                  Upload your product logo or any relavent image
-                </p>
-              </div>
+              <input onChange={hanldeProcuctImage}  type="file" hidden ref={handleProductlogoButton} />
+
+              {
+                showLogo && (
+                  <div onClick={()=>{
+                    handleProductlogoButton.current.click();
+                  }}  className="h-60 w-60 border border-dashed rounded-lg flex justify-center items-center flex-col">
+                    <Image className="h-full w-full object-cover rounded-md"  src={showLogo} height={1500} width={1500} alt="productimage" />
+                    
+                  </div>
+                )
+              }
+              {
+                showLogo == null && (
+                  <div onClick={()=>{
+                    handleProductlogoButton.current.click();
+                  }}  className="h-60 w-60 border border-dashed rounded-lg flex justify-center items-center flex-col">
+                    <ImagePlus
+                      className="text-indigo-800 mb-2"
+                      size={19}
+                      strokeWidth={1.5}
+                    />
+                    <p className="text-xs font-medium text-center mx-4 text-zinc-700">
+                      Upload your product logo or any relavent image
+                    </p>
+                  </div>
+                )
+              }
               {/* product other documents */}
               <div className=" flex flex-col gap-2">
                 <div className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border">

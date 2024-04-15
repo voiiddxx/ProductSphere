@@ -30,10 +30,29 @@ model Product {
   name String
   detail String
   category String
-  members User[]
   startData DateTime
   endData DateTime
   logo String
   url String
+  productcolor String
+  productlogo String
+  productdocumentone String?
+  productdocumenttwo String?
+  visibility String
+  startDate DateTime
+  endDate DateTime
+  user User @relation(fields: [user_id] , references: [id])
+  user_id Int
+  skills Skills[]
 }
+
+
+
+model Skills {
+  id Int @id @default(autoincrement())
+  product Product[]
+}
+
+
+
 

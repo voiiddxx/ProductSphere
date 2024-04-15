@@ -87,6 +87,10 @@ const productteamMember = [
 const CreateProduct = () => {
 
   const handleProductlogoButton = useRef<any>(null);
+  const handleProductDocumentone = useRef<any>(null);
+  const handleProductDocumentSecond = useRef<any>(null);
+  const [productdocumentone, setproductdocumentone] = useState<any>(null);
+  const [productdocumentsecond, setproductdocumentsecond] = useState<any>(null);
   const [colorCode, setcolorCode] = useState<number>(2);
   const [ProductColor, setProductColor] = useState<string>("");
   const [productTechStack, setproductTechStack] = useState<[]>([]);
@@ -339,26 +343,49 @@ const CreateProduct = () => {
                 )
               }
               {/* product other documents */}
+
+
+              {/* document one input field for selecting image */}
+              <input onChange={(e)=>{
+                setproductdocumentone(e.target.files);
+              }} type="file" hidden ref={handleProductDocumentone} />
+              {/* second document input field for selecting imahe */}
+              <input onChange={(e)=>{
+                setproductdocumentsecond(e.target.files);
+              }} type="file" hidden ref={handleProductDocumentSecond} />
               <div className=" flex flex-col gap-2">
-                <div className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border">
+                <div onClick={()=>{
+                  handleProductDocumentone.current.click();
+                }} className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border">
                   <Link
                     className="text-indigo-800 mb-2"
                     size={19}
                     strokeWidth={1.5}
                   />
-                  <p className="text-xs font-medium text-center mx-4 text-zinc-700">
+                  {
+                    productdocumentone!= null ? <p className="text-xs font-medium text-center mx-4 text-zinc-700">
+                    Selected
+                  </p> : <p className="text-xs font-medium text-center mx-4 text-zinc-700">
                     Attach any product relavent details file
                   </p>
+                  }
+                  
                 </div>
-                <div className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border">
+                <div onClick={()=>{
+                  handleProductDocumentSecond.current.click();
+                }} className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border">
                   <Link
                     className="text-indigo-800 mb-2"
                     size={19}
                     strokeWidth={1.5}
                   />
-                  <p className="text-xs font-medium text-center mx-4 text-zinc-700">
+                   {
+                    productdocumentsecond!= null ? <p className="text-xs font-medium text-center mx-4 text-zinc-700">
+                    Selected
+                  </p> : <p className="text-xs font-medium text-center mx-4 text-zinc-700">
                     Attach any product relavent details file
                   </p>
+                  }
                 </div>
               </div>
             </div>

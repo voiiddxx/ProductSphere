@@ -46,6 +46,15 @@ import {
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+
 
 
 const formSchema = z.object({
@@ -65,12 +74,7 @@ const colortheme = [
   { color: "#478d00", colorid: 7 },
 ];
 
-const productSkills = [
-  { skill: "Typescript" },
-  { skill: "Postgress" },
-  { skill: "Flutter" },
-  { skill: "Nextjs" },
-];
+
 
 const productteamMember = [
   { member: "Nikhil" },
@@ -78,6 +82,7 @@ const productteamMember = [
   { member: "Pankaj" },
   { member: "Govinda" },
 ];
+
 
 
 
@@ -100,6 +105,19 @@ const CreateProduct = () => {
   const [StartDate, setStartDate] = useState<Date>();
   const [endDate, setendDate] = useState<Date>();
   const [showLogo, setshowLogo] = useState<any>(null);
+  const [AddSkill, setAddSkill] = useState<any>(null);
+  const [productSkills, setproductSkills] = useState([
+    { skill: "Typescript" },
+  ])  
+
+  const handleAddTechstack = ()=>{
+      const data = {
+        "Skill":AddSkill
+      }
+      setproductSkills([...productSkills ,  { skill: AddSkill },]);
+      console.log(productSkills);
+      
+  }
 
 
   const hanldeProcuctImage = (e:any)=>{
@@ -314,78 +332,108 @@ const CreateProduct = () => {
 
             <div className="flex justify-start  gap-4  mt-4">
               {/* product image */}
-              <input onChange={hanldeProcuctImage}  type="file" hidden ref={handleProductlogoButton} />
+              <input
+                onChange={hanldeProcuctImage}
+                type="file"
+                hidden
+                ref={handleProductlogoButton}
+              />
 
-              {
-                showLogo && (
-                  <div onClick={()=>{
+              {showLogo && (
+                <div
+                  onClick={() => {
                     handleProductlogoButton.current.click();
-                  }}  className="h-60 w-60 border border-dashed rounded-lg flex justify-center items-center flex-col">
-                    <Image className="h-full w-full object-cover rounded-md"  src={showLogo} height={1500} width={1500} alt="productimage" />
-                    
-                  </div>
-                )
-              }
-              {
-                showLogo == null && (
-                  <div onClick={()=>{
+                  }}
+                  className="h-60 w-60 border border-dashed rounded-lg flex justify-center items-center flex-col"
+                >
+                  <Image
+                    className="h-full w-full object-cover rounded-md"
+                    src={showLogo}
+                    height={1500}
+                    width={1500}
+                    alt="productimage"
+                  />
+                </div>
+              )}
+              {showLogo == null && (
+                <div
+                  onClick={() => {
                     handleProductlogoButton.current.click();
-                  }}  className="h-60 w-60 border border-dashed rounded-lg flex justify-center items-center flex-col">
-                    <ImagePlus
-                      className="text-indigo-800 mb-2"
-                      size={19}
-                      strokeWidth={1.5}
-                    />
-                    <p className="text-xs font-medium text-center mx-4 text-zinc-700">
-                      Upload your product logo or any relavent image
-                    </p>
-                  </div>
-                )
-              }
+                  }}
+                  className="h-60 w-60 border border-dashed rounded-lg flex justify-center items-center flex-col"
+                >
+                  <ImagePlus
+                    className="text-indigo-800 mb-2"
+                    size={19}
+                    strokeWidth={1.5}
+                  />
+                  <p className="text-xs font-medium text-center mx-4 text-zinc-700">
+                    Upload your product logo or any relavent image
+                  </p>
+                </div>
+              )}
               {/* product other documents */}
 
-
               {/* document one input field for selecting image */}
-              <input onChange={(e)=>{
-                setproductdocumentone(e.target.files);
-              }} type="file" hidden ref={handleProductDocumentone} />
+              <input
+                onChange={(e) => {
+                  setproductdocumentone(e.target.files);
+                }}
+                type="file"
+                hidden
+                ref={handleProductDocumentone}
+              />
               {/* second document input field for selecting imahe */}
-              <input onChange={(e)=>{
-                setproductdocumentsecond(e.target.files);
-              }} type="file" hidden ref={handleProductDocumentSecond} />
+              <input
+                onChange={(e) => {
+                  setproductdocumentsecond(e.target.files);
+                }}
+                type="file"
+                hidden
+                ref={handleProductDocumentSecond}
+              />
               <div className=" flex flex-col gap-2">
-                <div onClick={()=>{
-                  handleProductDocumentone.current.click();
-                }} className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border">
+                <div
+                  onClick={() => {
+                    handleProductDocumentone.current.click();
+                  }}
+                  className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border"
+                >
                   <Link
                     className="text-indigo-800 mb-2"
                     size={19}
                     strokeWidth={1.5}
                   />
-                  {
-                    productdocumentone!= null ? <p className="text-xs font-medium text-center mx-4 text-zinc-700">
-                    Selected
-                  </p> : <p className="text-xs font-medium text-center mx-4 text-zinc-700">
-                    Attach any product relavent details file
-                  </p>
-                  }
-                  
+                  {productdocumentone != null ? (
+                    <p className="text-xs font-medium text-center mx-4 text-zinc-700">
+                      Selected
+                    </p>
+                  ) : (
+                    <p className="text-xs font-medium text-center mx-4 text-zinc-700">
+                      Attach any product relavent details file
+                    </p>
+                  )}
                 </div>
-                <div onClick={()=>{
-                  handleProductDocumentSecond.current.click();
-                }} className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border">
+                <div
+                  onClick={() => {
+                    handleProductDocumentSecond.current.click();
+                  }}
+                  className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border"
+                >
                   <Link
                     className="text-indigo-800 mb-2"
                     size={19}
                     strokeWidth={1.5}
                   />
-                   {
-                    productdocumentsecond!= null ? <p className="text-xs font-medium text-center mx-4 text-zinc-700">
-                    Selected
-                  </p> : <p className="text-xs font-medium text-center mx-4 text-zinc-700">
-                    Attach any product relavent details file
-                  </p>
-                  }
+                  {productdocumentsecond != null ? (
+                    <p className="text-xs font-medium text-center mx-4 text-zinc-700">
+                      Selected
+                    </p>
+                  ) : (
+                    <p className="text-xs font-medium text-center mx-4 text-zinc-700">
+                      Attach any product relavent details file
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -394,19 +442,38 @@ const CreateProduct = () => {
           <div className="mt-5">
             <p className="text-sm font-medium">Product TechStack</p>
             {/* product add array */}
-            <div className="w-full flex gap-4 mt-4">
+            <div className="w-full flex gap-4 mt-4 flex-wrap">
               {productSkills.map((curr: any) => {
                 return (
-                  <div className="flex bg-zinc-100 text-indigo-700 px-2 py-2 rounded-sm gap-1">
-                    <Zap strokeWidth={1.5} size={17} />
+                  <div className="flex bg-zinc-100 text-indigo-700 px-2 py-2 rounded-sm gap-1 relative">
+                   
+                    <Zap  strokeWidth={1.5} size={15} />
                     <p className="text-xs font-medium">{curr.skill}</p>
                   </div>
                 );
               })}
-              <div className="w-auto border flex items-center justify-center px-2 py-1 rounded-md cursor-pointer">
-                <Plus size={18} strokeWidth={1.5} />
-                <p className="text-xs font-medium">Add TechStack</p>
-              </div>
+              <Dialog>
+                <DialogTrigger>
+                <div className="flex gap-1 border px-2 py-2 rounded-lg border-dashed items-center text-indigo-700" >
+                    <Plus size={16} strokeWidth={1.5} />
+                    <p className="text-xs font-semibold" >Add TechStack</p>
+                  </div>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Are you absolutely sure?</DialogTitle>
+                    <DialogDescription>
+                      you can add your product techstack one by one so please don't add more than one techstak at a time
+                      <Input onChange={(e)=>{
+                        setAddSkill(e.target.value);
+                      }} className="mt-4"  placeholder="Enter your techstack here" />
+                      <div className="w-full flex justify-end" >
+                        <Button onClick={handleAddTechstack} className="bg-indigo-700 mt-4" >Submit</Button>
+                      </div>
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
           {/* row 3 */}

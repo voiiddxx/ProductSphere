@@ -16,44 +16,49 @@ datasource db {
 
 
 model User {
-      id  Int  @id @default(autoincrement())
-      username String @unique
-      email String @unique
-      avatar String
-      products Product[]
-
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  email    String   @unique
+  avatar   String?
+  ownedProducts Product[] @relation("ownedProducts") // Unique relation name for owned products
+  memberOfProducts Product[] @relation("memberOfProducts") // Unique relation name for products user is a member of
+  taskCreatedBy Tasks[]
 }
-
 
 model Product {
-  productId Int @id @default(autoincrement())
-  name String
-  detail String
-  category String
-  startData DateTime
-  endData DateTime
-  logo String
-  url String
-  productcolor String
-  productlogo String
-  productdocumentone String? 
+  productId          Int      @id @default(autoincrement())
+  name               String
+  detail             String
+  category           String
+  startDate          DateTime
+  endDate            DateTime
+  logo               String
+  url                String
+  productcolor       String
+  productlogo        String
+  productdocumentone String?
   productdocumenttwo String?
-  visibility String
-  startDate DateTime
-  endDate DateTime
-  user User @relation(fields: [user_id] , references: [id])
-  user_id Int
-  skills Skills[]
+  visibility         String
+  owner              User     @relation("ownedProducts", fields: [ownerId], references: [id])
+  ownerId            Int
+  members            User[]   @relation("memberOfProducts") // Use unique relation name for members
+  skills             Skills[]
+  taskProduct Tasks[]
 }
-
-
 
 model Skills {
-  id Int @id @default(autoincrement())
-  product Product[]
+  id        Int       @id @default(autoincrement())
   skillname String
+  products  Product[]
 }
 
 
-
-
+model Tasks {
+  taskId Int @id @default(autoincrement())
+  taskData String
+  taskDoc String?
+  taskCreator User? @relation(fields: [creatorId] , references: [id])
+  creatorId Int
+  taskProduct Product @relation(fields: [productId] , references: [productId])
+  productId Int
+}

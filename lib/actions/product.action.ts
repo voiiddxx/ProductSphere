@@ -11,6 +11,8 @@ const memberIds = [2]; // IDs of team members to be added
 
 export const createProductAction =  async()=>{
     try {
+        console.log("this is working");
+        
         const products = await prisma.product.create({
             data:{
                 name:"ProductSphere",
@@ -30,7 +32,15 @@ export const createProductAction =  async()=>{
                     connect: memberIds.map(memberid => ({id:memberid}))
                 },
             }
-        })
+        });
+
+        if(!products){
+            console.log("Some error occured");
+            return JSON.parse(JSON.stringify({message:"Some error occured"}));
+        }
+        console.log("Product Created" , products);
+        return JSON.parse(JSON.stringify({data:products}));
+        
     } catch (error) {
         console.log(error);
         throw new Error(error as string);

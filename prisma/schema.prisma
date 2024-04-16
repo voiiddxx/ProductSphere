@@ -16,10 +16,11 @@ datasource db {
 
 
 model User {
-  id       Int      @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   username String   @unique
   email    String   @unique
   avatar   String?
+  clerkId String @unique
   ownedProducts Product[] @relation("ownedProducts") // Unique relation name for owned products
   memberOfProducts Product[] @relation("memberOfProducts") // Unique relation name for products user is a member of
   taskCreatedBy Tasks[]
@@ -42,15 +43,10 @@ model Product {
   owner              User     @relation("ownedProducts", fields: [ownerId], references: [id])
   ownerId            Int
   members            User[]   @relation("memberOfProducts") // Use unique relation name for members
-  skills             Skills[]
+  skills             String[]
   taskProduct Tasks[]
 }
 
-model Skills {
-  id        Int       @id @default(autoincrement())
-  skillname String
-  products  Product[]
-}
 
 
 model Tasks {

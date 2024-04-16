@@ -58,7 +58,6 @@ export async function POST(req: Request) {
     const email = evt.data.email_addresses[0].email_address;
     const username = evt.data.username!;
     const avarar = evt.data.image_url;
-    
     const res = await createUseronSuperbase({email:email , avatar:avarar , username:username});
     console.log("value of res:" , res);
     

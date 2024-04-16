@@ -58,10 +58,9 @@ import {
 
 
 const formSchema = z.object({
-  username: z.string().min(2).max(50),
   name: z.string().min(2).max(15),
   visibility: z.enum(["public", "private"]),
-  detail: z.string().min(15).max(150),
+  detail: z.string(),
 });
 
 const colortheme = [
@@ -143,16 +142,29 @@ const CreateProduct = () => {
       visibility: "private",
     },
   });
+
+
+
+  const handleFormData = (values: z.infer<typeof formSchema>)=>{
+    alert("it is working fine");
+    if( ProductColor && StartDate && endDate &&productLogo && productSkills){
+      console.log("All Values: " , ProductColor , productLogo , productSkills , StartDate , endDate , values.visibility);
+      
+    }else{  
+      alert("Some fileds are still misings");
+    }
+  }
   
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    if (StartDate) {
-      console.log(StartDate);
-    } else {
-      console.log("Please select date");
+    alert("it is working fine");
+    if(values.name && values.detail && values.visibility && ProductColor && StartDate && endDate &&productLogo && productSkills){
+      console.log("All Values: " , values.detail , values.name , values.visibility, ProductColor , productLogo , productSkills , StartDate , endDate);
+      
+    }else{
+      alert("Some fileds are still misings");
     }
-    console.log(values);
   }
 
   const handleData = () => {
@@ -319,7 +331,7 @@ const CreateProduct = () => {
               </div>
               {/* fifth row */}
 
-              <Button type="submit">Submit</Button>
+              <Button type="submit" >Submit</Button>
             </form>
           </Form>
         </div>

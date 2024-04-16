@@ -36,7 +36,7 @@ model Product {
   url String
   productcolor String
   productlogo String
-  productdocumentone String?
+  productdocumentone String? 
   productdocumenttwo String?
   visibility String
   startDate DateTime
@@ -51,6 +51,7 @@ model Product {
 model Skills {
   id Int @id @default(autoincrement())
   product Product[]
+  skillname String
 }
 
 

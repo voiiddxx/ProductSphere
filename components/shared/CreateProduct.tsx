@@ -105,17 +105,17 @@ const CreateProduct = () => {
   const [endDate, setendDate] = useState<Date>();
   const [showLogo, setshowLogo] = useState<any>(null);
   const [AddSkill, setAddSkill] = useState<any>(null);
-  const [productSkills, setproductSkills] = useState([
-    { skill: "Typescript" },
-  ])  
+  const [productSkills, setproductSkills] = useState<any>([]);
+  const [ProductCode, setProductCode] = useState<any>(null);
+
+
+  
+
+
+
 
   const handleAddTechstack = ()=>{
-      const data = {
-        "Skill":AddSkill
-      }
-      setproductSkills([...productSkills ,  { skill: AddSkill },]);
-      console.log(productSkills);
-      
+      setproductSkills([...productSkills , AddSkill]);
   }
 
 
@@ -148,8 +148,8 @@ const CreateProduct = () => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    if(productLogo && productSkills && ProductColor && StartDate && endDate){
-      console.log("Name: " , values.name , "Detail: " , values.detail , "Visibility: " , values.visibility , "Color: " , ProductColor , "Logo: " , productLogo , "Skills: " , productSkills , "StartDate: " , StartDate , "EndDate: " , endDate);
+    if(productLogo && productSkills && ProductColor && StartDate && endDate && ProductCode){
+      console.log("Name: " , values.name , "Detail: " , values.detail , "Visibility: " , values.visibility , "Color: " , ProductColor , "Logo: " , productLogo , "Skills: " , productSkills , "StartDate: " , StartDate , "EndDate: " , endDate , "Code:" , ProductCode);
     }else{
       console.log("Some Field are missing");
       
@@ -223,7 +223,7 @@ const CreateProduct = () => {
                         <Textarea
                           className="h-[150px]"
                           placeholder="Platform build to enhance the product building experience in team , using this product you can enhanced the experince of product building experince⚡"
-                        />
+                         {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -450,7 +450,7 @@ const CreateProduct = () => {
                   <div className="flex bg-zinc-100 text-indigo-700 px-2 py-2 rounded-sm gap-1 relative">
                    
                     <Zap  strokeWidth={1.5} size={15} />
-                    <p className="text-xs font-medium">{curr.skill}</p>
+                    <p className="text-xs font-medium">{curr}</p>
                   </div>
                 );
               })}
@@ -520,7 +520,9 @@ const CreateProduct = () => {
           {/* row 4 */}
           <div className="mt-5">
             <p className="text-sm font-medium">Product Code</p>
-            <Input className="mt-2" placeholder="Enter Your Code here" />
+            <Input onChange={(e)=>{
+              setProductCode(e.target.value);
+            }} className="mt-2" placeholder="Enter Your Code here" />
             <div className="flex text-zinc-600 mt-2">
               <Volume1 strokeWidth={1.5} size={17} />
               <p className="text-xs font-normal">

@@ -50,6 +50,8 @@ export const getUserUsingClerkid = async (id:string)=>{
 }
 
 
+// server action for getting the list of all users
+
 export const getAllUsers = async()=>{
     try {
         const allusersResponse = await prisma.user.findMany({});

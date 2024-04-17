@@ -1,15 +1,14 @@
 "use server"
 
-import { RegisterParams } from "@/types";
 import { createSupebaseServerClient } from "../superbase/server";
 
 
-export async function RegisterUserUsingSuperbase({email , password , username} : RegisterParams) {
+export async function RegisterUserUsingSuperbase({} ) {
     const superbase = createSupebaseServerClient();
     try {
         const res = (await superbase).auth.signUp({
-            email:email,
-            password:password
+            email:"njnn",
+            password:"nn"
         });
         const data = await res;
         console.log("Value of data:" , data);

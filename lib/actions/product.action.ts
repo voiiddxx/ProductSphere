@@ -7,9 +7,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const memberIds = [2]; // IDs of team members to be added
 
-const skills = ["nextJs , typeScript"]
 
 
 export const createProductAction =  async({data}:createProductParams)=>{

@@ -59,7 +59,7 @@ import {
 
 const formSchema = z.object({
   name: z.string().min(2).max(15),
-  visibility: z.enum(["public", "private"]),
+  visibility: z.string(),
   detail: z.string(),
 });
 
@@ -136,7 +136,6 @@ const CreateProduct = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
       detail: "",
       name: "",
       visibility: "private",

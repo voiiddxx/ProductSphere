@@ -19,8 +19,8 @@ model User {
   id       Int    @id @default(autoincrement())
   username String   @unique
   email    String   @unique
-  avatar   String?
   clerkId String @unique
+  avatar   String?
   ownedProducts Product[] @relation("ownedProducts") // Unique relation name for owned products
   memberOfProducts Product[] @relation("memberOfProducts") // Unique relation name for products user is a member of
   taskCreatedBy Tasks[]

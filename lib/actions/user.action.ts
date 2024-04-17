@@ -9,13 +9,14 @@ const prisma = new PrismaClient()
 
 // server action for saving the user data to superbase using prisma and postgress
 
-export const createUseronSuperbase = async({avatar , email , username}:CreateUseronSuperbaseParams)=>{
+export const createUseronSuperbase = async({avatar , email , username , clerkId}:CreateUseronSuperbaseParams)=>{
     try {
         const res = await prisma.user.create({
             data:{
               username:username,
               avatar:avatar,
               email:email,  
+              clerkId:clerkId
             },
             
         });

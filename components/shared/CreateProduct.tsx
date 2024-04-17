@@ -152,12 +152,15 @@ const CreateProduct = () => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
 
     const ownerIdForproduct = localStorage.getItem('x-auth-id');
-
-    const IntegerOwner : number = parseInt(ownerIdForproduct! , 10); 
+    console.log("this is",ownerIdForproduct);
+    
+    const parsedData = + ownerIdForproduct!;
+    console.log("this is",parsedData);
+    
     if(productLogo && productSkills && ProductColor && StartDate && endDate && ProductCode){
       console.log("Name: " , values.name , "Detail: " , values.detail , "Visibility: " , values.visibility , "Color: " , ProductColor , "Logo: " , productLogo , "Skills: " , productSkills , "StartDate: " , StartDate , "EndDate: " , endDate , "Code:" , ProductCode);
 
-      const productRes = await createProductAction({data:{name:values.name , detail:values.detail , visibility:values.visibility , category:"Saas" , startDate:StartDate , endDate:endDate , productcolor:ProductColor , productlogo:"thisisprodudclogo" , url:"thisisurl" , ownerId: IntegerOwner | 1 , productCode:ProductCode , skills:productSkills}});
+      const productRes = await createProductAction({data:{name:values.name , detail:values.detail , visibility:values.visibility , category:"Saas" , startDate:StartDate , endDate:endDate , productcolor:ProductColor , productlogo:"thisisprodudclogo" , url:"thisisurl" , ownerId: parsedData , productCode:ProductCode , skills:productSkills}});
     }else{
       console.log("Some Field are missing");
       

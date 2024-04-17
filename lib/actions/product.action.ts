@@ -42,7 +42,70 @@ export const createProductAction =  async({data}:createProductParams)=>{
     }
 }
 
-
 // members: {
 //     connect: memberIds.map(memberid => ({id:memberid}))
 // },
+
+
+
+// server action for fetching all the product present in db
+
+export const getAllProductAction = async()=>{
+    try {
+        const productResponse = await prisma.product.findMany({});
+        if(!productResponse){
+            return JSON.parse(JSON.stringify({message:"No Product Found"}));
+        }
+        console.log("Products Found: " , productResponse);
+        return JSON.parse(JSON.stringify(productResponse));
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string);
+        
+    }
+}
+
+
+// server action for getting the product created by the user
+
+export const getProductAsperuseridAction = async( ownerIdofproduct: number )=>{
+    try {
+        const ProductRes = await prisma.product.findMany({
+            where:{
+                ownerId:ownerIdofproduct
+            }
+        });
+
+        if(!ProductRes){
+            return JSON.parse(JSON.stringify({message:"User never crerated a product"}));
+        }
+        return JSON.parse(JSON.stringify(ProductRes));
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string);
+        
+    }
+}
+
+
+// server action for getting the product as per the product id 
+
+
+export const getProductWithProductIdAction = async (productId : number) =>{
+    try {
+        const productRes = await prisma.product.findFirst({
+            where:{
+                productId:productId
+            }
+        });
+        
+        if(!productRes){
+            return JSON.parse(JSON.stringify({message:"User never crerated a product"}));
+        }
+        return JSON.parse(JSON.stringify(productRes));
+
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string);
+    }
+}

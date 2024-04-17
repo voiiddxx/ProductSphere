@@ -44,7 +44,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
+import uploadDataonCloudinary, { cn } from "@/lib/utils";
 import Image from "next/image";
 import {
   Dialog,
@@ -158,9 +158,14 @@ const CreateProduct = () => {
     console.log("this is",parsedData);
     
     if(productLogo && productSkills && ProductColor && StartDate && endDate && ProductCode){
-      console.log("Name: " , values.name , "Detail: " , values.detail , "Visibility: " , values.visibility , "Color: " , ProductColor , "Logo: " , productLogo , "Skills: " , productSkills , "StartDate: " , StartDate , "EndDate: " , endDate , "Code:" , ProductCode);
+      console.log("this is image url: " , productLogo);
+      
+        const imageUrl = await uploadDataonCloudinary(productLogo);
+        if(!imageUrl){
+          return Error("Some error found");
+        }
 
-      const productRes = await createProductAction({data:{name:values.name , detail:values.detail , visibility:values.visibility , category:"Saas" , startDate:StartDate , endDate:endDate , productcolor:ProductColor , productlogo:"thisisprodudclogo" , url:"thisisurl" , ownerId: parsedData , productCode:ProductCode , skills:productSkills}});
+      const productRes = await createProductAction({data:{name:values.name , detail:values.detail , visibility:values.visibility , category:"Saas" , startDate:StartDate , endDate:endDate , productcolor:ProductColor , productlogo:imageUrl , url:"thisisurl" , ownerId: parsedData , productCode:ProductCode , skills:productSkills}});
     }else{
       console.log("Some Field are missing");
       

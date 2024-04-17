@@ -144,26 +144,17 @@ const CreateProduct = () => {
 
 
 
-  const handleFormData = (values: z.infer<typeof formSchema>)=>{
-    alert("it is working fine");
-    if( ProductColor && StartDate && endDate &&productLogo && productSkills){
-      console.log("All Values: " , ProductColor , productLogo , productSkills , StartDate , endDate , values.visibility);
-      
-    }else{  
-      alert("Some fileds are still misings");
-    }
-  }
-  
+ 
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    alert("it is working fine");
-    if(values.name && values.detail && values.visibility && ProductColor && StartDate && endDate &&productLogo && productSkills){
-      console.log("All Values: " , values.detail , values.name , values.visibility, ProductColor , productLogo , productSkills , StartDate , endDate);
-      
+    if(productLogo && productSkills && ProductColor && StartDate && endDate){
+      console.log("Name: " , values.name , "Detail: " , values.detail , "Visibility: " , values.visibility , "Color: " , ProductColor , "Logo: " , productLogo , "Skills: " , productSkills , "StartDate: " , StartDate , "EndDate: " , endDate);
     }else{
-      alert("Some fileds are still misings");
+      console.log("Some Field are missing");
+      
     }
+   
   }
 
   const handleData = () => {

@@ -48,3 +48,19 @@ export const getUserUsingClerkid = async (id:string)=>{
         throw new Error(error as string);
     }
 }
+
+
+export const getAllUsers = async()=>{
+    try {
+        const allusersResponse = await prisma.user.findMany({});
+        if(!allusersResponse){
+            return JSON.parse(JSON.stringify({messae:"No Users Found"}));
+        }
+        console.log("Users List: " , allusersResponse);
+        return JSON.parse(JSON.stringify(allusersResponse));
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string);
+        
+    }
+}

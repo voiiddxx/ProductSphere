@@ -43,6 +43,7 @@ model Product {
   ownerId            Int
   members            User[]   @relation("memberOfProducts") // Use unique relation name for members
   skills             String[]
+  productCode String
   taskProduct Tasks[]
 }
 

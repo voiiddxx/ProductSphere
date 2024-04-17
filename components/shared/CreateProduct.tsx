@@ -13,7 +13,7 @@ import {
   Volume1,
   Zap,
 } from "lucide-react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -54,6 +54,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { createProductAction } from "@/lib/actions/product.action";
 
 
 
@@ -109,6 +110,7 @@ const CreateProduct = () => {
   const [ProductCode, setProductCode] = useState<any>(null);
 
 
+
   
 
 
@@ -147,9 +149,13 @@ const CreateProduct = () => {
  
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+
+    const ownerIdForproduct = localStorage.getItem('x-auth-id');
     if(productLogo && productSkills && ProductColor && StartDate && endDate && ProductCode){
       console.log("Name: " , values.name , "Detail: " , values.detail , "Visibility: " , values.visibility , "Color: " , ProductColor , "Logo: " , productLogo , "Skills: " , productSkills , "StartDate: " , StartDate , "EndDate: " , endDate , "Code:" , ProductCode);
+
+      const productRes = await createProductAction({data:{name:values.name , detail:values.detail , visibility:values.visibility , category:"Saas" , startDate:StartDate , endDate:endDate , productcolor:ProductColor , productlogo:"thisisprodudclogo" , url:"thisisurl" , ownerId:1 , productCode:ProductCode , skills:productSkills}});
     }else{
       console.log("Some Field are missing");
       

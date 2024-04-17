@@ -1,39 +1,33 @@
-"use client"
+"use client";
 
 import { createProductAction } from "@/lib/actions/product.action";
 import { Button } from "../ui/button";
 import { useEffect } from "react";
 import { getUserUsingClerkid } from "@/lib/actions/user.action";
 
-
-
 type heroProps = {
-    userid: string | undefined
-}
+  userid: string | undefined;
+};
 
-const Hero = ({userid}:heroProps) => {
-
-    
-    const handleSubmit = async ()=>{
-        const res = await createProductAction();
-        console.log("Res: " , res);
-        
-      }
-
-      useEffect(()=>{
-        const getUserData =async()=>{
-            const res = await getUserUsingClerkid(userid!);
-            const userval = localStorage.setItem("User" , res.id);
-        }
-        getUserData();  
-      } , [])
+const Hero = ({ userid }: heroProps) => {
+  const handleSubmit = async () => {
+    // const res = await createProductAction();
+    // console.log("Res: ", res);
+  };
+  useEffect(() => {
+    const getUserData = async () => {
+      const res = await getUserUsingClerkid(userid!);
+      console.log("Res: " , res , "resid val is: " , res.id);
+      const userval = localStorage.setItem("x-auth-id", res.id);
+    };
+    getUserData();
+  }, []);
   return (
     <div>
-       <Button onClick={handleSubmit} >Testing the working</Button>
-       <p> this is userid:{userid}</p>
-
+      <Button onClick={handleSubmit}>Testing the working</Button>
+      <p> this is userid:{userid}</p>
     </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

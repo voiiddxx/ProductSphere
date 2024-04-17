@@ -1,5 +1,6 @@
 "use server"
 
+import { createProductParams } from "@/types";
 import { PrismaClient } from "@prisma/client";
 
 
@@ -8,28 +9,25 @@ const prisma = new PrismaClient();
 
 const memberIds = [2]; // IDs of team members to be added
 
+const skills = ["nextJs , typeScript"]
 
-export const createProductAction =  async()=>{
+
+export const createProductAction =  async({data}:createProductParams)=>{
     try {
-        console.log("this is working");
-        
         const products = await prisma.product.create({
             data:{
-                name:"ProductSphere",
-                detail:"this is new product",
-                category:"Saas",
-                productlogo:"thisislogourl",
-                productcolor:"blue",
-                endDate: new Date(),
-                startDate:new Date(),
-                url:"thisismyutl",
-                visibility:"private",
-                productdocumentone:"thisisdocumentone",
-                productdocumenttwo:"thisisseconddecumet",
-                ownerId:1,
-                members: {
-                    connect: memberIds.map(memberid => ({id:memberid}))
-                },
+                name:data.name,
+                detail:data.detail,
+                category:data.category,
+                productlogo:data.productlogo,
+                productcolor:data.productcolor,
+                endDate: data.startDate,
+                startDate:data.endDate,
+                url:data.url,
+                visibility:data.visibility,
+                ownerId:data.ownerId,
+                skills:data.skills,
+                productCode:data.productCode
             }
         });
 
@@ -39,10 +37,14 @@ export const createProductAction =  async()=>{
         }
         console.log("Product Created" , products);
         return JSON.parse(JSON.stringify({data:products}));
-        
     } catch (error) {
         console.log(error);
         throw new Error(error as string);
         
     }
 }
+
+
+// members: {
+//     connect: memberIds.map(memberid => ({id:memberid}))
+// },

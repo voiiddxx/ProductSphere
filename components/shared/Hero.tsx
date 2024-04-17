@@ -12,6 +12,8 @@ type heroProps = {
 }
 
 const Hero = ({userid}:heroProps) => {
+
+    
     const handleSubmit = async ()=>{
         const res = await createProductAction();
         console.log("Res: " , res);
@@ -21,6 +23,7 @@ const Hero = ({userid}:heroProps) => {
       useEffect(()=>{
         const getUserData =async()=>{
             const res = await getUserUsingClerkid(userid!);
+            const userval = localStorage.setItem("User" , res.id);
         }
         getUserData();  
       } , [])

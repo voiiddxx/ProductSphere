@@ -18,7 +18,6 @@ export const createProductAction =  async()=>{
                 name:"ProductSphere",
                 detail:"this is new product",
                 category:"Saas",
-                logo:"thisislogourl",
                 productlogo:"thisislogourl",
                 productcolor:"blue",
                 endDate: new Date(),

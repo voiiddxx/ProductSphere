@@ -33,7 +33,6 @@ model Product {
   category           String
   startDate          DateTime
   endDate            DateTime
-  logo               String
   url                String
   productcolor       String
   productlogo        String

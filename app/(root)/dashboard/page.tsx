@@ -1,10 +1,13 @@
 import DashBoardNav from '@/components/shared/DashBoardNav'
 import DashboardSidebar from '@/components/shared/DashboardSidebar'
+import { currentUser } from '@clerk/nextjs'
 import { Plus } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
 const page = () => {
+
+    const user = currentUser();
   return (
     <div className='w-full min-h-screen' >
       <DashBoardNav/>
@@ -14,6 +17,7 @@ const page = () => {
         {/* right div */}
         <div className='min-h-screen w-full   flex justify-normal items-start px-5' >
             {/* upper div */}
+            
             {/* start project div */}
             <div className='h-40 w-full flex justify-center items-center flex-col border-dashed border mt-10 ' >
                 <p className='text-sm font-medium' >No Projects </p>

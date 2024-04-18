@@ -44,6 +44,7 @@ const DashboardHome = ({}: dashBoardHero) => {
       )}
 
       {Products != null && (
+        <>
         <div className="flex gap-4 mt-10 flex-wrap">
           {Products.map((curr: any) => {
             return (
@@ -78,6 +79,7 @@ const DashboardHome = ({}: dashBoardHero) => {
             );
           })}
         </div>
+        </>
       )}
     </div>
   );

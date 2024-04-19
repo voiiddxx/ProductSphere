@@ -1,16 +1,16 @@
 import React from "react";
 import DetailsSidebar from "./DetailsSidebar";
-import { Box, Dot, ListTodo, LucideWorkflow, Network, Settings, User } from "lucide-react";
+import { Box, ChevronDown, Dot, Filter, ListFilter, ListTodo, LucideWorkflow, Network, Search, Settings, User } from "lucide-react";
 import { Button } from "../ui/button";
 
 const ProductdashBoard = () => {
   return (
-    <div className="h-screen w-full flex">
+    <div className="h-screen w-full flex bg-zinc-50">
       <DetailsSidebar />
       {/* middle part */}
       <div className="h-screen w-full">
         {/* middle upper navbar */}
-        <div className=" w-full bg-zinc-100 flex flex-col justify-center py-5 px-10 border-b">
+        <div className=" w-full bg-zinc-50 flex flex-col justify-center py-5 px-10 border-b">
           {/* upper div product name and other sections */}
           <div className="flex w-full justify-between ">
             {/* left upper part */}
@@ -74,8 +74,36 @@ const ProductdashBoard = () => {
  
         </div>
         {/* upper bar ends here */}
+
+
+        {/* search bar div */}
+        <div className="h-20 w-full border-b flex items-center px-10 justify-between" >
+
+         <div className=" flex gap-1 items-center text-zinc-700" >
+          <Search size={15} strokeWidth={3}/>
+         <input className="outline-none border-none bg-transparent placeholder:text-xs placeholder:font-medium" type="text" placeholder="Search for any tasks" />
+         </div>
+
+
+         {/* right div */}
+         <div className="flex gap-6 items-center" >
+
+          <div className="flex items-center gap-1 text-zinc-500" >
+            <ListFilter size={15} strokeWidth={3}/><p className="text-sm font-normal" >Apply filters</p>
+          </div>
+          <div className="flex items-center gap-1 text-zinc-500" >
+            <p className="text-sm font-normal" >View more</p>
+            <ChevronDown size={15} strokeWidth={3}/>
+          </div>
+
+         </div>
+
+        </div>
+
+        {/* aissng task div start from here */}
+
       </div>
-      {/* middle div */}
+
     </div>
   );
 };

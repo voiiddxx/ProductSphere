@@ -48,6 +48,7 @@ const DashboardHome = ({}: dashBoardHero) => {
         <div className="flex gap-4 mt-10 flex-wrap">
           {Products.map((curr: any) => {
             return (
+             <Link href={`/dashboard/products/${curr.productId}`} >
               <div className="h-[250px] w-[400px] bg-zinc-100 rounded-lg border flex flex-col px-5 py-5 justify-between hover:bg-white">
                 <div>
                   {/* <div className='h-16 w-16 rounded-full border bg-white' ></div> */}
@@ -75,7 +76,7 @@ const DashboardHome = ({}: dashBoardHero) => {
                   </p>
                   <ArrowRight style={{ color: curr.productcolor }} strokeWidth={1.5} size={16} />
                 </div>
-              </div>
+              </div></Link>
             );
           })}
         </div>

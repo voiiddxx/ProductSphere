@@ -39,6 +39,27 @@ const DetailsSidebar = () => {
                 {/* nav 2 */}
 
             </div>
+            <div className=' flex flex-col mt-5 px-5' >
+                <div className=' flex gap-1 items-center' >
+                <p className='font-medium text-zinc-800 text-sm' >ProductSphere</p>
+                <CornerRightDown size={15} strokeWidth={1.75}/>
+                </div>
+                {/* nav 1 */}
+                <div className='flex items-center gap-2 mt-6 px-4 ' >
+                    <MousePointerClick size={17} strokeWidth={1.5} />
+                    <p className='text-xs font-medium ' >Product details</p>
+                </div>
+                <div className='flex items-center gap-2 mt-6 px-4 ' >
+                    <ListTodo size={17} strokeWidth={1.5} />
+                    <p className='text-xs font-medium ' >Assigned Tasks</p>
+                </div>
+                <div className='flex items-center gap-2 mt-6 px-4 ' >
+                    <CheckCheck size={17} strokeWidth={1.5} />
+                    <p className='text-xs font-medium ' >Completed Tasks</p>
+                </div>
+                {/* nav 2 */}
+
+            </div>
 
 
         </div>

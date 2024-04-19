@@ -4,6 +4,8 @@ import { Box, ChevronDown, Dot, Filter, ListFilter, ListTodo, LucideWorkflow, Ne
 import { Button } from "../ui/button";
 
 const ProductdashBoard = () => {
+
+  const tasks = [5,8,4,4,454,55]
   return (
     <div className="h-screen w-full flex bg-zinc-50">
       <DetailsSidebar />
@@ -101,6 +103,22 @@ const ProductdashBoard = () => {
         </div>
 
         {/* aissng task div start from here */}
+        <div className="w-full px-10  gap-4 mt-5" >
+          <p className="text-sm font-medium" >Assigned Tasks</p>
+          <p className="text-xs font-normal mt-1 text-zinc-500" >All the tasks you have assigned to the team members</p>
+         <div className="flex gap-4 flex-wrap mt-5" >
+         {
+            tasks.map((curr:any)=>{
+              return <div className="h-[250px] w-[350px] bg-white border rounded-md" >
+
+              </div>
+            })
+          }
+         </div>
+
+        </div>
+        {/* assign tasks div ends here */}
+
 
       </div>
 

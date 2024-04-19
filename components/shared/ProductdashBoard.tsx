@@ -1,6 +1,6 @@
 import React from "react";
 import DetailsSidebar from "./DetailsSidebar";
-import { Box, Dot, ListTodo, Network, Settings, User } from "lucide-react";
+import { Box, Dot, ListTodo, LucideWorkflow, Network, Settings, User } from "lucide-react";
 import { Button } from "../ui/button";
 
 const ProductdashBoard = () => {
@@ -10,7 +10,7 @@ const ProductdashBoard = () => {
       {/* middle part */}
       <div className="h-screen w-full">
         {/* middle upper navbar */}
-        <div className=" w-full bg-zinc-100 flex flex-col justify-center py-5 px-5 border-b">
+        <div className=" w-full bg-zinc-100 flex flex-col justify-center py-5 px-10 border-b">
           {/* upper div product name and other sections */}
           <div className="flex w-full justify-between ">
             {/* left upper part */}
@@ -65,6 +65,10 @@ const ProductdashBoard = () => {
             <div className="items-center flex gap-1" >
             <Settings className="text-indigo-700" size={15} strokeWidth={2} />
             <p className="text-xs font-medium" >Edit product details</p>
+            </div>
+            <div className="items-center flex gap-1" >
+            <LucideWorkflow className="text-teal-700" size={15} strokeWidth={2} />
+            <p className="text-xs font-medium" >Assign a new task</p>
             </div>
           </div>
  

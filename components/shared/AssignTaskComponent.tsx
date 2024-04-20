@@ -18,7 +18,9 @@ import {
   File,
   Link,
   ListTodo,
+  Pin,
   Plus,
+  TagsIcon,
   Trash,
   User,
   X,
@@ -50,12 +52,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 //  assign task schema
 const formSchema = z.object({
   name: z.string().min(2).max(50),
   detail: z.string().min(2).max(500),
-  
 });
 
 const AssignTaskComponent = () => {
@@ -63,14 +72,16 @@ const AssignTaskComponent = () => {
   const [TaskMembers, setTaskMembers] = useState<any>([1, 2, 3]);
   const [StartDate, setStartDate] = useState<any>(null);
   const AttachmentButton = useRef<any>(null);
-  
+  const [PinnedComment, setPinnedComment] = useState<any>(null);
+  const [Tags, setTags] = useState<any>(["dndnne" , "dsmnnj"]);
+  const [TagToBeAdded, setTagToBeAdded] = useState<any>(null);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      detail:""
+      detail: "",
     },
   });
 
@@ -80,6 +91,10 @@ const AssignTaskComponent = () => {
     // ✅ This will be type-safe and validated.
     console.log(values);
   }
+
+  const handleTags = () => {
+    setTags([...Tags , TagToBeAdded]);
+  };
 
   return (
     <Drawer>
@@ -91,7 +106,7 @@ const AssignTaskComponent = () => {
         <DrawerHeader>
           <DrawerDescription>
             {/* main div for assiging the tasks start here */}
-            <div className="min-h-[500px] w-full pb-20 ">
+            <div className="min-h-[650px] w-full pb-20 ">
               <div className="h-full w-full px-10">
                 {/* upper navi div */}
                 <div className="h-10 w-full border-b flex justify-between items-center">
@@ -124,7 +139,6 @@ const AssignTaskComponent = () => {
                         className="space-y-8"
                       >
                         <div>
-
                           {/* trying */}
 
                           <FormField
@@ -190,16 +204,24 @@ const AssignTaskComponent = () => {
                           </p>
 
                           {!TaskDocument && (
-                            <div onClick={()=>{
-                              AttachmentButton.current.click();
-                            }} className="flex mt-4 underline text-indigo-700 cursor-pointer">
+                            <div
+                              onClick={() => {
+                                AttachmentButton.current.click();
+                              }}
+                              className="flex mt-4 underline text-indigo-700 cursor-pointer"
+                            >
                               <Link size={17} strokeWidth={2} />
                               <p className="text-xs font-medium">
                                 Add Attachment
                               </p>
-                              <input onChange={(e)=>{
-                                setTaskDocument(e.target.files)
-                              }}  type="file" hidden ref={AttachmentButton} />
+                              <input
+                                onChange={(e) => {
+                                  setTaskDocument(e.target.files);
+                                }}
+                                type="file"
+                                hidden
+                                ref={AttachmentButton}
+                              />
                             </div>
                           )}
 
@@ -220,9 +242,12 @@ const AssignTaskComponent = () => {
                                 </div>
                                 {/* right div */}
                                 <div>
-                                  <div onClick={()=>{
-                                    setTaskDocument(null)
-                                  }} className=" px-2 py-1 gap-2 bg-red-100 rounded-md flex justify-center items-center text-red-600">
+                                  <div
+                                    onClick={() => {
+                                      setTaskDocument(null);
+                                    }}
+                                    className=" px-2 py-1 gap-2 bg-red-100 rounded-md flex justify-center items-center text-red-600"
+                                  >
                                     <Trash size={15} strokeWidth={1.5} />
                                     <p>Delete</p>
                                   </div>
@@ -235,10 +260,22 @@ const AssignTaskComponent = () => {
 
                         {/* comment section starts here */}
                         <div className="border-b pb-3">
+                          {PinnedComment && (
+                            <div className="flex mb-8 items-center gap-2">
+                              <div className="h-8 w-8 bg-zinc-200 rounded-full border"></div>
+                              <p className="font-semibold text-zinc-950">
+                                {PinnedComment}
+                              </p>
+                              <Pin size={15} />
+                            </div>
+                          )}
                           {/* comments input field */}
                           <div className="flex gap-2">
                             <div className="h-8 w-8 bg-zinc-200 rounded-full border"></div>
                             <input
+                              onChange={(e) => {
+                                setPinnedComment(e.target.value);
+                              }}
                               className="outline-none w-[650px] border-none text-sm font-medium text-zinc-900"
                               placeholder="Pinned Comment"
                             />
@@ -331,27 +368,31 @@ const AssignTaskComponent = () => {
                                 strokeWidth={8}
                                 absoluteStrokeWidth
                               />
-                              <p className="text-zinc-900 font-medium" >Low</p>
+                              <p className="text-zinc-900 font-medium">Low</p>
                             </div>
                           </SelectItem>
                           <SelectItem value="dark">
-                          <div className="flex gap-1 items-center">
+                            <div className="flex gap-1 items-center">
                               <Dot
                                 className="text-yellow-500"
                                 strokeWidth={8}
                                 absoluteStrokeWidth
                               />
-                              <p className="text-zinc-900 font-medium" >Average</p>
+                              <p className="text-zinc-900 font-medium">
+                                Average
+                              </p>
                             </div>
                           </SelectItem>
                           <SelectItem value="system">
-                          <div className="flex gap-1 items-center">
+                            <div className="flex gap-1 items-center">
                               <Dot
                                 className="text-red-500"
                                 strokeWidth={8}
                                 absoluteStrokeWidth
                               />
-                              <p className="text-zinc-900 font-medium" >Very High</p>
+                              <p className="text-zinc-900 font-medium">
+                                Very High
+                              </p>
                             </div>
                           </SelectItem>
                         </SelectContent>
@@ -359,19 +400,62 @@ const AssignTaskComponent = () => {
                     </div>
                     {/* prority div ends here */}
 
-
                     {/* tags div starts here */}
-                    <div className="px-4 py-7 border-b" >
-                    <p className="text-sm mb-4 font-medium text-zinc-900">
+                    <div className="px-4 py-7 border-b">
+                      <p className="text-sm mb-4 font-medium text-zinc-900">
                         Tags
                       </p>
 
-                      <Button variant={"outline"} size={"sm"} className="text-indigo-700 flex gap-1 items-center" >
-                        <Plus strokeWidth={1.5} size={17} />
-                        <p className="text-xs font-medium " >Add Tags</p>
-                      </Button>
+                      {
+                        Tags.length > 1 && (
+                          <div className="flex flex-wrap gap-4" >
+                            {
+                              Tags.map((curr:any)=>{
+                                return <div className="px-4 py-2 border rounded-md flex justify-center items-center gap-1 text-indigo-700 " >
+                                  <TagsIcon size={15} strokeWidth={1.75} />
+                                  <p>{curr}</p>
 
+                                </div>
+                              })
+                            }
+                          </div>
+                        )
+                      }
 
+                      <Dialog>
+                        <DialogTrigger>
+                          <div className="flex gap-1 border px-2 py-2 rounded-lg border-dashed items-center text-indigo-700">
+                            <Plus size={16} strokeWidth={1.5} />
+                            <p className="text-xs font-semibold">
+                              Add TechStack
+                            </p>
+                          </div>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Are you absolutely sure?</DialogTitle>
+                            <DialogDescription>
+                              you can add your product techstack one by one so
+                              please don't add more than one techstak at a time
+                              <Input
+                                onChange={(e) => {
+                                  setTagToBeAdded(e.target.value);
+                                }}
+                                className="mt-4"
+                                placeholder="Enter your techstack here"
+                              />
+                              <div className="w-full flex justify-end">
+                                <Button
+                                  onClick={handleTags}
+                                  className="bg-indigo-700 mt-4"
+                                >
+                                  Submit
+                                </Button>
+                              </div>
+                            </DialogDescription>
+                          </DialogHeader>
+                        </DialogContent>
+                      </Dialog>
                     </div>
                     {/* tags div ends here */}
                   </div>

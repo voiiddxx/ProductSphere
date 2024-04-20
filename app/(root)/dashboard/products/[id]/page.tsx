@@ -11,19 +11,19 @@ const page = async ({
   id : string
 }}) => {
 
-  // const prodId = +id;
-  // const productData = await getProductWithProductIdAction(prodId);  
+  const prodId = +id;
+  const productData = await getProductWithProductIdAction(prodId);  
 
-  // if(!productData){
-  //   return <div className='h-screen w-full flex justify-center items-center' >
-  //     <p>Sorry , No product found</p>
-  //   </div>
-  // }
+  if(!productData){
+    return <div className='h-screen w-full flex justify-center items-center' >
+      <p>Sorry , No product found</p>
+    </div>
+  }
 
   
   
   return (
-   <ProductdashBoard/>
+   <ProductdashBoard data={productData} />
   )
 }
 

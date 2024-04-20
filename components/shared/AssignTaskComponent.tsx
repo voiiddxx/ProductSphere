@@ -9,8 +9,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Button } from "../ui/button";
-import { ListTodo } from "lucide-react";
+import { Box, ListTodo } from "lucide-react";
 
 const AssignTaskComponent = () => {
   return (
@@ -21,15 +20,44 @@ const AssignTaskComponent = () => {
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-          <DrawerDescription>This action cannot be undone.</DrawerDescription>
+          <DrawerDescription>
+
+            {/* main div for assiging the tasks start here */}
+            <div className="min-h-[500px] w-full " >
+              
+
+              <div className="h-full w-full px-10" >
+                {/* upper navi div */}
+                <div className="h-10 w-full border-b flex justify-between items-center" >
+                  {/* left div */}
+                    <div className="flex" >
+                       <p className="text-sm font-medium" >Dashboard</p> 
+                       <p className="text-sm font-medium ml-2" >/</p>
+                       <div className="flex ml-3 items-center gap-1" >
+                        <Box size={15} strokeWidth={2} />
+                        <p className="text-sm font-medium" >Productsphere</p>
+                       </div>
+
+                       <p className="text-sm font-medium ml-2" >/</p>
+
+                       <div className="flex ml-3 items-center gap-1" >
+                        <ListTodo size={15} strokeWidth={2} />
+                        <p className="text-sm font-medium" >Assign tasks</p>
+                       </div>
+                       
+                    </div>
+                  {/* right div */}
+
+
+                </div>
+
+              </div>
+
+            </div>
+            {/* main div for assiging the tasks ends here */}
+
+          </DrawerDescription>
         </DrawerHeader>
-        <DrawerFooter>
-          <Button>Submit</Button>
-          <DrawerClose>
-            <Button variant="outline">Cancel</Button>
-          </DrawerClose>
-        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );

@@ -1,4 +1,5 @@
 
+import AssignTaskComponent from "@/components/shared/AssignTaskComponent";
 import Hero from "@/components/shared/Hero";
 import { Button } from "@/components/ui/button";
 import { createProductAction } from "@/lib/actions/product.action";
@@ -21,6 +22,7 @@ export default async function Home() {
         <UserButton afterSignOutUrl="/" />
       </SignedIn>
       <Link href={`/dashboard`} ><Button>Register Page</Button></Link>
+      <AssignTaskComponent/>
   </div>
     </main>
   );

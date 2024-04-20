@@ -45,6 +45,7 @@ model Product {
   members            User[]   @relation("memberOfProducts") // Use unique relation name for members
   skills             String[]
   productCode String
+  tasks Tasks[]
 
 }
 
@@ -52,6 +53,8 @@ model Product {
 
 model Tasks {
   taskId Int @id @default(autoincrement())
+  ownedby Product @relation(fields: [prodId] , references: [productId])
+  prodId Int
   title String
   desc String
   prioroty String

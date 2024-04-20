@@ -36,9 +36,12 @@ const DetailsSidebar = () => {
                     <CheckCheck size={17} strokeWidth={1.5} />
                     <p className='text-xs font-medium ' >Completed Tasks</p>
                 </div>
-                {/* nav 2 */}
-
             </div>
+
+
+                            {/* nav 2 */}
+
+                            
             <div className=' flex flex-col mt-5 px-5' >
                 <div className=' flex gap-1 items-center' >
                 <p className='font-medium text-zinc-800 text-sm' >ProductSphere</p>

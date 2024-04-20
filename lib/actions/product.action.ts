@@ -98,6 +98,9 @@ export const getProductWithProductIdAction = async (productId: number) => {
         const productRes = await prisma.product.findFirst({
             where: {
                 productId: productId
+            },
+            include:{
+                owner:true
             }
         });
 

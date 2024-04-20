@@ -53,7 +53,7 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 
   if(eventType== 'user.created'){
-    console.log("Everything is working fine");
+    console.log("Everything is working fine" , evt);
     const id = evt.data.id;
     const email = evt.data.email_addresses[0].email_address;
     const username = evt.data.username!;

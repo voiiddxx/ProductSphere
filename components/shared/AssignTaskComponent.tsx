@@ -12,7 +12,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Box, File, Link, ListTodo, Plus, Trash, User, X } from "lucide-react";
+import { Box, CalendarIcon, File, Link, ListTodo, Plus, Trash, User, X } from "lucide-react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -28,6 +28,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
+import { Popover, PopoverTrigger } from "../ui/popover";
+import { cn } from "@/lib/utils";
+import { PopoverContent } from "@radix-ui/react-popover";
+import { Calendar } from "../ui/calendar";
+
+import { format } from "date-fns";
 
 //  assign task schema
 const formSchema = z.object({
@@ -38,6 +44,7 @@ const AssignTaskComponent = () => {
 
   const [TaskDocument, setTaskDocument] = useState<any>(null);
   const [TaskMembers, setTaskMembers] = useState<any>([1,2,3]);
+  const [StartDate, setStartDate] = useState<any>(null);
 
   
   // 1. Define your form.
@@ -207,7 +214,7 @@ const AssignTaskComponent = () => {
                     {/* upper div for assigning the members */}
                     <div className="border-b py-7 px-4 " >
                       <p className="text-sm font-medium text-zinc-800" >Assign members</p>
-                        <div className="mt-4 flex gap-4 flex-wrap" >
+                        <div className="mt-4 flex gap-2 flex-wrap" >
                           {
                             TaskMembers.length > 1 && (
                               <>
@@ -229,6 +236,40 @@ const AssignTaskComponent = () => {
 
                     </div>
                     {/* upper div for assiging the members ends here */}
+
+
+                    {/* due date div starts here */}
+                    <div className="px-7 py-4 border-b" >
+                      <p className="text-sm mb-4 font-medium text-zinc-900" >Task Deadline</p>
+                      <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full justify-start text-left font-normal",
+                          !StartDate && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {StartDate ? (
+                          format(StartDate, "PPP")
+                        ) : (
+                          <span>Pick a date</span>
+                        )}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        selected={StartDate}
+                        onSelect={setStartDate}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                        
+                    </div>
+                    {/* due date div ends here */}
 
                   </div>
                 </div>

@@ -361,7 +361,7 @@ const AssignTaskComponent = () => {
                           <SelectValue placeholder="Theme" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="light">
+                          <SelectItem value="Low">
                             <div className="flex gap-1 items-center">
                               <Dot
                                 className="text-green-500"
@@ -371,7 +371,7 @@ const AssignTaskComponent = () => {
                               <p className="text-zinc-900 font-medium">Low</p>
                             </div>
                           </SelectItem>
-                          <SelectItem value="dark">
+                          <SelectItem value="Average">
                             <div className="flex gap-1 items-center">
                               <Dot
                                 className="text-yellow-500"
@@ -383,7 +383,7 @@ const AssignTaskComponent = () => {
                               </p>
                             </div>
                           </SelectItem>
-                          <SelectItem value="system">
+                          <SelectItem value="High">
                             <div className="flex gap-1 items-center">
                               <Dot
                                 className="text-red-500"

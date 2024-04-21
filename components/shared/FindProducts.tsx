@@ -1,8 +1,9 @@
-import { Box, Dot, Rabbit, Search } from "lucide-react";
+import { Box, Calendar, Dot, Rabbit, Search, User } from "lucide-react";
 import React from "react";
 
 
-const products = [5,2,3,62,5,6]
+const products = ["NextJs" , "TypeScript" , "Prisma" , "MongoDb" , "Postgress" , "Clerk"]
+
 const FindProducts = () => {
   return (
     <div className="h-screen w-full px-5">
@@ -45,7 +46,7 @@ const FindProducts = () => {
                                 <div className="flex justify-between items-start" >
                                     {/* image div */}
                                     <div>
-                                        <div className="h-16 w-16 border rounded bg-indigo-700 flex justify-center items-center" >
+                                        <div className="h-16 w-16 border rounded-lg bg-indigo-700 flex justify-center items-center" >
                                             <Rabbit color="white" strokeWidth={1.75} size={30} />
 
                                         </div>
@@ -61,8 +62,46 @@ const FindProducts = () => {
 
                                 {/* title and subtitle part */}
                                 <div>
-                                    <h1 className="mt-5 font-semibold text-indigo-700" >ProductSphere</h1>
-                                    <p className="text-sm font-medium text-zinc-600 mt-2" >Manage Product Easily and Inovate</p>
+                                    <h1 className="mt-5 font-semibold text-indigo-700" >ProductSphere <span className="text-xs text-zinc-500 font-medium" >(saas)</span> </h1>
+                                    <p className="text-sm font-medium text-zinc-700 mt-1" >Manage Product Easily and Inovate</p>
+                                </div>
+
+                                {/* start date and end data */}
+
+                                <div className="flex mt-2 gap-2 items-center" >
+                                    <Calendar className="text-zinc-500" size={15} strokeWidth={2} />
+                                    <p className="text-sm font-medium text-zinc-500" >5 April 2024   -   20 April 2025</p>
+                                </div>
+
+                                {/* skill part or techstack */}
+                                <div className="mt-4" >
+                                    <p className="text-sm font-medium" >TechStack</p>
+
+                                    <div className="flex gap-4 mt-2 flex-wrap" >
+                                        {
+                                            products.map((curr:any)=>{
+                                                return <div className="flex items-center  text-indigo-700" >
+                                                        {/* <Dot absoluteStrokeWidth strokeWidth={4} /> */}
+                                                        <p className="text-xs font-medium" >{curr}</p>
+
+                                                </div>
+                                            })
+                                        }
+                                    </div>
+
+
+                                    {/* members */}
+                                    <div className="relative mt-4">
+                      <div className=" absolute h-8 w-8 border bg-zinc-700 rounded-full flex justify-center items-center">
+                        <User strokeWidth={1.5} color="white" size={17} />
+                      </div>
+                      <div className=" absolute h-8 w-8 left-5 border bg-zinc-700 rounded-full flex justify-center items-center">
+                        <User strokeWidth={1.5} color="white" size={17} />
+                      </div>
+                      <div className=" absolute h-8 w-8 left-10 border bg-zinc-700 rounded-full flex justify-center items-center">
+                        <p className="text-sm font-medium text-white">5+</p>
+                      </div>
+                    </div>
                                 </div>
                         </div>
                     })

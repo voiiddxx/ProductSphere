@@ -1,6 +1,6 @@
 "use server"
 
-import { createProductParams } from "@/types";
+import { createProductParams, JoinProductParams } from "@/types";
 import { PrismaClient } from "@prisma/client";
 
 
@@ -112,5 +112,67 @@ export const getProductWithProductIdAction = async (productId: number) => {
     } catch (error) {
         console.log(error);
         throw new Error(error as string);
+    }
+}
+
+
+
+
+
+// server action for joining the product using the product code
+export const JoinProductAction = async ({productId , userdId  , productCode}:JoinProductParams)=>{
+    try {
+        // fetching the product using product code
+            const product = await prisma.product.findUnique({
+                where:{
+                    productId:2,
+                    productCode:"21540548121"
+                },
+                include:{
+                    members:true
+                }
+            });
+
+            if(!product){
+                return JSON.parse(JSON.stringify({message:"Invalid Code" , status:400}));
+            }
+
+
+            // checking if user is already part of the product
+            const IsUserAlreadyMember = product.members.some(members => members.id === 1);
+
+            if(IsUserAlreadyMember){
+                return JSON.parse(JSON.stringify({message:"User is already member of this product" , status:401}));
+            }
+
+            // adding user as a member of the product
+
+            const updatedProduct = await prisma.product.update({
+                where:{
+                    productId:2,
+                    productCode:"21540548121",
+                },
+                data:{
+                    members:{
+                        connect:{id: 1}
+                    }
+                },
+                include:{
+                    members:true
+                }
+            });
+
+            if(!updatedProduct){
+                return JSON.parse(JSON.stringify({message:"Some error found" , status:402}));
+            }
+
+            return JSON.parse(JSON.stringify({data:updatedProduct , status:200}));
+
+
+
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string);
+        
     }
 }

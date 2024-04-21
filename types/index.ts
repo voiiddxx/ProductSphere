@@ -47,5 +47,13 @@ export type AssignTasksParams = {
 
 
 
+export type JoinProductParams = {
+    userdId: any
+    productCode: any
+    productId: number
+}
+
+
+
 
 

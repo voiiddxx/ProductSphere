@@ -6,7 +6,7 @@ const DashBoardNav = () => {
     <div className='h-14 w-full border-b flex justify-between items-center' >
 
         {/* left div */}
-        <div className='h-full w-72 border-r flex items-center pl-6' >
+        <div className='h-full w-72  flex items-center pl-6' >
             <p className='font-medium' >Dashboard</p>
         </div>
         {/* right div */}

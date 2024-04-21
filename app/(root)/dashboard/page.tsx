@@ -5,24 +5,13 @@ import { currentUser } from '@clerk/nextjs'
 import { Plus } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
+import { Gem, LayoutGrid, Rabbit, Sun, SunDim, User } from 'lucide-react'
+import DashboardLogic from '@/components/shared/DashboardLogic'
 
 const page = () => {
 
   return (
-    <div className='w-full min-h-screen' >
-      <DashBoardNav/>
-      <div className='min-h-screen flex' >
-        {/* sidebard div */}
-       <DashboardSidebar/>
-        {/* right div */}
-        <div className='min-h-screen w-full   flex justify-normal items-start px-5' >
-            {/* upper div */}
-            
-            {/* start project div */}
-            <DashboardHome/>
-        </div>
-      </div>
-    </div>
+    <DashboardLogic/>
   )
 }
 

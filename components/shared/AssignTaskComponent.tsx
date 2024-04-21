@@ -75,6 +75,7 @@ const AssignTaskComponent = () => {
   const [PinnedComment, setPinnedComment] = useState<any>(null);
   const [Tags, setTags] = useState<any>(["dndnne" , "dsmnnj"]);
   const [TagToBeAdded, setTagToBeAdded] = useState<any>(null);
+  const [Priority, setPriority] = useState<any>(null)
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -87,9 +88,13 @@ const AssignTaskComponent = () => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    if(StartDate && Tags && PinnedComment && TaskDocument && Priority){
+      console.log({...values , StartDate , Tags , TaskDocument , PinnedComment , Priority}); 
+    }else{
+      console.log("Please fill all details");
+      
+    }
+    
   }
 
   const handleTags = () => {
@@ -106,7 +111,7 @@ const AssignTaskComponent = () => {
         <DrawerHeader>
           <DrawerDescription>
             {/* main div for assiging the tasks start here */}
-            <div className="min-h-[650px] w-full pb-20 ">
+            <div className="min-h-[700px] w-full pb-20 ">
               <div className="h-full w-full px-10">
                 {/* upper navi div */}
                 <div className="h-10 w-full border-b flex justify-between items-center">
@@ -146,13 +151,13 @@ const AssignTaskComponent = () => {
                             name="name"
                             render={({ field }) => (
                               <FormItem>
-                                <FormControl>
+                            
                                   <input
                                     className="outline-none border-none w-[600px] font-medium text-zinc-950 text-lg mt-4 placeholder:text-zinc-950"
                                     placeholder="Assign new task"
                                     {...field}
                                   />
-                                </FormControl>
+                              
                                 <FormMessage />
                               </FormItem>
                             )}
@@ -283,7 +288,7 @@ const AssignTaskComponent = () => {
                         </div>
                         {/* comment section ends here */}
 
-                        <Button type="submit">Submit</Button>
+                        <Button className="bg-indigo-700 mt-5"  type="submit">Submit</Button>
                       </form>
                     </Form>
                   </div>
@@ -356,7 +361,9 @@ const AssignTaskComponent = () => {
                       <p className="text-sm mb-4 font-medium text-zinc-900">
                         Task priority
                       </p>
-                      <Select>
+                      <Select onValueChange={(val)=>{
+                        setPriority(val);
+                      }} >
                         <SelectTrigger className="w-[180px] border-none">
                           <SelectValue placeholder="Theme" />
                         </SelectTrigger>

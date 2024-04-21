@@ -125,8 +125,8 @@ export const JoinProductAction = async ({productId , userdId  , productCode}:Joi
         // fetching the product using product code
             const product = await prisma.product.findUnique({
                 where:{
-                    productId:2,
-                    productCode:"21540548121"
+                    productId:productId,
+                    productCode:productCode
                 },
                 include:{
                     members:true
@@ -139,7 +139,7 @@ export const JoinProductAction = async ({productId , userdId  , productCode}:Joi
 
 
             // checking if user is already part of the product
-            const IsUserAlreadyMember = product.members.some(members => members.id === 1);
+            const IsUserAlreadyMember = product.members.some(members => members.id === userdId);
 
             if(IsUserAlreadyMember){
                 return JSON.parse(JSON.stringify({message:"User is already member of this product" , status:401}));
@@ -149,12 +149,12 @@ export const JoinProductAction = async ({productId , userdId  , productCode}:Joi
 
             const updatedProduct = await prisma.product.update({
                 where:{
-                    productId:2,
-                    productCode:"21540548121",
+                    productId:productId,
+                    productCode:productCode,
                 },
                 data:{
                     members:{
-                        connect:{id: 1}
+                        connect:{id: userdId}
                     }
                 },
                 include:{

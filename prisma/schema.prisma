@@ -59,13 +59,13 @@ model Tasks {
   desc String
   prioroty String
   status String
-  documents String[]
+  documents String
   dueDate DateTime
   createdBy User @relation("taskCreated" , fields: [creatorid] , references: [id])
   creatorid Int
   taskmembers User[] @relation("taskMembers")
   tags String[]
-  comment String[]
+  comment String
 
 }
 

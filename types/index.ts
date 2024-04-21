@@ -31,6 +31,21 @@ export type createProductParams = {
 }
 
 
+export type AssignTasksParams = {
+    title:string,
+    desc:string,
+    dueDate: Date,
+    priority:string,
+    status:string,
+    comment:string,
+    tags: [],
+    documents: string,
+    creatorid: any,
+    prodId: any,
+    taskmembers : []
+}
+
+
 
 
 

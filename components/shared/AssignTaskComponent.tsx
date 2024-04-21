@@ -60,6 +60,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { AssignTaskAction } from "@/lib/actions/task.action";
 
 //  assign task schema
 const formSchema = z.object({
@@ -67,7 +68,13 @@ const formSchema = z.object({
   detail: z.string().min(2).max(500),
 });
 
-const AssignTaskComponent = () => {
+
+
+  type AssignTasksProps = {
+    prodId:string
+  }
+
+const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
   const [TaskDocument, setTaskDocument] = useState<any>(null);
   const [TaskMembers, setTaskMembers] = useState<any>([1, 2, 3]);
   const [StartDate, setStartDate] = useState<any>(null);
@@ -87,9 +94,22 @@ const AssignTaskComponent = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const userid = localStorage.getItem("x-auth-id");
+    const creatorid = +userid!;
+
+
     if(StartDate && Tags && PinnedComment && TaskDocument && Priority){
       console.log({...values , StartDate , Tags , TaskDocument , PinnedComment , Priority}); 
+      const res = await AssignTaskAction({
+        title:values.name , desc:values.detail , dueDate:StartDate , documents:"thisisdocunment" , comment:PinnedComment , creatorid:creatorid , priority:Priority , prodId:prodId , status:"Not Started yet" , tags:Tags , taskmembers:[]
+      });
+      if(res){
+        console.log("Task Assigned: " , res);
+      }else{
+        console.log("Some error occured");
+        
+      }
     }else{
       console.log("Please fill all details");
       

@@ -85,7 +85,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
                   <p className="text-xs font-medium">Add members</p>
                 </Button>
                 <Button className="flex gap-1 bg-indigo-700" size={"sm"}>
-                 <AssignTaskComponent/>
+                 <AssignTaskComponent prodId={data.prodId} />
                 </Button>
               </div>
             </div>

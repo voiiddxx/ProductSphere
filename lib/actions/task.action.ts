@@ -6,11 +6,13 @@ import { Prisma, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const assigendMembers = [2,3];
-
 
 
 export const AssignTaskAction =async ({comment , creatorid , desc ,  documents , dueDate , priority , prodId , status , tags , taskmembers , title}: AssignTasksParams)=>{
+
+
+    console.log("This is prodid" , prodId);
+    
     try {
         const assignedtaks = await prisma.tasks.create({
             data:{
@@ -23,13 +25,14 @@ export const AssignTaskAction =async ({comment , creatorid , desc ,  documents ,
                 tags:tags,
                 documents:documents,
                 creatorid:creatorid,
-                prodId:prodId,
-                taskmembers:{
-                    connect:assigendMembers.map(curr => ({id:curr}))
-                }
+                prodId:prodId | 2
             }
         });
         console.log(assignedtaks);
+        if(!assignedtaks) {
+            return JSON.parse(JSON.stringify({message:"Some error occured" , status:400}));
+        }
+        return JSON.parse(JSON.stringify({data:assignedtaks , status:200}));
     } catch (error) {
         console.log(error);
         throw new Error(error as string);

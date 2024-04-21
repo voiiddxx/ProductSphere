@@ -66,7 +66,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
             </div>
             {/* right upper part */}
             <div className="flex gap-24 relative">
-              {/* members icons */}
+              {/* members icons */} 
               <div className="relative">
                 <div className=" absolute h-10 w-10 border bg-zinc-700 rounded-full flex justify-center items-center">
                   <User strokeWidth={1.5} color="white" size={17} />
@@ -85,7 +85,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
                   <p className="text-xs font-medium">Add members</p>
                 </Button>
                 <Button className="flex gap-1 bg-indigo-700" size={"sm"}>
-                 <AssignTaskComponent prodId={data.prodId} />
+                 <AssignTaskComponent prodId={data.productId} />
                 </Button>
               </div>
             </div>

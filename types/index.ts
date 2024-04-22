@@ -56,4 +56,6 @@ export type JoinProductParams = {
 
 
 
-
+export type GetUserJoindedProductParams = {
+    userId:any
+}

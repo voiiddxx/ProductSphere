@@ -99,35 +99,6 @@ const FindProductCard = ({productData}:findProducCardProps) => {
                     </div>
                   )
                 }
-
-                {/* members */}
-                {/* {
-                  productData.members.length > 0 && (
-                    <div className="relative mt-4 flex ">
-
-                    {
-                        productData.members.map((curr:any)=>{
-                            return <div>
-                              <div className="h-8 w-8 border bg-zinc-700 rounded-full flex justify-center items-center">
-                            <User strokeWidth={1.5} color="white" size={17} />
-                          </div>
-                            </div>
-                        })
-                    } */}
-                  {/* <div className=" absolute h-8 w-8 border bg-zinc-700 rounded-full flex justify-center items-center">
-                    <User strokeWidth={1.5} color="white" size={17} />
-                  </div>
-                  <div className=" absolute h-8 w-8 left-5 border bg-zinc-700 rounded-full flex justify-center items-center">
-                    <User strokeWidth={1.5} color="white" size={17} />
-                  </div>
-                  <div className=" absolute h-8 w-8 left-10 border bg-zinc-700 rounded-full flex justify-center items-center">
-                    <p className="text-sm font-medium text-white">5+</p>
-                  </div> */}
-                {/* </div>
-                  )
-                } */}
-
-
                 {/* created by div */}
                 <div className="h-10 w-full flex items-end justify-end mt-16" >
                     <p className="text-xs text-zinc-500" >Createdby | nikhilkumar</p>

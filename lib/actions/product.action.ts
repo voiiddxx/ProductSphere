@@ -1,6 +1,6 @@
 "use server"
 
-import { createProductParams, JoinProductParams } from "@/types";
+import { createProductParams, GetUserJoindedProductParams, JoinProductParams } from "@/types";
 import { PrismaClient } from "@prisma/client";
 
 
@@ -182,3 +182,4 @@ export const JoinProductAction = async ({productId , userdId  , productCode}:Joi
         
     }
 }
+

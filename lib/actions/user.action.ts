@@ -36,6 +36,10 @@ export const getUserUsingClerkid = async (id:string)=>{
         const userResponse = await prisma.user.findFirst({
             where:{
                 clerkId:id
+            },
+            include:{
+                memberOfProducts:true,
+                ownedProducts:true,   
             }
         });
         if(!userResponse){

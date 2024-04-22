@@ -86,7 +86,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
       {/* join team button */}
       <div className="w-full flex items-center justify-center h-40">
         <Dialog>
-          <DialogTrigger>Open</DialogTrigger>
+          <DialogTrigger>Join Product</DialogTrigger>
           <DialogContent>
             <DialogHeader>
               <DialogTitle className="text-sm font-medium"  >Join Team of productsphere</DialogTitle>

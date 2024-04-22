@@ -9,7 +9,8 @@ import React from 'react'
     }
 
 const FindProductCard = ({productData}:findProducCardProps) => {
-    
+      console.log("this is the value of product members: " , productData.members);
+      
   return (
     <Link href={`/products/${productData.productId}`} >
     <div className=" w-[400px] border rounded-md px-4 py-4">
@@ -66,16 +67,53 @@ const FindProductCard = ({productData}:findProducCardProps) => {
                   })}
                 </div>
 
+                
+
+                {/* product memebrs */}
+                {
+                  productData.members.length > 0 && (
+                    <div>
+                      <p className='text-sm font-medium mt-4' >Members</p>
+
+                      <div className='relative mt-4 flex ' >
+                        <div className='h-8 w-8 bg-indigo-700 rounded-full flex items-center justify-center' >
+                        <Image className='h-8 w-8 rounded-full absolute'  src={productData.members[0].avatar} height={900} width={900} alt='members imagee' />
+                        </div>
+                        <div className='h-8 w-8 bg-indigo-700 rounded-full flex items-center justify-center absolute left-5' >
+                        {
+                          productData.members.length  > 1 ? <Image className='h-8 w-8 rounded-full'  src={productData.members[1].avatar} height={900} width={900} alt='members imagee' /> : <p className='text-white text-sm font-medium' >{productData.members.length}+</p>
+                        }
+                        </div>
+                        <div className='h-8 w-8 bg-transparent rounded-full flex items-center justify-center absolute left-10' >
+                        {
+                          productData.members.length  > 1 ? <div className='h-8 w-8 bg-indigo-700 flex justify-center items-center text-white rounded-full' >
+                            <p className='text-sm font-medium' >{productData.members.length}+</p>
+                          </div> : <p className='text-white text-sm font-medium' ></p>
+                        }
+                        </div>
+
+                        
+                      </div>
+
+                      
+                    </div>
+                  )
+                }
+
                 {/* members */}
-                <div className="relative mt-4">
+                {/* {
+                  productData.members.length > 0 && (
+                    <div className="relative mt-4 flex ">
 
                     {
                         productData.members.map((curr:any)=>{
-                            return <div className=" absolute h-8 w-8 border bg-zinc-700 rounded-full flex justify-center items-center">
+                            return <div>
+                              <div className="h-8 w-8 border bg-zinc-700 rounded-full flex justify-center items-center">
                             <User strokeWidth={1.5} color="white" size={17} />
                           </div>
+                            </div>
                         })
-                    }
+                    } */}
                   {/* <div className=" absolute h-8 w-8 border bg-zinc-700 rounded-full flex justify-center items-center">
                     <User strokeWidth={1.5} color="white" size={17} />
                   </div>
@@ -85,7 +123,9 @@ const FindProductCard = ({productData}:findProducCardProps) => {
                   <div className=" absolute h-8 w-8 left-10 border bg-zinc-700 rounded-full flex justify-center items-center">
                     <p className="text-sm font-medium text-white">5+</p>
                   </div> */}
-                </div>
+                {/* </div>
+                  )
+                } */}
 
 
                 {/* created by div */}

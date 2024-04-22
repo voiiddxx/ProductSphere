@@ -57,7 +57,7 @@ const FindProducts =  () => {
       <div className="flex gap-4 flex-wrap mt-5">
        {
         products!= null && (
-          <div>
+          <div className="flex gap-4" >
              {products.map((curr: any) => {
           return (
             <FindProductCard productData={curr} />

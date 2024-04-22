@@ -1,4 +1,6 @@
 import { Calendar, Dot, Rabbit, User } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react'
 
 
@@ -7,22 +9,16 @@ import React from 'react'
     }
 
 const FindProductCard = ({productData}:findProducCardProps) => {
-    const products = [
-        "NextJs",
-        "TypeScript",
-        "Prisma",
-        "MongoDb",
-        "Postgress",
-        "Clerk",
-      ];
+    
   return (
+    <Link href={`/products/${productData.productId}`} >
     <div className=" w-[400px] border rounded-md px-4 py-4">
               {/* upper part of card */}
               <div className="flex justify-between items-start">
                 {/* image div */}
                 <div>
                   <div className="h-16 w-16 border rounded-lg  flex justify-center items-center" style={{backgroundColor:productData.productcolor}} >
-                    <Rabbit color="white" strokeWidth={1.75} size={30} />
+                    <Image className='h-16 w-16 object-cover rounded-lg' src={productData.productlogo} height={1500} width={1500}alt='productlogo' />
                   </div>
                 </div>
 
@@ -72,7 +68,15 @@ const FindProductCard = ({productData}:findProducCardProps) => {
 
                 {/* members */}
                 <div className="relative mt-4">
-                  <div className=" absolute h-8 w-8 border bg-zinc-700 rounded-full flex justify-center items-center">
+
+                    {
+                        productData.members.map((curr:any)=>{
+                            return <div className=" absolute h-8 w-8 border bg-zinc-700 rounded-full flex justify-center items-center">
+                            <User strokeWidth={1.5} color="white" size={17} />
+                          </div>
+                        })
+                    }
+                  {/* <div className=" absolute h-8 w-8 border bg-zinc-700 rounded-full flex justify-center items-center">
                     <User strokeWidth={1.5} color="white" size={17} />
                   </div>
                   <div className=" absolute h-8 w-8 left-5 border bg-zinc-700 rounded-full flex justify-center items-center">
@@ -80,7 +84,7 @@ const FindProductCard = ({productData}:findProducCardProps) => {
                   </div>
                   <div className=" absolute h-8 w-8 left-10 border bg-zinc-700 rounded-full flex justify-center items-center">
                     <p className="text-sm font-medium text-white">5+</p>
-                  </div>
+                  </div> */}
                 </div>
 
 
@@ -90,7 +94,7 @@ const FindProductCard = ({productData}:findProducCardProps) => {
 
                 </div>
               </div>
-            </div>
+            </div></Link>
   )
 }
 

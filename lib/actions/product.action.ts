@@ -52,7 +52,12 @@ export const createProductAction = async ({ data }: createProductParams) => {
 
 export const getAllProductAction = async () => {
     try {
-        const productResponse = await prisma.product.findMany({});
+        const productResponse = await prisma.product.findMany({
+            include:{
+                members:true,
+                owner:true,
+            }
+        });
         if (!productResponse) {
             return JSON.parse(JSON.stringify({ message: "No Product Found"  , status:400}));
         }
@@ -100,7 +105,8 @@ export const getProductWithProductIdAction = async (productId: number) => {
                 productId: productId
             },
             include:{
-                owner:true
+                owner:true,
+                members:true,
             }
         });
 

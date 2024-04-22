@@ -1,5 +1,6 @@
 "use client";
 import { getProductAsperuseridAction } from "@/lib/actions/product.action";
+import { getUserUsingClerkid, getUserUsinguserId } from "@/lib/actions/user.action";
 import { ArrowRight, Box, Plus } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -8,6 +9,8 @@ type dashBoardHero = {};
 
 const DashboardHome = ({}: dashBoardHero) => {
   const [Products, setProducts] = useState<any>(null);
+  // const [JoinedProducts, setJoinedProducts] = useState<any>(null);
+  const [User, setUser] = useState<any>(null);
 
   useEffect(() => {
     const Localuser = localStorage.getItem("x-auth-id");
@@ -23,6 +26,11 @@ const DashboardHome = ({}: dashBoardHero) => {
       setProducts(res);
     };
 
+    const getUserWithId = async ()=>{
+      const res = await getUserUsinguserId(userId!);
+      console.log("Res:" , res);
+    }
+    getUserWithId();
     getUserProduct();
   }, []);
   return (
@@ -45,7 +53,10 @@ const DashboardHome = ({}: dashBoardHero) => {
 
       {Products != null && (
         <>
-        <div className="flex gap-4 mt-10 flex-wrap">
+        <div className="mt-5" >
+        <p className="text-sm font-medium" >Your Created Products</p>
+        </div>
+        <div className="flex gap-4 mt-5 flex-wrap border-b pb-5">
           {Products.map((curr: any) => {
             return (
              <Link href={`/dashboard/products/${curr.productId}`} >
@@ -82,6 +93,7 @@ const DashboardHome = ({}: dashBoardHero) => {
         </div>
         </>
       )}
+
     </div>
   );
 };

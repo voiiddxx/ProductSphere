@@ -70,3 +70,26 @@ export const getAllUsers = async()=>{
         
     }
 }
+
+
+// server action for getting the user with id
+ export const getUserUsinguserId =async(id:any)=>{
+    try {
+        const res = await prisma.user.findFirst({
+            where:{
+                id:id
+            },
+            include:{
+                memberOfProducts:true,
+                ownedProducts:true,
+            }
+        });
+        if(!res){
+            return JSON.parse(JSON.stringify({message:"Invalid id" , status:400}));
+        }
+        return JSON.parse(JSON.stringify({data:res , status:200}))
+    } catch (error) {
+        console.log(error);
+        
+    }
+ }

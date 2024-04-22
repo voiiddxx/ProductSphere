@@ -1,8 +1,6 @@
 
-import AssignTaskComponent from "@/components/shared/AssignTaskComponent";
 import Hero from "@/components/shared/Hero";
 import { Button } from "@/components/ui/button";
-import { createProductAction } from "@/lib/actions/product.action";
 import { currentUser, SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
@@ -22,7 +20,6 @@ export default async function Home() {
         <UserButton afterSignOutUrl="/" />
       </SignedIn>
       <Link href={`/dashboard`} ><Button>Register Page</Button></Link>
-
   </div>
     </main>
   );

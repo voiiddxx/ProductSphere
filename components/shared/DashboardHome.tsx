@@ -28,6 +28,9 @@ const DashboardHome = ({}: dashBoardHero) => {
 
     const getUserWithId = async ()=>{
       const res = await getUserUsinguserId(userId!);
+      if(res.status == 200){
+        setUser(res.data);
+      }
       console.log("Res:" , res);
     }
     getUserWithId();
@@ -51,13 +54,55 @@ const DashboardHome = ({}: dashBoardHero) => {
         </div>
       )}
 
-      {Products != null && (
+      {User != null && (
         <>
         <div className="mt-5" >
         <p className="text-sm font-medium" >Your Created Products</p>
         </div>
         <div className="flex gap-4 mt-5 flex-wrap border-b pb-5">
-          {Products.map((curr: any) => {
+          {User.ownedProducts.map((curr: any) => {
+            return (
+             <Link href={`/dashboard/products/${curr.productId}`} >
+              <div className="h-[250px] w-[400px] bg-zinc-100 rounded-lg border flex flex-col px-5 py-5 justify-between hover:bg-white">
+                <div>
+                  {/* <div className='h-16 w-16 rounded-full border bg-white' ></div> */}
+                  <div
+                    className="flex gap-1 items-center mt-2 text-indigo-700"
+                    style={{ color: curr.productcolor }}
+                  >
+                    <Box strokeWidth={1.75} size={18} />
+                    <p className="text-sm font-semibold ">{curr.name}</p>
+                  </div>
+
+                  {/* subtitle for the product */}
+                  {/* upeer heading of the product */}
+
+                  <p className="text-xs font-medium mt-2 text-zinc-800">
+                    {curr.visibility} | Deadline: {curr.endDate}
+                  </p>
+                </div>
+
+                {/* bottom bar div */}
+                <div className=" flex justify-between items-center">
+                  <p className="text-xs font-medium mt-2 text-zinc-600">
+
+                    OwnerId:Nikhil
+                  </p>
+                  <ArrowRight style={{ color: curr.productcolor }} strokeWidth={1.5} size={16} />
+                </div>
+              </div></Link>
+            );
+          })}
+        </div>
+        </>
+      )}
+      {User != null && (
+        <>
+        <div className="mt-5" >
+        <p className="text-sm font-medium" >Your Created Products</p>
+        </div>
+        <div className="flex gap-4 mt-5 flex-wrap border-b pb-5">
+          {User.memberOfProducts.map((curr: any) => {
             return (
              <Link href={`/dashboard/products/${curr.productId}`} >
               <div className="h-[250px] w-[400px] bg-zinc-100 rounded-lg border flex flex-col px-5 py-5 justify-between hover:bg-white">

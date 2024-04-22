@@ -54,12 +54,12 @@ const FindProductCard = ({productData}:findProducCardProps) => {
 
               {/* skill part or techstack */}
               <div className="mt-4">
-                <p className="text-sm font-medium">TechStack</p>
+                <p className="text-sm font-medium text-zinc-500 ">TechStack</p>
 
                 <div className="flex gap-4 mt-2 flex-wrap">
                   {productData.skills.map((curr: any) => {
                     return (
-                      <div className="flex items-center  text-indigo-700">
+                      <div className="flex items-center" style={{color:productData.productcolor}}>
                         {/* <Dot absoluteStrokeWidth strokeWidth={4} /> */}
                         <p className="text-xs font-medium">{curr}</p>
                       </div>
@@ -76,7 +76,7 @@ const FindProductCard = ({productData}:findProducCardProps) => {
                       <p className='text-sm font-medium mt-4' >Members</p>
 
                       <div className='relative mt-4 flex ' >
-                        <div className='h-8 w-8 bg-indigo-700 rounded-full flex items-center justify-center' >
+                        <div className='h-8 w-8  rounded-full flex items-center justify-center' style={{backgroundColor:productData.productcolor}} >
                         <Image className='h-8 w-8 rounded-full absolute'  src={productData.members[0].avatar} height={900} width={900} alt='members imagee' />
                         </div>
                         <div className='h-8 w-8 bg-indigo-700 rounded-full flex items-center justify-center absolute left-5' >
@@ -86,7 +86,7 @@ const FindProductCard = ({productData}:findProducCardProps) => {
                         </div>
                         <div className='h-8 w-8 bg-transparent rounded-full flex items-center justify-center absolute left-10' >
                         {
-                          productData.members.length  > 1 ? <div className='h-8 w-8 bg-indigo-700 flex justify-center items-center text-white rounded-full' >
+                          productData.members.length  > 1 ? <div className='h-8 w-8  flex justify-center items-center text-white rounded-full' style={{backgroundColor:productData.productcolor}} >
                             <p className='text-sm font-medium' >{productData.members.length}+</p>
                           </div> : <p className='text-white text-sm font-medium' ></p>
                         }
@@ -99,13 +99,15 @@ const FindProductCard = ({productData}:findProducCardProps) => {
                     </div>
                   )
                 }
+                
                 {/* created by div */}
-                <div className="h-10 w-full flex items-end justify-end mt-16" >
+                <div className="h-10 w-full flex items-end justify-end " >
                     <p className="text-xs text-zinc-500" >Createdby | nikhilkumar</p>
 
                 </div>
               </div>
-            </div></Link>
+            </div>
+            </Link>
   )
 }
 

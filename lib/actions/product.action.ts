@@ -54,7 +54,7 @@ export const getAllProductAction = async () => {
     try {
         const productResponse = await prisma.product.findMany({});
         if (!productResponse) {
-            return JSON.parse(JSON.stringify({ message: "No Product Found" }));
+            return JSON.parse(JSON.stringify({ message: "No Product Found"  , status:400}));
         }
         console.log("Products Found: ", productResponse);
         return JSON.parse(JSON.stringify(productResponse));

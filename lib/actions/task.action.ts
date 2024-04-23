@@ -45,3 +45,25 @@ export const AssignTaskAction =async ({comment , creatorid , desc ,  documents ,
 //     connect: memberIds.map(memberid => ({id:memberid}))
 // },
 
+
+// getting task for partiuclar product
+
+export const GetTaskAsperProductId = async( prodId: any)=>{
+    try {
+        
+        const TaskRes = await prisma.tasks.findMany({
+            where:{
+                prodId:prodId,
+            }
+        });
+        if(!TaskRes){
+            return JSON.parse(JSON.stringify({message:"No Product Found" , status:400}));
+        }
+        return JSON.parse(JSON.stringify({data:TaskRes , status:200}));
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string)
+        
+    }
+}
+

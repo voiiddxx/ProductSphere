@@ -59,9 +59,21 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import { AssignTaskAction } from "@/lib/actions/task.action";
 import { getProductWithProductIdAction } from "@/lib/actions/product.action";
+import Image from "next/image";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 //  assign task schema
 const formSchema = z.object({
@@ -69,23 +81,21 @@ const formSchema = z.object({
   detail: z.string().min(2).max(500),
 });
 
+type AssignTasksProps = {
+  prodId: string;
+};
 
-
-  type AssignTasksProps = {
-    prodId:string
-  }
-
-const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
+const AssignTaskComponent = ({ prodId }: AssignTasksProps) => {
   const [TaskDocument, setTaskDocument] = useState<any>(null);
-  const [TaskMembers, setTaskMembers] = useState<any>([1, 2, 3]);
+  const [TaskMembers, setTaskMembers] = useState<any>([]);
   const [StartDate, setStartDate] = useState<any>(null);
   const AttachmentButton = useRef<any>(null);
   const [PinnedComment, setPinnedComment] = useState<any>(null);
-  const [Tags, setTags] = useState<any>(["dndnne" , "dsmnnj"]);
+  const [Tags, setTags] = useState<any>(["dndnne", "dsmnnj"]);
   const [TagToBeAdded, setTagToBeAdded] = useState<any>(null);
   const [Priority, setPriority] = useState<any>(null);
   const [ProdMembers, setProdMembers] = useState<any>(null);
-
+  const [TaskmembersforPost, setTaskmembersforPost] = useState<any>([]);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -96,48 +106,65 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
     },
   });
 
+  const handleAddTaskMembers = (curr: any) => {
+    setTaskmembersforPost([...TaskmembersforPost, curr.id]);
+    setTaskMembers([...TaskMembers, curr.avatar]);
+  };
+
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const userid = localStorage.getItem("x-auth-id");
     const creatorid = +userid!;
     const productId = +prodId;
-    if(StartDate && Tags && PinnedComment && TaskDocument && Priority){
-      console.log({...values , StartDate , Tags , TaskDocument , PinnedComment , Priority}); 
-      const res = await AssignTaskAction({
-        title:values.name , desc:values.detail , dueDate:StartDate , documents:"thisisdocunment" , comment:PinnedComment , creatorid:creatorid , priority:Priority , prodId:productId , status:"Not Started yet" , tags:Tags , taskmembers:[]
+    if (StartDate && Tags && PinnedComment && TaskDocument && Priority) {
+      console.log({
+        ...values,
+        StartDate,
+        Tags,
+        TaskDocument,
+        PinnedComment,
+        Priority,
       });
-      if(res){
-        console.log("Task Assigned: " , res);
-      }else{
+      const res = await AssignTaskAction({
+        title: values.name,
+        desc: values.detail,
+        dueDate: StartDate,
+        documents: "thisisdocunment",
+        comment: PinnedComment,
+        creatorid: creatorid,
+        priority: Priority,
+        prodId: productId,
+        status: "Not Started yet",
+        tags: Tags,
+        taskmembers: [],
+      });
+      if (res) {
+        console.log("Task Assigned: ", res);
+      } else {
         console.log("Some error occured");
-        
       }
-    }else{
+    } else {
       console.log("Please fill all details");
-      
     }
-    
   }
 
   const handleTags = () => {
-    setTags([...Tags , TagToBeAdded]);
+    setTags([...Tags, TagToBeAdded]);
   };
-
 
   // getting the product data for rendering the task members
 
-  useEffect(()=>{
-    
-  const getProductForTaskmembers = async ()=>{
-    const productId = +prodId;
-    const ProdRes = await getProductWithProductIdAction(productId);
-    console.log("Data:" , ProdRes);
-    console.log("This is the value of members: " , ProdRes.members);
-    setProdMembers(ProdRes.members);
-  }
+  useEffect(() => {
+    const getProductForTaskmembers = async () => {
+      const productId = +prodId;
+      const ProdRes = await getProductWithProductIdAction(productId);
+      console.log("Data:", ProdRes);
+      console.log("This is the value of members: ", ProdRes.members);
+      setProdMembers(ProdRes.members);
+    };
 
-  getProductForTaskmembers();
-  } , [])
+    getProductForTaskmembers();
+  }, []);
 
   return (
     <Drawer>
@@ -189,13 +216,12 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                             name="name"
                             render={({ field }) => (
                               <FormItem>
-                            
-                                  <input
-                                    className="outline-none border-none w-[600px] font-medium text-zinc-950 text-lg mt-4 placeholder:text-zinc-950"
-                                    placeholder="Assign new task"
-                                    {...field}
-                                  />
-                              
+                                <input
+                                  className="outline-none border-none w-[600px] font-medium text-zinc-950 text-lg mt-4 placeholder:text-zinc-950"
+                                  placeholder="Assign new task"
+                                  {...field}
+                                />
+
                                 <FormMessage />
                               </FormItem>
                             )}
@@ -326,7 +352,9 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                         </div>
                         {/* comment section ends here */}
 
-                        <Button className="bg-indigo-700 mt-5"  type="submit">Submit</Button>
+                        <Button className="bg-indigo-700 mt-5" type="submit">
+                          Submit
+                        </Button>
                       </form>
                     </Form>
                   </div>
@@ -338,24 +366,91 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                         Assign members
                       </p>
                       <div className="mt-4 flex gap-2 flex-wrap">
-                        {ProdMembers!=null  && (
+                        {ProdMembers != null && (
                           <>
-                            {ProdMembers.map((curr: any) => {
-                              return (
-                                <div className="h-10 w-10 rounded-full bg-indigo-700 flex justify-center items-center">
-                                  <User
-                                    size={25}
-                                    strokeWidth={1.75}
-                                    color="white"
-                                  />
-                                </div>
-                              );
-                            })}
+                            {TaskMembers.length > 0 && (
+                              <div>
+                                {TaskMembers.map((curr: any) => {
+                                  return (
+                                    <div
+                                      onClick={() => {
+                                        console.log(TaskmembersforPost);
+                                      }}
+                                      className="h-10 w-10 rounded-full bg-indigo-700 flex justify-center items-center"
+                                    >
+                                      <Image
+                                        className="h-10 w-10 rounded-full object-cover"
+                                        src={curr}
+                                        height={900}
+                                        width={900}
+                                        alt="avatar"
+                                      />
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            )}
                           </>
                         )}
                       </div>
                       <div className="h-10 w-10 border rounded-full flex justify-center items-center mt-4">
-                        <Plus size={25} strokeWidth={2} />
+                        <AlertDialog>
+                          <AlertDialogTrigger>
+                            <Plus size={15} strokeWidth={1.5} color="black" />
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                <p className="text-xl font-medium text-zinc-800">
+                                  Assing task members
+                                </p>
+                                <p className="text-sm font-medium text-zinc-500">
+                                  Select your task team members
+                                </p>
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                <div className="border-t w-full">
+                                  {ProdMembers.map((curr: any) => {
+                                    return (
+                                      <div className="border-b w-full flex justify-between py-4">
+                                        {/* left div */}
+                                        <div className="flex gap-2">
+                                          <Image
+                                            className="h-10 w-10 rounded-full object-cover"
+                                            src={curr.avatar}
+                                            height={900}
+                                            width={900}
+                                            alt="avatar"
+                                          />
+                                          <p className="text-sm font-medium">
+                                            {curr.username}
+                                          </p>
+                                        </div>
+                                        {/* right div */}
+
+                                        <div
+                                          onClick={() => {
+                                            handleAddTaskMembers(curr);
+                                          }}
+                                          className="flex gap-1"
+                                        >
+                                          <Plus size={17} strokeWidth={1.5} />
+                                          <p className="text-sm font-medium">
+                                            Add {curr.username}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction>Continue</AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
                       </div>
                     </div>
                     {/* upper div for assiging the members ends here */}
@@ -399,9 +494,11 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                       <p className="text-sm mb-4 font-medium text-zinc-900">
                         Task priority
                       </p>
-                      <Select onValueChange={(val)=>{
-                        setPriority(val);
-                      }} >
+                      <Select
+                        onValueChange={(val) => {
+                          setPriority(val);
+                        }}
+                      >
                         <SelectTrigger className="w-[180px] border-none">
                           <SelectValue placeholder="Theme" />
                         </SelectTrigger>
@@ -451,21 +548,18 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                         Tags
                       </p>
 
-                      {
-                        Tags.length > 1 && (
-                          <div className="flex flex-wrap gap-4" >
-                            {
-                              Tags.map((curr:any)=>{
-                                return <div className="px-4 py-2 border rounded-md flex justify-center items-center gap-1 text-indigo-700 " >
-                                  <TagsIcon size={15} strokeWidth={1.75} />
-                                  <p>{curr}</p>
-
-                                </div>
-                              })
-                            }
-                          </div>
-                        )
-                      }
+                      {Tags.length > 1 && (
+                        <div className="flex flex-wrap gap-4">
+                          {Tags.map((curr: any) => {
+                            return (
+                              <div className="px-4 py-2 border rounded-md flex justify-center items-center gap-1 text-indigo-700 ">
+                                <TagsIcon size={15} strokeWidth={1.75} />
+                                <p>{curr}</p>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
 
                       <Dialog>
                         <DialogTrigger>

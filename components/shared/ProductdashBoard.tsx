@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Button } from "../ui/button";
 import AssignTaskComponent from "./AssignTaskComponent";
+import { GetTaskAsperProductId } from "@/lib/actions/task.action";
 
 type ProductDataProps = {
   data: any;
@@ -29,16 +30,16 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
   const [IsOwner, setIsOwner] = useState<boolean>(false);
 
   useEffect(() => {
-    const AdminVerify = () => {
-      const userid = localStorage.getItem("x-auth-id");
-      const ownerid = +userid!;
-      if (ownerid == data.ownerId) {
-        setIsOwner(true);
-      } else {
-        setIsOwner(false);
-      }
-    };
-    AdminVerify();
+    const localUser = localStorage.getItem("x-auth-id");
+    const userId = +localUser!;
+
+    const getTasks =async ()=>{
+      const taskRes = await GetTaskAsperProductId(data.productId);
+      console.log("TaskRes: " , taskRes);
+    }
+    getTasks();
+    
+
   }, []);
 
   const tasks = [5, 8, 4, 4, 454, 55];
@@ -80,9 +81,9 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
               </div>
               {/* other buttons */}
               <div className=" flex gap-2">
-                <Button className="flex gap-1" size={"sm"} variant={"outline"}>
+                <Button  className="flex gap-1" size={"sm"} variant={"outline"}>
                   <Network size={15} strokeWidth={1.5} />
-                  <p className="text-xs font-medium">Add members</p>
+                  <p className="text-xs font-medium">Add members </p>
                 </Button>
                 <Button className="flex gap-1 bg-indigo-700" size={"sm"}>
                  <AssignTaskComponent prodId={data.productId} />

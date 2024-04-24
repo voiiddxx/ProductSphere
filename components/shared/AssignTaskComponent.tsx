@@ -132,11 +132,8 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
     const productId = +prodId;
     const ProdRes = await getProductWithProductIdAction(productId);
     console.log("Data:" , ProdRes);
-    if(ProdRes){
-      setProdMembers(ProdRes.data.members);
-      console.log("Value of members: " , ProdRes);
-    }
-    
+    console.log("This is the value of members: " , ProdRes.members);
+    setProdMembers(ProdRes.members);
   }
 
   getProductForTaskmembers();
@@ -341,9 +338,9 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                         Assign members
                       </p>
                       <div className="mt-4 flex gap-2 flex-wrap">
-                        {TaskMembers.length > 1 && (
+                        {ProdMembers!=null  && (
                           <>
-                            {TaskMembers.map((curr: any) => {
+                            {ProdMembers.map((curr: any) => {
                               return (
                                 <div className="h-10 w-10 rounded-full bg-indigo-700 flex justify-center items-center">
                                   <User

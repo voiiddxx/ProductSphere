@@ -24,6 +24,9 @@ export const AssignTaskAction =async ({comment , creatorid , desc ,  documents ,
                 documents:documents,
                 creatorid:creatorid,
                 prodId:prodId,
+                taskmembers:{
+                    connect: taskmembers.map(curr => ({id : curr}))
+                }
             }
         });
         console.log(assignedtaks);

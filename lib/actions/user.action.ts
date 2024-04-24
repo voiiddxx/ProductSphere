@@ -3,6 +3,7 @@
 
 import { CreateUseronSuperbaseParams } from '@/types';
 import { PrismaClient } from '@prisma/client'
+import { string } from 'zod';
 
 const prisma = new PrismaClient()
 
@@ -33,7 +34,8 @@ export const createUseronSuperbase = async({avatar , email , username , clerkId}
 
 export const getUserUsingClerkid = async (id:string)=>{
     try {
-        const userResponse = await prisma.user.findFirst({
+        console.log("this is data of user id : " , id);
+        const userResponse  = await prisma.user.findFirst({
             where:{
                 clerkId:id
             },

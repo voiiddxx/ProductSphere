@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Drawer,
   DrawerClose,
@@ -61,6 +61,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { AssignTaskAction } from "@/lib/actions/task.action";
+import { getProductWithProductIdAction } from "@/lib/actions/product.action";
 
 //  assign task schema
 const formSchema = z.object({
@@ -82,7 +83,9 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
   const [PinnedComment, setPinnedComment] = useState<any>(null);
   const [Tags, setTags] = useState<any>(["dndnne" , "dsmnnj"]);
   const [TagToBeAdded, setTagToBeAdded] = useState<any>(null);
-  const [Priority, setPriority] = useState<any>(null)
+  const [Priority, setPriority] = useState<any>(null);
+  const [ProdMembers, setProdMembers] = useState<any>(null);
+
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -97,10 +100,11 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const userid = localStorage.getItem("x-auth-id");
     const creatorid = +userid!;
+    const productId = +prodId;
     if(StartDate && Tags && PinnedComment && TaskDocument && Priority){
       console.log({...values , StartDate , Tags , TaskDocument , PinnedComment , Priority}); 
       const res = await AssignTaskAction({
-        title:values.name , desc:values.detail , dueDate:StartDate , documents:"thisisdocunment" , comment:PinnedComment , creatorid:creatorid , priority:Priority , prodId:prodId , status:"Not Started yet" , tags:Tags , taskmembers:[]
+        title:values.name , desc:values.detail , dueDate:StartDate , documents:"thisisdocunment" , comment:PinnedComment , creatorid:creatorid , priority:Priority , prodId:productId , status:"Not Started yet" , tags:Tags , taskmembers:[]
       });
       if(res){
         console.log("Task Assigned: " , res);
@@ -118,6 +122,25 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
   const handleTags = () => {
     setTags([...Tags , TagToBeAdded]);
   };
+
+
+  // getting the product data for rendering the task members
+
+  useEffect(()=>{
+    
+  const getProductForTaskmembers = async ()=>{
+    const productId = +prodId;
+    const ProdRes = await getProductWithProductIdAction(productId);
+    console.log("Data:" , ProdRes);
+    if(ProdRes){
+      setProdMembers(ProdRes.data.members);
+      console.log("Value of members: " , ProdRes);
+    }
+    
+  }
+
+  getProductForTaskmembers();
+  } , [])
 
   return (
     <Drawer>

@@ -16,9 +16,16 @@ const Hero = ({ userid }: heroProps) => {
   };
   useEffect(() => {
     const getUserData = async () => {
+      console.log("this is the value of userid: " , userid);
+      try {
+        
       const res = await getUserUsingClerkid(userid!);
       console.log("Res: " , res , "resid val is: " , res.id);
       const userval = localStorage.setItem("x-auth-id", res.id);
+      } catch (error) {
+        console.log(error);
+        
+      }
     };
     getUserData();
   }, []);

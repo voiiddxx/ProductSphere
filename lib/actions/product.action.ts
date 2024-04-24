@@ -74,7 +74,7 @@ export const getAllProductAction = async () => {
 // server action for getting the product created by the user
 
 export const getProductAsperuseridAction = async (ownerIdofproduct: number) => {
-    console.log("This is thr value of the useid by which we are getting the list of product :" , ownerIdofproduct);
+    
     
     try {
         const ProductRes = await prisma.product.findMany({
@@ -182,4 +182,7 @@ export const JoinProductAction = async ({productId , userdId  , productCode}:Joi
         
     }
 }
+
+
+
 

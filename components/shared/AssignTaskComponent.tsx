@@ -59,8 +59,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { AssignTaskAction } from "@/lib/actions/task.action";
+} from "@/components/ui/dialog";
 import { getProductWithProductIdAction } from "@/lib/actions/product.action";
 import Image from "next/image";
 import {
@@ -74,6 +73,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import { AssignNewTasks } from "@/lib/actions/task.action";
 
 
 //  assign task schema
@@ -122,9 +122,9 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
     const productId = +prodId;
     if(StartDate && Tags && PinnedComment && TaskDocument && Priority){
       console.log({...values , StartDate , Tags , TaskDocument , PinnedComment , Priority}); 
-      const res = await AssignTaskAction({
+      const res = await AssignNewTasks({ data:{
         title:values.name , desc:values.detail , dueDate:StartDate , documents:"thisisdocunment" , comment:PinnedComment , creatorid:creatorid , priority:Priority , prodId:productId , status:"Not Started yet" , tags:Tags , taskmembersNow   :TaskmembersforPost
-      });
+      }});
       if(res){
         console.log("Task Assigned: " , res);
       }else{

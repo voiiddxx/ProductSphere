@@ -12,6 +12,8 @@ const prisma = new PrismaClient()
 
 export const createUseronSuperbase = async({avatar , email , username , clerkId}:CreateUseronSuperbaseParams)=>{
     try {
+        console.log("The Data for creating account: " , avatar , email , username , clerkId);
+        
         const res = await prisma.user.create({
             data:{
               username:username,

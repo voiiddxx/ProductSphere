@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { Button } from "../ui/button";
 import AssignTaskComponent from "./AssignTaskComponent";
-import { GetTaskAsperProductId } from "@/lib/actions/task.action";
+import { getTaskAsperProductId } from "@/lib/actions/task.action";
 
 type ProductDataProps = {
   data: any;
@@ -34,7 +34,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
     const userId = +localUser!;
 
     const getTasks =async ()=>{
-      const taskRes = await GetTaskAsperProductId(data.productId);
+      const taskRes = await getTaskAsperProductId(data.productId);
       console.log("TaskRes: " , taskRes);
     }
     getTasks();

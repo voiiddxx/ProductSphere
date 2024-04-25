@@ -8,8 +8,10 @@ const prisma = new PrismaClient();
 
 
 
-export const AssignTaskAction =async ({comment , creatorid , desc ,  documents , dueDate , priority , prodId , status , tags , taskmembers , title}: AssignTasksParams)=>{
+export const AssignTaskAction =async ({comment , creatorid , desc ,  documents , dueDate , priority , prodId , status , tags , taskmembersNow , title}: AssignTasksParams)=>{
 
+    console.log("This is the members list: " , taskmembersNow);
+    
     
     try {
         const assignedtaks = await prisma.tasks.create({
@@ -24,9 +26,8 @@ export const AssignTaskAction =async ({comment , creatorid , desc ,  documents ,
                 documents:documents,
                 creatorid:creatorid,
                 prodId:prodId,
-                taskmembers:{
-                    connect: taskmembers.map(curr => ({id : curr}))
-                }
+                
+                
             }
         });
         console.log(assignedtaks);

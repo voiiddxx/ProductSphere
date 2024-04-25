@@ -42,7 +42,7 @@ export type AssignTasksParams = {
     documents: string,
     creatorid: any,
     prodId: any,
-    taskmembers : []
+    taskmembersNow : []
 }
 
 

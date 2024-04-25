@@ -24,7 +24,7 @@ model User {
   ownedProducts Product[] @relation("ownedProducts") // Unique relation name for owned products
   memberOfProducts Product[] @relation("memberOfProducts") // Unique relation name for products user is a member of
   taskCreated Tasks[] @relation("taskCreated")
-  taskMembers Tasks[] @relation("taskMembers")
+  membersOftasks Tasks[] @relation("membersOftasks")
 }
 
 model Product {
@@ -46,6 +46,7 @@ model Product {
   skills             String[]
   productCode String
   tasks Tasks[] @relation("productTasks")
+  
 
 }
 
@@ -63,9 +64,9 @@ model Tasks {
   dueDate DateTime
   createdBy User @relation("taskCreated" , fields: [creatorid] , references: [id])
   creatorid Int
-  taskmembers User[] @relation("taskMembers")
   tags String[]
   comment String
+  membersOfTasks User[] @relation("membersOftasks") 
 
 }
 

@@ -123,7 +123,7 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
     if(StartDate && Tags && PinnedComment && TaskDocument && Priority){
       console.log({...values , StartDate , Tags , TaskDocument , PinnedComment , Priority}); 
       const res = await AssignTaskAction({
-        title:values.name , desc:values.detail , dueDate:StartDate , documents:"thisisdocunment" , comment:PinnedComment , creatorid:creatorid , priority:Priority , prodId:productId , status:"Not Started yet" , tags:Tags , taskmembers:[]
+        title:values.name , desc:values.detail , dueDate:StartDate , documents:"thisisdocunment" , comment:PinnedComment , creatorid:creatorid , priority:Priority , prodId:productId , status:"Not Started yet" , tags:Tags , taskmembersNow   :TaskmembersforPost
       });
       if(res){
         console.log("Task Assigned: " , res);

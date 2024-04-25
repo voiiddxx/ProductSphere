@@ -85,6 +85,23 @@ export const AssignTaskAction = async ({ comment, creatorid, desc, documents, du
 
 // getting task for partiuclar product
 
+// new server action for assigning the tasks
+
+export const AssignNewTasks = async()=>{
+    try {
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+
+
+
+
+
+
 export const GetTaskAsperProductId = async( prodId: any)=>{
     try {
         

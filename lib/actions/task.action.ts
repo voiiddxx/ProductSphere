@@ -10,42 +10,72 @@ const prisma = new PrismaClient();
 const task = [2]
 
 
-export const AssignTaskAction =async ({comment , creatorid , desc ,  documents , dueDate , priority , prodId , status , tags , taskmembersNow , title}: AssignTasksParams)=>{
+// export const AssignTaskAction =async ({comment , creatorid , desc ,  documents , dueDate , priority , prodId , status , tags , taskmembersNow , title}: AssignTasksParams)=>{
 
-    console.log("This is the members list: " , taskmembersNow);
+//     console.log("This is the members list: " , taskmembersNow);
     
     
+//     try {
+//         const assignedtaks = await prisma.tasks.create({
+//             data:{
+//                 title:title,
+//                 desc:desc,
+//                 dueDate:dueDate,
+//                 prioroty:priority,
+//                 status:status,
+//                 comment:comment,
+//                 tags:tags,
+//                 documents:documents,
+//                 creatorid:creatorid,
+//                 prodId:prodId,
+//                 membersOfTasks:{
+//                    connect: taskmembersNow.map((id=> ({id:id}))) 
+//                 }
+                
+                
+//             }
+//         });
+//         console.log(assignedtaks);
+//         if(!assignedtaks) {
+//             return JSON.parse(JSON.stringify({message:"Some error occured" , status:400}));
+//         }
+//         return JSON.parse(JSON.stringify({data:assignedtaks , status:200}));
+//     } catch (error) {
+//         console.log(error);
+//         throw new Error(error as string);
+        
+//     }
+// }
+
+
+export const AssignTaskAction = async ({ comment, creatorid, desc, documents, dueDate, priority, prodId, status, tags, taskmembersNow, title }: AssignTasksParams) => {
     try {
-        const assignedtaks = await prisma.tasks.create({
-            data:{
-                title:title,
-                desc:desc,
-                dueDate:dueDate,
-                prioroty:priority,
-                status:status,
-                comment:comment,
-                tags:tags,
-                documents:documents,
-                creatorid:creatorid,
-                prodId:prodId,
-                membersOfTasks:{
-                   connect: taskmembersNow.map((curr=> ({id:curr}))) 
+        console.log(taskmembersNow);
+        
+        const assignedTask = await prisma.tasks.create({
+            data: {
+                title: title,
+                desc: desc,
+                dueDate: dueDate,
+                prioroty: priority,
+                status: status,
+                comment: comment,
+                tags: tags,
+                documents: documents,
+                creatorid: creatorid,
+                prodId: prodId,
+                membersOfTasks: {
+                    connect: taskmembersNow.map(userId => ({ id: userId }))
                 }
-                
-                
             }
         });
-        console.log(assignedtaks);
-        if(!assignedtaks) {
-            return JSON.parse(JSON.stringify({message:"Some error occured" , status:400}));
-        }
-        return JSON.parse(JSON.stringify({data:assignedtaks , status:200}));
+        return { data: assignedTask, status: 200 };
     } catch (error) {
-        console.log(error);
-        throw new Error(error as string);
-        
+        console.error("Error assigning task:", error);
+        throw new Error("Failed to assign task.");
     }
 }
+
 
 
 // members: {

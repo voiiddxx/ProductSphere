@@ -7,6 +7,8 @@ import { Prisma, PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 
+const task = [2]
+
 
 export const AssignTaskAction =async ({comment , creatorid , desc ,  documents , dueDate , priority , prodId , status , tags , taskmembersNow , title}: AssignTasksParams)=>{
 
@@ -27,7 +29,7 @@ export const AssignTaskAction =async ({comment , creatorid , desc ,  documents ,
                 creatorid:creatorid,
                 prodId:prodId,
                 membersOfTasks:{
-                    connect: taskmembersNow.map(curr => ({id:curr}))
+                   connect: taskmembersNow.map((curr=> ({id:curr}))) 
                 }
                 
                 

@@ -13,8 +13,8 @@ const task = [2]
 // export const AssignTaskAction =async ({comment , creatorid , desc ,  documents , dueDate , priority , prodId , status , tags , taskmembersNow , title}: AssignTasksParams)=>{
 
 //     console.log("This is the members list: " , taskmembersNow);
-    
-    
+
+
 //     try {
 //         const assignedtaks = await prisma.tasks.create({
 //             data:{
@@ -31,8 +31,8 @@ const task = [2]
 //                 membersOfTasks:{
 //                    connect: taskmembersNow.map((id=> ({id:id}))) 
 //                 }
-                
-                
+
+
 //             }
 //         });
 //         console.log(assignedtaks);
@@ -43,7 +43,7 @@ const task = [2]
 //     } catch (error) {
 //         console.log(error);
 //         throw new Error(error as string);
-        
+
 //     }
 // }
 
@@ -51,7 +51,7 @@ const task = [2]
 // export const AssignTaskAction = async ({ comment, creatorid, desc, documents, dueDate, priority, prodId, status, tags, taskmembersNow, title }: AssignTasksParams) => {
 //     try {
 //         console.log(taskmembersNow);
-        
+
 //         const assignedTask = await prisma.tasks.create({
 //             data: {
 //                 title: title,
@@ -87,59 +87,62 @@ const task = [2]
 
 // new server action for assigning the tasks
 
-export const AssignNewTasks = async({data}:AssignTasksParams)=>{
+export const AssignNewTasks = async ({ data }: AssignTasksParams) => {
     try {
         const res = await prisma.assignTasks.create({
-            data:{
-                title:data.title,
-                comment:data.comment,
-                desc:data.desc,
-                document:data.documents,
+            data: {
+                title: data.title,
+                comment: data.comment,
+                desc: data.desc,
+                document: data.documents,
                 dueDate: new Date,
-                priority:data.priority,
-                status:data.status,
-                tags:data.tags,
-                prodId:data.prodId,
-                creatorid:data.creatorid,
-                AssignMembers:{
-                    connect: data.taskmembersNow.map(assignedId => ({id:assignedId}))
+                priority: data.priority,
+                status: data.status,
+                tags: data.tags,
+                prodId: data.prodId,
+                creatorid: data.creatorid,
+                AssignMembers: {
+                    connect: data.taskmembersNow.map(assignedId => ({ id: assignedId }))
                 }
             },
         });
-            console.log("this is log value",res);
-            
-        if(!res){
-            return JSON.parse(JSON.stringify({message:"Some error occured" , status : 400}));
+        console.log("this is log value", res);
+
+        if (!res) {
+            return JSON.parse(JSON.stringify({ message: "Some error occured", status: 400 }));
         }
-        return JSON.parse(JSON.stringify({data:res , status:200}));
+        return JSON.parse(JSON.stringify({ data: res, status: 200 }));
     } catch (error) {
         console.log(error);
-        
+
     }
 }
 
 
 
+// server action for getting the tasks of productid
 
-
-
-
-// export const GetTaskAsperProductId = async( prodId: any)=>{
-//     try {
+export const getTaskAsperProductId = async (prodId: number) => {
+    try {
+        console.log(prodId);
         
-//         const TaskRes = await prisma.tasks.findMany({
-//             where:{
-//                 prodId:prodId,
-//             }
-//         });
-//         if(!TaskRes){
-//             return JSON.parse(JSON.stringify({message:"No Product Found" , status:400}));
-//         }
-//         return JSON.parse(JSON.stringify({data:TaskRes , status:200}));
-//     } catch (error) {
-//         console.log(error);
-//         throw new Error(error as string)
-        
-//     }
-// }
+        const res = await prisma.assignTasks.findMany({
+            where: {
+                prodId: prodId
+            },
+            include: {
+                AssignMembers: true,
+                createdBy: true,
+            }
+        });
 
+        if (!res) {
+            return JSON.parse(JSON.stringify({ message: "Some error occured", status: 400 }));
+        }
+        console.log('Tasks Response: ', res);
+        return JSON.parse(JSON.stringify({ data: res, status: 200 }));
+    } catch (error) {
+        console.log(error);
+
+    }
+}

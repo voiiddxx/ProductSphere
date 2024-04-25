@@ -1,3 +1,4 @@
+
 import DetailsSidebar from '@/components/shared/DetailsSidebar'
 import ProductdashBoard from '@/components/shared/ProductdashBoard'
 import { Button } from '@/components/ui/button'

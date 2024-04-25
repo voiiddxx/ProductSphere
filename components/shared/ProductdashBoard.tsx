@@ -21,6 +21,7 @@ import {
 import { Button } from "../ui/button";
 import AssignTaskComponent from "./AssignTaskComponent";
 import { getTaskAsperProductId } from "@/lib/actions/task.action";
+import TaskAssignedCard from "./TaskAssignedCard";
 
 type ProductDataProps = {
   data: any;
@@ -28,14 +29,25 @@ type ProductDataProps = {
 
 const ProductdashBoard = ({ data }: ProductDataProps) => {
   const [IsOwner, setIsOwner] = useState<boolean>(false);
+  const [Tasks, setTasks] = useState<any>(null)
 
   useEffect(() => {
-    const localUser = localStorage.getItem("x-auth-id");
-    const userId = +localUser!;
 
+      const localUser = localStorage.getItem("x-auth-id");
+    const userId = +localUser!;
+    if(data.ownerId === userId){
+      setIsOwner(true);
+      console.log("Values are:  " , data.ownerId , "another val is : " , userId);
+      
+    }
+ 
     const getTasks =async ()=>{
-      const taskRes = await getTaskAsperProductId(data.productId);
-      console.log("TaskRes: " , taskRes);
+      const prodId = + data.productId;
+      const taskRes = await getTaskAsperProductId(prodId);
+      setTasks(taskRes);
+      console.log("taskres",taskRes);
+      
+     
     }
     getTasks();
     
@@ -61,7 +73,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
               <div>
                 <p className="text-zinc-900  font-medium">{data.name}</p>
                 <p className="text-xs font-medium text-zinc-500">
-                  Product id: {data.productId}
+                  Product id: {data.productId} 
                 </p>
               </div>
             </div>
@@ -150,85 +162,17 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
           <p className="text-xs font-normal mt-1 text-zinc-500">
             All the tasks you have assigned to the team members
           </p>
-          <div className="flex gap-2 flex-wrap mt-5">
-            {tasks.map((curr: any) => {
+          {
+            Tasks && (
+              <div className="flex gap-2 flex-wrap mt-5">
+            {Tasks.data.map((curr: any) => {
               return (
-                <div className="h-[300px] w-[400px] bg-white border rounded-md px-4 py-2 flex flex-col justify-between">
-                  {/* task upper title and status part */}
-                  <div>
-                    <div className="flex w-full justify-between  items-center mt-2">
-                      <p className="text-zinc-700 text-sm font-semibold">
-                        Data Enhancement
-                      </p>
-                      <div className="flex gap-2">
-                        <div className="px-[7px] py-[2px] bg-yellow-50 rounded-full flex items-center justify-center text-yellow-600">
-                          <Flame size={12} strokeWidth={2} />
-                          <p className="text-[10px] font-medium text-yellow-500">
-                            High Priority
-                          </p>
-                        </div>
-                        <div className="px-[7px] py-[2px] bg-red-50 rounded-full">
-                          <p className="text-[10px] font-medium text-red-500">
-                            Pending
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div>
-                      <p className="text-xs mt-4 mr-10 text-zinc-500">
-                        Enhance the data refreshment technique and boost the api
-                        request hitting time to reduce effort
-                      </p>
-                    </div>
-
-                    <div className="flex gap-1 items-center text-indigo-700 mt-4">
-                      <File size={15} />
-                      <p className="text-xs font-medium">2 files attached</p>
-                    </div>
-
-                    {/* members attachded file part */}
-                    <div className="relative mt-4">
-                      <div className=" absolute h-8 w-8 border bg-zinc-700 rounded-full flex justify-center items-center">
-                        <User strokeWidth={1.5} color="white" size={17} />
-                      </div>
-                      <div className=" absolute h-8 w-8 left-5 border bg-zinc-700 rounded-full flex justify-center items-center">
-                        <User strokeWidth={1.5} color="white" size={17} />
-                      </div>
-                      <div className=" absolute h-8 w-8 left-10 border bg-zinc-700 rounded-full flex justify-center items-center">
-                        <p className="text-sm font-medium text-white">5+</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* task detail section */}
-
-                  {/* bottom task card div */}
-                  <div>
-                    <p className="text-xs text-zinc-600">Due Date</p>
-                    <div className="flex gap-2">
-                      <CalendarRangeIcon size={15} strokeWidth={1.5} />
-                      <p className="text-xs text-zinc-600">5 April 2024</p>
-                    </div>
-
-                    {/* last div */}
-                    <div className="w-full flex justify-between mt-4">
-                      <div className=" flex items-center gap-2">
-                        <div className="h-6 w-6 rounded-full bg-indigo-700 flex justify-center items-center"></div>
-                        <p className="text-xs font-medium text-zinc-500">
-                          Created by Nikhil
-                        </p>
-                      </div>
-
-                      <div>
-                        <MoreVertical className="text-zinc-500" size={15} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <TaskAssignedCard/>
               );
             })}
           </div>
+            )
+          }
         </div>
         {/* assign tasks div ends here */}
       </div>

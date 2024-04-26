@@ -146,3 +146,30 @@ export const getTaskAsperProductId = async (prodId: number) => {
 
     }
 }
+
+
+
+
+// server action for getting the task as per the taskid
+export const getTaskAspertaskId =async (taskId: number)=>{
+    try {
+        const taskRes = await prisma.assignTasks.findUnique({
+            where:{
+                assignId:taskId
+            },
+            include:{
+                AssignMembers:true,
+                createdBy:true,
+            }
+        });
+
+        if(!taskRes){
+            return JSON.parse(JSON.stringify({message:"Some error occured , no tasks found , invalid task id" , status:400}));
+        }
+        return JSON.parse(JSON.stringify({data:taskRes , status:200}));
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

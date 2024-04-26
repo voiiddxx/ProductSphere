@@ -1,3 +1,4 @@
+import TaskstatusComponents from '@/components/shared/TaskstatusComponents';
 import { getTaskAspertaskId } from '@/lib/actions/task.action'
 import React from 'react'
 
@@ -12,8 +13,9 @@ const page = async ({
     
 
   return (
-    <div>
-        <p>this is task page</p>
+    <div className='min-h-screen w-full flex justify-center items-center flex-col' >
+     
+      <TaskstatusComponents/>
     </div>
   )
 }

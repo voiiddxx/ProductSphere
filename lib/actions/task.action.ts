@@ -7,8 +7,6 @@ import { Prisma, PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 
-const task = [2]
-
 
 // export const AssignTaskAction =async ({comment , creatorid , desc ,  documents , dueDate , priority , prodId , status , tags , taskmembersNow , title}: AssignTasksParams)=>{
 
@@ -196,3 +194,25 @@ export const deleteTaskAsperTaskId = async (taskId:number)=>{
 
 
 // server action for updating the status of task as per taskid 
+
+
+export const updateTaskStatusasPertaskId = async (taskId : number , status:string)=>{
+    try {
+        const res = await prisma.assignTasks.update({
+            where:{
+                assignId:taskId,
+            },
+            data:{
+                status:status
+            }
+        });
+
+        if(!res){
+            return JSON.parse(JSON.stringify({message:"Some issue occured", status:400}));
+        }
+        return JSON.parse(JSON.stringify({data:res , status:200}));
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

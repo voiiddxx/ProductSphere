@@ -61,3 +61,9 @@ export type JoinProductParams = {
 export type GetUserJoindedProductParams = {
     userId:any
 }
+
+
+export type UpdateTaskStatusParams = {
+    taskId:number,
+    taskStatus:string
+}

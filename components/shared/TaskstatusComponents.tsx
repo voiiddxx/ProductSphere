@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,8 +20,23 @@ import {
 } from "@/components/ui/select";
 
 import { Dot } from "lucide-react";
+import { updateTaskStatusasPertaskId } from "@/lib/actions/task.action";
 
-const TaskstatusComponents = () => {
+
+    type taskStatusProps = {
+        taskId:number
+    }
+
+const TaskstatusComponents = ({taskId}: taskStatusProps) => {
+
+const [TaskStatus, setTaskStatus] = useState<any>(null);
+
+
+    const handleUpdateSTatus = async()=>{
+        const res = await updateTaskStatusasPertaskId({taskId:taskId , taskStatus:TaskStatus});
+        
+    }
+
   return (
     <AlertDialog>
       <AlertDialogTrigger>Change task status</AlertDialogTrigger>
@@ -35,12 +51,14 @@ const TaskstatusComponents = () => {
           <AlertDialogDescription>
             update the status of your task and it get notified to product leader
             {/* select div */}
-            <Select>
+            <Select onValueChange={(val)=>{
+                setTaskStatus(val);
+            }} >
               <SelectTrigger className="w-full mt-4">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Low">
+                <SelectItem value="Started">
                   <div className="flex gap-1 items-center">
                     <Dot
                       className="text-teal-600"
@@ -50,7 +68,7 @@ const TaskstatusComponents = () => {
                     <p className="text-zinc-900 font-medium">Started</p>
                   </div>
                 </SelectItem>
-                <SelectItem value="Low">
+                <SelectItem value="In progress">
                   <div className="flex gap-1 items-center">
                     <Dot
                       className="text-orange-500"
@@ -60,7 +78,7 @@ const TaskstatusComponents = () => {
                     <p className="text-zinc-900 font-medium">In progress</p>
                   </div>
                 </SelectItem>
-                <SelectItem value="Low">
+                <SelectItem value="Completed">
                   <div className="flex gap-1 items-center">
                     <Dot
                       className="text-green-500"
@@ -76,7 +94,7 @@ const TaskstatusComponents = () => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogAction onClick={handleUpdateSTatus} >Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

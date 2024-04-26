@@ -15,7 +15,7 @@ const page = async ({
   return (
     <div className='min-h-screen w-full flex justify-center items-center flex-col' >
      
-      <TaskstatusComponents/>
+      <TaskstatusComponents taskId={taskData.data.assignId} />
     </div>
   )
 }

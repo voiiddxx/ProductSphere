@@ -1,6 +1,6 @@
 "use server"
 
-import { AssignTasksParams } from "@/types";
+import { AssignTasksParams, UpdateTaskStatusParams } from "@/types";
 import { Prisma, PrismaClient } from "@prisma/client";
 
 
@@ -196,14 +196,17 @@ export const deleteTaskAsperTaskId = async (taskId:number)=>{
 // server action for updating the status of task as per taskid 
 
 
-export const updateTaskStatusasPertaskId = async (taskId : number , status:string)=>{
+export const updateTaskStatusasPertaskId = async ({taskId , taskStatus}:UpdateTaskStatusParams)=>{
+
+    console.log("this is taskid:",taskId);
+    
     try {
         const res = await prisma.assignTasks.update({
             where:{
                 assignId:taskId,
             },
             data:{
-                status:status
+                status:taskStatus
             }
         });
 

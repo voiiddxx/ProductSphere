@@ -167,7 +167,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
               <div className="flex gap-2 flex-wrap mt-5">
             {Tasks.data.map((curr: any) => {
               return (
-                <TaskAssignedCard/>
+                <TaskAssignedCard data={curr} />
               );
             })}
           </div>

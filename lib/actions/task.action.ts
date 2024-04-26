@@ -167,9 +167,32 @@ export const getTaskAspertaskId =async (taskId: number)=>{
             return JSON.parse(JSON.stringify({message:"Some error occured , no tasks found , invalid task id" , status:400}));
         }
         return JSON.parse(JSON.stringify({data:taskRes , status:200}));
-        
+
     } catch (error) {
         console.log(error);
         
     }
 }
+
+
+
+// server action for deleting the task as per task id
+
+export const deleteTaskAsperTaskId = async (taskId:number)=>{
+    try {
+        const res = await prisma.assignTasks.delete({
+            where:{
+                assignId:taskId
+            }
+        });
+        if(!res){
+            return JSON.parse(JSON.stringify({message:"Some issue while deleting the task" , status:400}));
+        }
+        return JSON.parse(JSON.stringify({data:"Deleted" , status:200}));
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+// server action for updating the status of task as per taskid 

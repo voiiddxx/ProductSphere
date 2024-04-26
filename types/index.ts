@@ -67,3 +67,8 @@ export type UpdateTaskStatusParams = {
     taskId:number,
     taskStatus:string
 }
+
+export type AddteamMembersParams = {
+    prodId: number,
+    teamMember : []
+}

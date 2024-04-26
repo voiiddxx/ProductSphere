@@ -1,6 +1,6 @@
 "use server"
 
-import { createProductParams, GetUserJoindedProductParams, JoinProductParams } from "@/types";
+import { AddteamMembersParams, createProductParams, GetUserJoindedProductParams, JoinProductParams } from "@/types";
 import { PrismaClient } from "@prisma/client";
 
 
@@ -184,5 +184,33 @@ export const JoinProductAction = async ({productId , userdId  , productCode}:Joi
 }
 
 
+
+
+//  server action for adding the team mebers 
+
+export const AddteamMembers = async({prodId , teamMember}: AddteamMembersParams)=>{
+    try {
+        console.log("this is team mebers: " , teamMember);
+       const res = await prisma.product.update({
+        where:{
+            productId:prodId,
+        },
+        data:{
+            members:{
+                connect:teamMember.map(curr => ({id:curr}))
+            }
+        }
+       });
+       if(!res){
+        return JSON.parse(JSON.stringify({data:"Some issue occured" , status:400}));
+       }
+
+       return JSON.parse(JSON.stringify({data:res , status:200}));
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
 
 

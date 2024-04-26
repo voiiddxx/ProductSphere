@@ -190,7 +190,6 @@ export const JoinProductAction = async ({productId , userdId  , productCode}:Joi
 
 export const AddteamMembers = async({prodId , teamMember}: AddteamMembersParams)=>{
     try {
-        console.log("this is team mebers: " , teamMember);
        const res = await prisma.product.update({
         where:{
             productId:prodId,

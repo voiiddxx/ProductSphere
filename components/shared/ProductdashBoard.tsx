@@ -23,6 +23,7 @@ import AssignTaskComponent from "./AssignTaskComponent";
 import { getTaskAsperProductId } from "@/lib/actions/task.action";
 import TaskAssignedCard from "./TaskAssignedCard";
 import Image from "next/image";
+import Addmemebr from "./Addmemebr";
 
 type ProductDataProps = {
   data: any;
@@ -107,8 +108,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
               {/* other buttons */}
               <div className=" flex gap-2">
                 <Button  className="flex gap-1" size={"sm"} variant={"outline"}>
-                  <Network size={15} strokeWidth={1.5} />
-                  <p className="text-xs font-medium">Add members </p>
+                <Addmemebr productId={data.productId} />
                 </Button>
                 <Button className="flex gap-1 bg-indigo-700" size={"sm"}>
                  <AssignTaskComponent prodId={data.productId} />

@@ -216,3 +216,51 @@ export const updateTaskStatusasPertaskId = async (taskId : number , status:strin
         
     }
 }
+
+
+
+// server action for adding the new team members into the task
+
+export const addTaskMemeners = async ()=>{
+    try {
+        const task = await prisma.assignTasks.findFirst({
+            where:{
+                assignId:1
+            },
+            include:{
+                AssignMembers:true,
+            }
+        });
+        if(!task){
+            return JSON.parse(JSON.stringify({message:"No Task found" , status:400}));
+        }
+
+        const userAlreadyPresent = task.AssignMembers.some(curr=>curr.id);
+        if(userAlreadyPresent){
+            return JSON.parse(JSON.stringify({message:"User already assigned to this task" , status:401}));
+        }
+
+        const updatedTaskRes = await prisma.assignTasks.update({
+            where:{
+                assignId:1
+            },
+            data:{
+                AssignMembers:{
+                    connect:{id:2}
+                }
+            },
+            include:{
+                AssignMembers:true
+            }
+        });
+        if(!updatedTaskRes){
+            return JSON.parse(JSON.stringify({message:"Some issue occured" , status:402}));
+        }
+        return JSON.parse(JSON.stringify({data:updatedTaskRes , status:200}));
+        
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

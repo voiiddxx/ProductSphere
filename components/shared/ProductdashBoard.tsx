@@ -22,6 +22,7 @@ import { Button } from "../ui/button";
 import AssignTaskComponent from "./AssignTaskComponent";
 import { getTaskAsperProductId } from "@/lib/actions/task.action";
 import TaskAssignedCard from "./TaskAssignedCard";
+import Image from "next/image";
 
 type ProductDataProps = {
   data: any;
@@ -37,7 +38,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
     const userId = +localUser!;
     if(data.ownerId === userId){
       setIsOwner(true);
-      console.log("Values are:  " , data.ownerId , "another val is : " , userId);
+      // console.log("Values are:  " , data.ownerId , "another val is : " , userId);
       
     }
  
@@ -45,7 +46,9 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
       const prodId = + data.productId;
       const taskRes = await getTaskAsperProductId(prodId);
       setTasks(taskRes);
-      console.log("taskres",taskRes);
+      console.log(data);
+      
+      // console.log("taskres",taskRes);
       
      
     }
@@ -81,14 +84,24 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
             <div className="flex gap-24 relative">
               {/* members icons */} 
               <div className="relative">
-                <div className=" absolute h-10 w-10 border bg-zinc-700 rounded-full flex justify-center items-center">
-                  <User strokeWidth={1.5} color="white" size={17} />
+                {
+                  data.members.length > 1 && (
+                    <div className=" absolute h-10 w-10 border bg-zinc-700 rounded-full flex justify-center items-center">
+                <Image className="h-10 w-10 object-cover rounded-full"  src={data.members[0].avatar} height={900} width={900} alt="userimage" />
                 </div>
+                  )
+                }
                 <div className=" absolute h-10 w-10 left-5 border bg-zinc-700 rounded-full flex justify-center items-center">
-                  <User strokeWidth={1.5} color="white" size={17} />
+                {
+                  data.members.length > 1 && (
+                    <div className=" absolute h-10 w-10 border bg-zinc-700 rounded-full flex justify-center items-center">
+                <Image className="h-10 w-10 object-cover rounded-full"  src={data.members[1].avatar} height={900} width={900} alt="userimage" />
+                </div>
+                  )
+                }
                 </div>
                 <div className=" absolute h-10 w-10 left-10 border bg-zinc-700 rounded-full flex justify-center items-center">
-                  <p className="text-sm font-medium text-white">5+</p>
+                  <p className="text-sm font-medium text-white">{data.members.length}+</p>
                 </div>
               </div>
               {/* other buttons */}

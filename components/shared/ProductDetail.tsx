@@ -48,6 +48,30 @@ const makers = [
   },
 ]
 
+
+const review = [
+  {
+    name:"nikhil",
+    review:"this is preety good product , hope it will help more in future",
+    star:2
+  },
+  {
+    name:"Void",
+    review:"Loved this product geniuenly it is good product",
+    star:4
+  },
+  {
+    name:"nikhil",
+    review:"Great Stuff , want to contribute,",
+    star:5
+  },
+  {
+    name:"nikhil",
+    review:"this is preety good product , hope it will help more in future",
+    star:4
+  },
+]
+
 const ProductDetail = ({ id }: ProductDetailProps) => {
   const [productCode, setproductCode] = useState<any>(null);
   const [Product, setProduct] = useState<any>(null);
@@ -233,8 +257,15 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
               }
             </div>
           </div>
-
         </div>
+
+           {/* reviews component */}
+
+           <div className=" py-5 border-b px-20" >
+            <h1 className="text-xl font-medium text-zinc-900" >ProductSphere Reviews</h1>
+            <p className="text-zinc-600 text-sm font-medium" >Chcekout all the reviews given by users</p>
+
+          </div>
     </div>
   );
 };

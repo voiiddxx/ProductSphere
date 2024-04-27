@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { File, Star, Triangle } from "lucide-react";
+import { File, Sparkle, Star, Triangle } from "lucide-react";
 
 type ProductDetailProps = {
   id: any;
@@ -109,7 +109,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
       </div>
 
       {/* details div */}
-      <div className="mt-5 px-20">
+      <div className="mt-5 px-20 border-b py-4">
         {/* detail */}
         <div className="mr-96">
           <h1 className=" font-medium text-zinc-900">What is ProductSphere</h1>
@@ -138,8 +138,48 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
             </div>
           </div>
         </div>
-        {/* details end */}
       </div>
+        {/* details end */}
+      <div className="mt-5 px-20" >
+          <h1 className="font-medium text-zinc-950 text-xl" >Techstack</h1>
+          <p className="text-sm font-medium text-zinc-600" >The techstack used in the product</p>
+
+          <div className="mr-96 flex gap-5 flex-wrap mt-5" >
+            <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2" >
+              <Sparkle className="text-indigo-700"  strokeWidth={1.5} size={18}/>
+              <p className="text-indigo-700 font-medium" >TypeScript</p>
+
+            </div>
+            <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2" >
+              <Sparkle className="text-indigo-700"  strokeWidth={1.5} size={18}/>
+              <p className="text-indigo-700 font-medium" >Nextjs</p>
+
+            </div>
+            <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2" >
+              <Sparkle className="text-indigo-700"  strokeWidth={1.5} size={18}/>
+              <p className="text-indigo-700 font-medium" >javascript</p>
+
+            </div>
+            <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2" >
+              <Sparkle className="text-indigo-700"  strokeWidth={1.5} size={18}/>
+              <p className="text-indigo-700 font-medium" >PostgresSql</p>
+
+            </div>
+            <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2" >
+              <Sparkle className="text-indigo-700"  strokeWidth={1.5} size={18}/>
+              <p className="text-indigo-700 font-medium" >Vercel</p>
+
+            </div>
+            <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2" >
+              <Sparkle className="text-indigo-700"  strokeWidth={1.5} size={18}/>
+              <p className="text-indigo-700 font-medium" >Shadcn-ui</p>
+
+            </div>
+           
+
+          </div>
+
+        </div>
     </div>
   );
 };

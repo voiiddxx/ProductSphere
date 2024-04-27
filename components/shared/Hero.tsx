@@ -94,7 +94,8 @@ const Hero = ({ userid }: heroProps) => {
         </div>
       </div>
       <h1 className="text-6xl font-bold  tracking-normal leading-tight text-white mt-5 text-center">
-        Manage Your Product <br /> With Help of ProductSphere{" "}
+        Manage Your Product <br /> With Help of <span className="text-zinc-950 bg-white rounded-md px-4" >
+        ProductSphere</span> {" "}
       </h1>
       <p className="text-white mt-2 text-center tracking-wide leading-relaxed">
         Tired of genreating your social captions , getting no proper roadmap ,

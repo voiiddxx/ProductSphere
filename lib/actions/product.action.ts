@@ -188,7 +188,7 @@ export const JoinProductAction = async ({productId , userdId  , productCode}:Joi
 
 //  server action for adding the team mebers 
 
-export const AddteamMembers = async({prodId , teamMember}: AddteamMembersParams)=>{
+export const AddteamMembersActions = async({prodId , teamMember}: AddteamMembersParams)=>{
     try {
        const res = await prisma.product.update({
         where:{

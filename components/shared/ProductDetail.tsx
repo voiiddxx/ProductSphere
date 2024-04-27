@@ -115,7 +115,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
       {/* heading bar tab */}
       <div className=" w-full flex justify-between px-20 py-4 items-center border-b">
         {/* left div */}
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-6 items-center">
           {/* image div */}
           <div className="h-28 w-28 bg-indigo-700 rounded-md"></div>
           {/* text div */}
@@ -144,11 +144,14 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
         {/* right div */}
         <div className="flex gap-2">
           <Button
-            className="border rounded-full text-indigo-700"
+            className="border rounded-full text-indigo-700 h-14 w-14"
             size={"icon"}
             variant={"link"}
           >
-            <Triangle />
+           <div>
+           <Triangle />
+            <p>15</p>
+           </div>
           </Button>
           <Button variant={"outline"} size={"lg"}>
             Visit Website

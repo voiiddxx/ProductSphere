@@ -1,5 +1,6 @@
 
 import Hero from "@/components/shared/Hero";
+import NavBar from "@/components/shared/NavBar";
 import { Button } from "@/components/ui/button";
 import { currentUser, SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
@@ -11,8 +12,8 @@ export default async function Home() {
 
   
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    this is home page for now
+    <main className="flex min-h-screen w-full flex-col items-center justify-between bg-indigo-600">
+      <NavBar/>
    <Hero userid={user?.id} />
     <div className="flex gap-5" >
       <Link href={`/dashboard`} ><Button>Login Page</Button></Link>

@@ -14,13 +14,13 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-between bg-indigo-600">
       <NavBar/>
-   <Hero userid={user?.id} />
+ 
     <div className="flex gap-5" >
-      <Link href={`/dashboard`} ><Button>Login Page</Button></Link>
-      <SignedIn>
+      {/* <Link href={`/dashboard`} ><Button>Login Page</Button></Link> */}
+      {/* <SignedIn>
         <UserButton afterSignOutUrl="/" />
-      </SignedIn>
-      <Link href={`/dashboard`} ><Button>Register Page</Button></Link>
+      </SignedIn> */}
+      {/* <Link href={`/dashboard`} ><Button>Register Page</Button></Link> */}
   </div>
     </main>
   );

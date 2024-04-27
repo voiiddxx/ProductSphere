@@ -11,7 +11,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Check, GitBranch, Network, PlusCircle, Search } from "lucide-react";
+import { Check, GitBranch, Network, PlusCircle, Search, X } from "lucide-react";
 import { getAllUsers } from "@/lib/actions/user.action";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -30,6 +30,13 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
     setSelectedmembers([...Selectedmembers , curr])
   }
 
+
+  const removeUserfromtheArray = (user:any)=>{
+      const userIndex = Selectedmembers.findIndex((curr:any)=>curr===user);
+      const updateUser = [...Selectedmembers];
+      updateUser.splice(userIndex , 1);
+      setSelectedmembers(updateUser);
+  }
   // useEffect(() => {
   //   const getAllmembers = async () => {
   //     const res = await getAllUsers();
@@ -68,8 +75,13 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
                 <div className="flex flex-wrap gap-2 mt-4" >
                   {
                     Selectedmembers.map((curr:any)=>{
-                      return <div className="h-10 w-10 rounded-full bg-slate-400" >
+                      return <div className="h-10 w-10 relative rounded-full bg-slate-400" >
+                        <div onClick={()=>{
+                          removeUserfromtheArray(curr);
+                        }} className="absolute right-[-5px] top-[-5px] h-4 w-4 border bg-red-100 rounded-full flex justify-center items-center " >
+                          <X className="text-red-600" size={12} strokeWidth={1.5} />
 
+                        </div>
                       </div>
                     })
                   }

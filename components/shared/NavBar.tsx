@@ -2,10 +2,11 @@ import { Box, Diamond, Gem, Rabbit, Workflow } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 import { Button } from '../ui/button'
+import Link from 'next/link'
 
 const NavBar = () => {
   return (
-    <div className='h-32 w-full   px-28 flex items-center justify-center' >
+    <div className='h-40 w-full py-6 px-28 flex items-center justify-center' >
         <div className='h-20 w-full bg-white rounded-lg flex justify-between' >
             {/* left side icons for logo */}
             <div className='flex items-center justify-center' >
@@ -33,8 +34,8 @@ const NavBar = () => {
             </div>
             {/* right side bar for the buttons */}
             <div className='flex gap-3 items-center mr-5' >
-                <Button variant={'outline'} size={'lg'} >Logout</Button>
-                <Button className='bg-indigo-700' size={'lg'} >Dashboard</Button>
+                <Button  variant={'outline'} size={'lg'} >Logout</Button>
+                <Link href={`/dashboard`} ><Button className='bg-indigo-700' size={'lg'} >Dashboard</Button></Link>
             </div>
 
         </div>

@@ -71,7 +71,6 @@ export const UpdateuserAction = async ({data}:updateUserParams)=>{
             data:{
                 avatar:data.avatar,
                 username:data.username,
-                email:data.email
             }
         });
 

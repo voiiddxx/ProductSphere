@@ -77,7 +77,6 @@ export type AddteamMembersParams = {
 export type updateUserParams = {
     data:{
         username: string,
-        email: string,
         avatar: string,
         clerkId: string
     }

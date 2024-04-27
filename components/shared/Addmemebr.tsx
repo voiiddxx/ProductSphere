@@ -14,6 +14,7 @@ import {
 import { Check, GitBranch, Network, PlusCircle, Search, X } from "lucide-react";
 import { getAllUsers } from "@/lib/actions/user.action";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import Image from "next/image";
 
 type AddmemebrsProps = {
   productId: number;
@@ -24,9 +25,11 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
   const [Users, setUsers] = useState<any>(null);
   const [Selectedmembers, setSelectedmembers] = useState<any>([]);
   const [ClickedMember, setClickedMember] = useState<any>(null);
+  const [MemberstToAdd, setMemberstToAdd] = useState<number[]>([]);
 
 
   const handleUserChange = (curr:any)=>{
+    setMemberstToAdd([...MemberstToAdd , curr.id]);
     setSelectedmembers([...Selectedmembers , curr])
   }
 
@@ -37,13 +40,15 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
       updateUser.splice(userIndex , 1);
       setSelectedmembers(updateUser);
   }
-  // useEffect(() => {
-  //   const getAllmembers = async () => {
-  //     const res = await getAllUsers();
-  //     setUsers(res);
-  //   };
-  //   getAllmembers();
-  // }, []);
+  useEffect(() => {
+    const getAllmembers = async () => {
+      const res = await getAllUsers();
+      console.log(res);
+      
+      setUsers(res);
+    };
+    getAllmembers();
+  }, []);
   return (
     <AlertDialog>
       <AlertDialogTrigger>
@@ -76,6 +81,7 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
                   {
                     Selectedmembers.map((curr:any)=>{
                       return <div className="h-10 w-10 relative rounded-full bg-slate-400" >
+                        <Image src={curr.avatar} className="h-10 w-10 rounded-full object-cover" height={900} width={900} alt="userimage" />
                         <div onClick={()=>{
                           removeUserfromtheArray(curr);
                         }} className="absolute right-[-5px] top-[-5px] h-4 w-4 border bg-red-100 rounded-full flex justify-center items-center " >
@@ -96,10 +102,10 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
             {/* mapping of all the users */}
             <ScrollArea className="h-[300px] w-full  p-4">
             {
-              hehe.length > 1 && (
+              Users.length > 1 && (
                 <div>
                   {
-                    hehe.map((curr)=>{
+                    Users.map((curr:any)=>{
                       return <div onClick={()=>{
                         handleUserChange(curr);
                       }} className="mt-4 h-12 w-full  border-b flex justify-between items-center" >
@@ -107,8 +113,9 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
                         {/* div */}
                         <div className="flex gap-2 items-center" >
                           <div className="h-8 w-8 bg-slate-500 rounded-full" >
+                            <Image src={curr.avatar} className="h-8 w-8 rounded-full" height={900} width={900} alt="userimage" />
                           </div>
-                          <p className="text-sm font-medium" >void.tsx</p>
+                          <p className="text-sm font-medium" >{curr.username}</p>
 
                         </div>
                         {/* div end */}

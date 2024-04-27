@@ -1,7 +1,7 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
-import { createUseronSuperbase } from '@/lib/actions/user.action'
+import { createUseronSuperbase, UpdateuserAction } from '@/lib/actions/user.action'
  
 export async function POST(req: Request) {
  
@@ -59,10 +59,16 @@ export async function POST(req: Request) {
     const username = evt.data.username!;
     const avarar = evt.data.image_url;
     const res = await createUseronSuperbase({email:email , avatar:avarar , username:username , clerkId:id});
-    console.log("value of res:" , res);
-    
-    
-    
+  }
+
+  if(eventType=="user.updated"){
+    const {id, image_url, username  } = evt.data
+
+    const res = await UpdateuserAction({data:{
+      avatar:image_url, 
+      clerkId:id,
+      username:username!
+    }});
   }
  
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`)

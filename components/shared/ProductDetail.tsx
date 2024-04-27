@@ -21,6 +21,33 @@ type ProductDetailProps = {
   id: any;
 };
 
+const makers = [
+  {
+    name:"iamvoid",
+    email:"thisismyemail@gmail.com"
+  },
+  {
+    name:"iamvoid",
+    email:"thisismyemail@gmail.com"
+  },
+  {
+    name:"iamvoid",
+    email:"thisismyemail@gmail.com"
+  },
+  {
+    name:"iamvoid",
+    email:"thisismyemail@gmail.com"
+  },
+  {
+    name:"iamvoid",
+    email:"thisismyemail@gmail.com"
+  },
+  {
+    name:"iamvoid",
+    email:"thisismyemail@gmail.com"
+  },
+]
+
 const ProductDetail = ({ id }: ProductDetailProps) => {
   const [productCode, setproductCode] = useState<any>(null);
   const [Product, setProduct] = useState<any>(null);
@@ -140,7 +167,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
         </div>
       </div>
         {/* details end */}
-      <div className="mt-5 px-20" >
+      <div className="mt-5 px-20 border-b py-4" >
           <h1 className="font-medium text-zinc-950 text-xl" >Techstack</h1>
           <p className="text-sm font-medium text-zinc-600" >The techstack used in the product</p>
 
@@ -177,6 +204,34 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
             </div>
            
 
+          </div>
+
+        </div>
+
+        {/* makers div */}
+        <div className="mt-10 px-20" >
+          <h1 className="text-xl font-medium" >The Makers Behind ProductSphere</h1>
+          <p className="text-sm font-medium text-zinc-600 mt-2" >List of developers who help to build this product</p>
+
+    {/* mapping of the team mebers */}
+          <div className="mr-96 border-b py-4" >
+            <div className="flex gap-8 flex-wrap mt-5" >
+              {
+                makers.map((curr:any)=>{
+                  return <div className="h-20 w-96 rounded-full  flex items-center gap-2
+                  " >
+
+                    <div className="h-14 w-14 bg-slate-500 rounded-full" >
+                    </div>
+                    <div>
+                      <h1 className="font-medium text-indigo-700" >{curr.name}</h1>
+                      <p className="text-sm font-medium text-zinc-600" >{curr.email}</p>
+                    </div>
+
+                  </div>
+                })
+              }
+            </div>
           </div>
 
         </div>

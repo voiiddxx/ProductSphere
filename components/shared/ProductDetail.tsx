@@ -53,22 +53,22 @@ const review = [
   {
     name:"nikhil",
     review:"this is preety good product , hope it will help more in future",
-    star:2
+    star:[2,3,5]
   },
   {
     name:"Void",
     review:"Loved this product geniuenly it is good product",
-    star:4
+    star:[2,3,5,5,6]
   },
   {
     name:"nikhil",
     review:"Great Stuff , want to contribute,",
-    star:5
+    star:[2,3,5]
   },
   {
     name:"nikhil",
     review:"this is preety good product , hope it will help more in future",
-    star:4
+    star:[2,3]
   },
 ]
 
@@ -262,8 +262,44 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
            {/* reviews component */}
 
            <div className=" py-5 border-b px-20" >
-            <h1 className="text-xl font-medium text-zinc-900" >ProductSphere Reviews</h1>
+            <h1 className="text-xl font-medium text-zinc-900" >ProductSphere Reviews (10) </h1>
             <p className="text-zinc-600 text-sm font-medium" >Chcekout all the reviews given by users</p>
+
+            <Button size={"lg"} className="bg-indigo-700 mt-4 mb-8" >Leave a review</Button>
+
+            {/* mapping of revies */}
+            {
+              review.map((curr:any)=>{
+                return <div className="py-2 border-b" >
+                  <div className="flex gap-4" >
+                  {/* image div */}
+                  <div className="h-10 w-10 bg-indigo-700 rounded-full" >
+                  </div>
+                                 {/* text div */}
+                  <div>
+                    <h1 className="text-zinc-900 font-medium" >{curr.name}</h1>
+                    <p className="text-zinc-600 font-medium text-sm" >email@gmail.com</p>
+                  </div>
+                  </div>
+
+
+                  {/* starts */}
+                  <div className="flex mt-4" >
+                  {
+                    curr.star.map((curr:any)=>{
+                      return <Star className="text-transparent" fill="blue" size={20} />
+                    })
+                  }
+                  </div>
+
+
+                  {/* review */}
+                  <p className="text-lg text-zinc-700 mt-4 italic" >
+                    {curr.review}
+                  </p>
+                </div>
+              })
+            }
 
           </div>
     </div>

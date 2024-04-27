@@ -1,7 +1,7 @@
 "use server"
 
 
-import { CreateUseronSuperbaseParams } from '@/types';
+import { CreateUseronSuperbaseParams, updateUserParams } from '@/types';
 import { PrismaClient } from '@prisma/client'
 import { string } from 'zod';
 
@@ -58,6 +58,38 @@ export const getUserUsingClerkid = async (id:string)=>{
 }
 
 
+
+
+// server action for updating the user
+
+export const UpdateuserAction = async ({data}:updateUserParams)=>{
+    try {
+        const res = await prisma.user.update({
+            where:{
+                clerkId:data.clerkId
+            },
+            data:{
+                avatar:data.avatar,
+                username:data.username,
+                email:data.email
+            }
+        });
+
+        if(!res){
+            return JSON.parse(JSON.stringify({message:"Some issue while updating the data" , status:400}));
+        }
+        return JSON.parse(JSON.stringify({data:res , status:200}));
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+
+
+
+
 // server action for getting the list of all users
 
 export const getAllUsers = async()=>{
@@ -97,3 +129,4 @@ export const getAllUsers = async()=>{
         
     }
  }
+

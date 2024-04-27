@@ -72,3 +72,13 @@ export type AddteamMembersParams = {
     prodId: number,
     teamMember : []
 }
+
+
+export type updateUserParams = {
+    data:{
+        username: string,
+        email: string,
+        avatar: string,
+        clerkId: string
+    }
+}

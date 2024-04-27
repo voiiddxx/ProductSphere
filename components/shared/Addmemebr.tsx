@@ -11,24 +11,32 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { GitBranch, Network } from "lucide-react";
+import { Check, GitBranch, Network, PlusCircle, Search } from "lucide-react";
 import { getAllUsers } from "@/lib/actions/user.action";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 type AddmemebrsProps = {
   productId: number;
 };
-
+const hehe = [1,2,3,4,5,6,7,8,9,12,55,71,22,23,24,25,26,27,28,29,30]
 const Addmemebr = ({ productId }: AddmemebrsProps) => {
-  const [Users, setUsers] = useState<any>(null);
 
-  useEffect(() => {
-    const getAllmembers = async () => {
-      const res = await getAllUsers();
-      setUsers(res);
-    };
-    getAllmembers();
-  }, []);
+  const [Users, setUsers] = useState<any>(null);
+  const [Selectedmembers, setSelectedmembers] = useState<any>([]);
+  const [ClickedMember, setClickedMember] = useState<any>(null);
+
+
+  const handleUserChange = (curr:any)=>{
+    setSelectedmembers([...Selectedmembers , curr])
+  }
+
+  // useEffect(() => {
+  //   const getAllmembers = async () => {
+  //     const res = await getAllUsers();
+  //     setUsers(res);
+  //   };
+  //   getAllmembers();
+  // }, []);
   return (
     <AlertDialog>
       <AlertDialogTrigger>
@@ -40,23 +48,74 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            <div>
-              <GitBranch />
+            <div className="flex" >
+              <GitBranch size={15}  />
               <p className="text-sm font-medium">Add team meber</p>
             </div>
           </AlertDialogTitle>
           <AlertDialogDescription>
             <p className="text-xs font-medium">Select members</p>
 
+            {/* server option */}
+            <div className="mt-4 flex border-b items-center gap-2" >
+              <Search size={15} />
+              <input className="outline-none border-none" type="text" placeholder="Search users" />
+            </div>
+          {/* selcted member div */}
+          <div>
+            {
+              Selectedmembers.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-4" >
+                  {
+                    Selectedmembers.map((curr:any)=>{
+                      return <div className="h-10 w-10 rounded-full bg-slate-400" >
+
+                      </div>
+                    })
+                  }
+                </div>
+              )
+            }
+          </div>
+
+        
+            
+
             {/* mapping of all the users */}
-            <ScrollArea className="h-[200px] w-[350px] rounded-md border p-4">
-              Jokester began sneaking into the castle in the middle of the night
-              and leaving jokes all over the place: under the king's pillow, in
-              his soup, even in the royal toilet. The king was furious, but he
-              couldn't seem to stop Jokester. And then, one day, the people of
-              the kingdom discovered that the jokes left by Jokester were so
-              funny that they couldn't help but laugh. And once they started
-              laughing, they couldn't stop.
+            <ScrollArea className="h-[300px] w-full  p-4">
+            {
+              hehe.length > 1 && (
+                <div>
+                  {
+                    hehe.map((curr)=>{
+                      return <div onClick={()=>{
+                        handleUserChange(curr);
+                      }} className="mt-4 h-12 w-full  border-b flex justify-between items-center" >
+
+                        {/* div */}
+                        <div className="flex gap-2 items-center" >
+                          <div className="h-8 w-8 bg-slate-500 rounded-full" >
+                          </div>
+                          <p className="text-sm font-medium" >void.tsx</p>
+
+                        </div>
+                        {/* div end */}
+
+                        {
+                          Selectedmembers.findIndex((user:any)=>user===curr)!= -1  ? <div>
+                            <Check className="text-indigo-700" size={25} strokeWidth={1.5} />
+                          </div> : <div>
+                               <PlusCircle size={25} className="text-indigo-700" />
+                          </div>
+                        }
+                     
+
+                      </div>
+                    })
+                  }
+                </div>
+              )
+            }
             </ScrollArea>
           </AlertDialogDescription>
         </AlertDialogHeader>

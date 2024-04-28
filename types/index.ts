@@ -81,3 +81,13 @@ export type updateUserParams = {
         clerkId: string
     }
 }
+
+
+export type addReviewParams = {
+    data:{
+        count:number,
+        comment:string,
+        prodId: number,
+        userid: number
+    }
+}

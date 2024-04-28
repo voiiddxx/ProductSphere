@@ -59,6 +59,7 @@ model Product {
 model Reviews {
   reviewId Int @id @default(autoincrement())
   comment String
+  count Int
   productrelated Product @relation(fields: [prodid] , references: [productId])
   prodid Int
   userwhoreviewed User @relation(fields: [userid] , references: [id])

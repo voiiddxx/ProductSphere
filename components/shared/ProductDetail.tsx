@@ -61,28 +61,7 @@ const makers = [
   },
 ];
 
-const review = [
-  {
-    name: "nikhil",
-    review: "this is preety good product , hope it will help more in future",
-    star: [2, 3, 5],
-  },
-  {
-    name: "Void",
-    review: "Loved this product geniuenly it is good product",
-    star: [2, 3, 5, 5, 6],
-  },
-  {
-    name: "nikhil",
-    review: "Great Stuff , want to contribute,",
-    star: [2, 3, 5],
-  },
-  {
-    name: "nikhil",
-    review: "this is preety good product , hope it will help more in future",
-    star: [2, 3],
-  },
-];
+
 
 const starsShow = [1, 2, 3, 4, 5];
 
@@ -90,7 +69,6 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
   const [reviewRate, setreviewRate] = useState<number>(0);
   const [reviewComment, setreviewComment] = useState<string>("");
   const [AllReviews, setAllReviews] = useState<any>(null);
-  const [starscount, setstarscount] = useState<any[]>([1, 2, 3]);
 
   const handleProductReview = async () => {
     const localuser = localStorage.getItem("x-auth-id");
@@ -107,7 +85,9 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
         },
       });
       if (res) {
-        console.log(res);
+        console.log(res.data);
+        // setAllReviews([...AllReviews , res.data]);
+        
       } else {
         console.log("Some Error occured");
       }
@@ -158,10 +138,16 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
         {/* left div */}
         <div className="flex gap-6 items-center">
           {/* image div */}
-          <div className="h-28 w-28 bg-indigo-700 rounded-md"></div>
+          <div className="h-28 w-28 bg-indigo-700 rounded-md">
+          {
+              Product!= null && (
+                <Image className="h-28 w-28 object-cover rounded-lg" src={Product.productlogo} height={1500} width={1500} alt="productlogo" />   
+              )
+            }
+          </div>
           {/* text div */}
           <div>
-            <h1 className="text-4xl font-bold text-zinc-900">ProductSphere</h1>
+            <h1 className="text-4xl font-bold text-zinc-900" style={{color:Product.productcolor}} >ProductSphere</h1>
             <p className="mt-1 text-zinc-600 text-sm">
               Software for managing the product
             </p>
@@ -185,7 +171,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
         {/* right div */}
         <div className="flex gap-2">
           <Button
-            className="border rounded-full text-indigo-700 h-14 w-14"
+            className="border rounded-full text-indigo-700 h-14 w-14" style={{color:Product.productcolor}}
             size={"icon"}
             variant={"link"}
           >
@@ -197,7 +183,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
           <Button variant={"outline"} size={"lg"}>
             Visit Website
           </Button>
-          <Button className="bg-indigo-700" size={"lg"}>
+          <Button className="bg-indigo-700" style={{backgroundColor:Product.productcolor}}  size={"lg"}>
             Join Product Team
           </Button>
         </div>
@@ -461,11 +447,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
                   </div>
 
                   {/* review */}
-                  <p
-                    onClick={() => {
-                      console.log(starscount);
-                    }}
-                    className="text-lg text-zinc-700 mt-4 italic"
+                  <p className="text-lg text-zinc-700 mt-4 italic"
                   >
                     {curr.comment}
                   </p>

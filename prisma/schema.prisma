@@ -25,6 +25,8 @@ model User {
   memberOfProducts Product[] @relation("memberOfProducts") // Unique relation name for products user is a member of
   taskCreated AssignTasks[] @relation("taskCreated")
   membersOftasks AssignTasks[] @relation("AssignedTaskMemebers")
+  upvotedProducts Product[] @relation("upvotedProducts")
+  reviewed Reviews[]
 }
 
 model Product {
@@ -46,8 +48,21 @@ model Product {
   skills             String[]
   productCode String
   tasks AssignTasks[] @relation("productTasks")
+  Upvote User[] @relation("upvotedProducts")
+  reviews Reviews[]
+
   
 
+}
+
+
+model Reviews {
+  reviewId Int @id @default(autoincrement())
+  comment String
+  productrelated Product @relation(fields: [prodid] , references: [productId])
+  prodid Int
+  userwhoreviewed User @relation(fields: [userid] , references: [id])
+  userid Int
 }
 
 

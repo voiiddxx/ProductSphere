@@ -16,6 +16,18 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { File, Sparkle, Star, Triangle } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Textarea } from "../ui/textarea";
 
 type ProductDetailProps = {
   id: any;
@@ -23,54 +35,53 @@ type ProductDetailProps = {
 
 const makers = [
   {
-    name:"iamvoid",
-    email:"thisismyemail@gmail.com"
+    name: "iamvoid",
+    email: "thisismyemail@gmail.com",
   },
   {
-    name:"iamvoid",
-    email:"thisismyemail@gmail.com"
+    name: "iamvoid",
+    email: "thisismyemail@gmail.com",
   },
   {
-    name:"iamvoid",
-    email:"thisismyemail@gmail.com"
+    name: "iamvoid",
+    email: "thisismyemail@gmail.com",
   },
   {
-    name:"iamvoid",
-    email:"thisismyemail@gmail.com"
+    name: "iamvoid",
+    email: "thisismyemail@gmail.com",
   },
   {
-    name:"iamvoid",
-    email:"thisismyemail@gmail.com"
+    name: "iamvoid",
+    email: "thisismyemail@gmail.com",
   },
   {
-    name:"iamvoid",
-    email:"thisismyemail@gmail.com"
+    name: "iamvoid",
+    email: "thisismyemail@gmail.com",
   },
-]
-
+];
 
 const review = [
   {
-    name:"nikhil",
-    review:"this is preety good product , hope it will help more in future",
-    star:[2,3,5]
+    name: "nikhil",
+    review: "this is preety good product , hope it will help more in future",
+    star: [2, 3, 5],
   },
   {
-    name:"Void",
-    review:"Loved this product geniuenly it is good product",
-    star:[2,3,5,5,6]
+    name: "Void",
+    review: "Loved this product geniuenly it is good product",
+    star: [2, 3, 5, 5, 6],
   },
   {
-    name:"nikhil",
-    review:"Great Stuff , want to contribute,",
-    star:[2,3,5]
+    name: "nikhil",
+    review: "Great Stuff , want to contribute,",
+    star: [2, 3, 5],
   },
   {
-    name:"nikhil",
-    review:"this is preety good product , hope it will help more in future",
-    star:[2,3]
+    name: "nikhil",
+    review: "this is preety good product , hope it will help more in future",
+    star: [2, 3],
   },
-]
+];
 
 const ProductDetail = ({ id }: ProductDetailProps) => {
   const [productCode, setproductCode] = useState<any>(null);
@@ -148,10 +159,10 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
             size={"icon"}
             variant={"link"}
           >
-           <div>
-           <Triangle />
-            <p>15</p>
-           </div>
+            <div>
+              <Triangle />
+              <p>15</p>
+            </div>
           </Button>
           <Button variant={"outline"} size={"lg"}>
             Visit Website
@@ -182,129 +193,154 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
               <div className="h-10 w-10 border rounded-sm flex items-center justify-center">
                 <File size={20} className="text-indigo-700" />
               </div>
-              <h1 className="font-medium text-zinc-900 text-sm" >ProductSphere details</h1>
+              <h1 className="font-medium text-zinc-900 text-sm">
+                ProductSphere details
+              </h1>
             </div>
             <div className="px-4 py-2 border rounded-md flex gap-2 items-center">
               <div className="h-10 w-10 border rounded-sm flex items-center justify-center">
                 <File size={20} className="text-indigo-700" />
               </div>
-              <h1 className="font-medium text-zinc-900 text-sm" >Team Members Data</h1>
+              <h1 className="font-medium text-zinc-900 text-sm">
+                Team Members Data
+              </h1>
             </div>
           </div>
         </div>
       </div>
-        {/* details end */}
-      <div className="mt-5 px-20 border-b py-4" >
-          <h1 className="font-medium text-zinc-950 text-xl" >Techstack</h1>
-          <p className="text-sm font-medium text-zinc-600" >The techstack used in the product</p>
+      {/* details end */}
+      <div className="mt-5 px-20 border-b py-4">
+        <h1 className="font-medium text-zinc-950 text-xl">Techstack</h1>
+        <p className="text-sm font-medium text-zinc-600">
+          The techstack used in the product
+        </p>
 
-          <div className="mr-96 flex gap-5 flex-wrap mt-5" >
-            <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2" >
-              <Sparkle className="text-indigo-700"  strokeWidth={1.5} size={18}/>
-              <p className="text-indigo-700 font-medium" >TypeScript</p>
-
-            </div>
-            <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2" >
-              <Sparkle className="text-indigo-700"  strokeWidth={1.5} size={18}/>
-              <p className="text-indigo-700 font-medium" >Nextjs</p>
-
-            </div>
-            <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2" >
-              <Sparkle className="text-indigo-700"  strokeWidth={1.5} size={18}/>
-              <p className="text-indigo-700 font-medium" >javascript</p>
-
-            </div>
-            <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2" >
-              <Sparkle className="text-indigo-700"  strokeWidth={1.5} size={18}/>
-              <p className="text-indigo-700 font-medium" >PostgresSql</p>
-
-            </div>
-            <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2" >
-              <Sparkle className="text-indigo-700"  strokeWidth={1.5} size={18}/>
-              <p className="text-indigo-700 font-medium" >Vercel</p>
-
-            </div>
-            <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2" >
-              <Sparkle className="text-indigo-700"  strokeWidth={1.5} size={18}/>
-              <p className="text-indigo-700 font-medium" >Shadcn-ui</p>
-
-            </div>
-           
-
+        <div className="mr-96 flex gap-5 flex-wrap mt-5">
+          <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2">
+            <Sparkle className="text-indigo-700" strokeWidth={1.5} size={18} />
+            <p className="text-indigo-700 font-medium">TypeScript</p>
           </div>
-
-        </div>
-
-        {/* makers div */}
-        <div className="mt-10 px-20" >
-          <h1 className="text-xl font-medium" >The Makers Behind ProductSphere</h1>
-          <p className="text-sm font-medium text-zinc-600 mt-2" >List of developers who help to build this product</p>
-
-    {/* mapping of the team mebers */}
-          <div className="mr-96 border-b py-4" >
-            <div className="flex gap-8 flex-wrap mt-5" >
-              {
-                makers.map((curr:any)=>{
-                  return <div className="h-20 w-96 rounded-full  flex items-center gap-2
-                  " >
-
-                    <div className="h-14 w-14 bg-slate-500 rounded-full" >
-                    </div>
-                    <div>
-                      <h1 className="font-medium text-indigo-700" >{curr.name}</h1>
-                      <p className="text-sm font-medium text-zinc-600" >{curr.email}</p>
-                    </div>
-
-                  </div>
-                })
-              }
-            </div>
+          <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2">
+            <Sparkle className="text-indigo-700" strokeWidth={1.5} size={18} />
+            <p className="text-indigo-700 font-medium">Nextjs</p>
+          </div>
+          <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2">
+            <Sparkle className="text-indigo-700" strokeWidth={1.5} size={18} />
+            <p className="text-indigo-700 font-medium">javascript</p>
+          </div>
+          <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2">
+            <Sparkle className="text-indigo-700" strokeWidth={1.5} size={18} />
+            <p className="text-indigo-700 font-medium">PostgresSql</p>
+          </div>
+          <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2">
+            <Sparkle className="text-indigo-700" strokeWidth={1.5} size={18} />
+            <p className="text-indigo-700 font-medium">Vercel</p>
+          </div>
+          <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2">
+            <Sparkle className="text-indigo-700" strokeWidth={1.5} size={18} />
+            <p className="text-indigo-700 font-medium">Shadcn-ui</p>
           </div>
         </div>
+      </div>
 
-           {/* reviews component */}
+      {/* makers div */}
+      <div className="mt-10 px-20">
+        <h1 className="text-xl font-medium">The Makers Behind ProductSphere</h1>
+        <p className="text-sm font-medium text-zinc-600 mt-2">
+          List of developers who help to build this product
+        </p>
 
-           <div className=" py-5 border-b px-20" >
-            <h1 className="text-xl font-medium text-zinc-900" >ProductSphere Reviews (10) </h1>
-            <p className="text-zinc-600 text-sm font-medium" >Chcekout all the reviews given by users</p>
-
-            <Button size={"lg"} className="bg-indigo-700 mt-4 mb-8" >Leave a review</Button>
-
-            {/* mapping of revies */}
-            {
-              review.map((curr:any)=>{
-                return <div className="py-2 border-b" >
-                  <div className="flex gap-4" >
-                  {/* image div */}
-                  <div className="h-10 w-10 bg-indigo-700 rounded-full" >
-                  </div>
-                                 {/* text div */}
+        {/* mapping of the team mebers */}
+        <div className="mr-96 border-b py-4">
+          <div className="flex gap-8 flex-wrap mt-5">
+            {makers.map((curr: any) => {
+              return (
+                <div
+                  className="h-20 w-96 rounded-full  flex items-center gap-2
+                  "
+                >
+                  <div className="h-14 w-14 bg-slate-500 rounded-full"></div>
                   <div>
-                    <h1 className="text-zinc-900 font-medium" >{curr.name}</h1>
-                    <p className="text-zinc-600 font-medium text-sm" >email@gmail.com</p>
+                    <h1 className="font-medium text-indigo-700">{curr.name}</h1>
+                    <p className="text-sm font-medium text-zinc-600">
+                      {curr.email}
+                    </p>
                   </div>
-                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
 
+      {/* reviews component */}
 
-                  {/* starts */}
-                  <div className="flex mt-4" >
-                  {
-                    curr.star.map((curr:any)=>{
-                      return <Star className="text-transparent" fill="blue" size={20} />
-                    })
-                  }
-                  </div>
+      <div className=" py-5 border-b px-20">
+        <h1 className="text-xl font-medium text-zinc-900">
+          ProductSphere Reviews (10){" "}
+        </h1>
+        <p className="text-zinc-600 text-sm font-medium">
+          Chcekout all the reviews given by users
+        </p>
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <Button size={"lg"} className="bg-indigo-700 mt-4 mb-8">
+              Leave a review
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>
+                <h1 className="text-xl font-bold" >Give your review</h1>
+              </AlertDialogTitle>
+              <AlertDialogDescription>
+                Give the review based on the expreince , design , creativity and on other factors for this product and 
 
+                <div className="mt-4" > 
+                <input className="outline-none border-none text-xl text-indigo-700 placeholder:text-zinc-500 font-semibold"  placeholder="Rate Between 1-5 Here" />
+                <br />
+                  <input className="outline-none h-12 border-none font-medium  mt-4 w-full text-sm placeholder:text-indigo-700" placeholder="Write your review here" type="text" />
+                </div>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction>Continue</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
 
-                  {/* review */}
-                  <p className="text-lg text-zinc-700 mt-4 italic" >
-                    {curr.review}
+        {/* mapping of revies */}
+        {review.map((curr: any) => {
+          return (
+            <div className="py-2 border-b">
+              <div className="flex gap-4">
+                {/* image div */}
+                <div className="h-10 w-10 bg-indigo-700 rounded-full"></div>
+                {/* text div */}
+                <div>
+                  <h1 className="text-zinc-900 font-medium">{curr.name}</h1>
+                  <p className="text-zinc-600 font-medium text-sm">
+                    email@gmail.com
                   </p>
                 </div>
-              })
-            }
+              </div>
 
-          </div>
+              {/* starts */}
+              <div className="flex mt-4">
+                {curr.star.map((curr: any) => {
+                  return (
+                    <Star className="text-transparent" fill="blue" size={20} />
+                  );
+                })}
+              </div>
+
+              {/* review */}
+              <p className="text-lg text-zinc-700 mt-4 italic">{curr.review}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

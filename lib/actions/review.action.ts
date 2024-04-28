@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 
 // server action for adding the review 
 
-export const addreview = async ({data}:addReviewParams)=>{
+export const AddReviewAction= async ({data}:addReviewParams)=>{
     try {
         const res = await prisma.reviews.create({
             data:{

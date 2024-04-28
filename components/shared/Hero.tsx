@@ -43,20 +43,7 @@ const Hero = ({ userid }: heroProps) => {
       image:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
     },
-    {
-      id: 5,
-      name: "Tyler Durden",
-      designation: "Soap Developer",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
-    },
-    {
-      id: 6,
-      name: "Dora",
-      designation: "The Explorer",
-      image:
-        "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3534&q=80",
-    },
+    
   ];
 
   // const handleSubmit = async () => {
@@ -79,8 +66,8 @@ const Hero = ({ userid }: heroProps) => {
   //   getUserData();
   // }, []);
   return (
-    <div className="mx-[24rem] flex flex-col justify-center items-center ">
-      <div className="flex flex-row items-center justify-center  w-full mt-20">
+    <div className="mx-[24rem]  flex-col justify-center items-center ">
+      <div className="flex flex-row items-center justify-center  w-full md:mt-20 mt-10">
         <AnimatedTooltip items={people} />
         <div className="ml-8" >
           <p className="text-sm font-medium text-white" >5/5 - 15 reviews</p>
@@ -94,16 +81,16 @@ const Hero = ({ userid }: heroProps) => {
 
         </div>
       </div>
-      <h1 className="text-6xl font-bold  tracking-normal leading-tight text-white mt-5 text-center">
+      <h1 className="md:text-6xl font-bold  md:tracking-normal md:leading-tight text-white mt-5 text-center text-3xl leading-snug">
         Manage Your Product <br /> With Help of <span className="text-zinc-950 bg-white rounded-md px-4" >
         ProductSphere</span> {" "}
       </h1>
-      <p className="text-white mt-2 text-center tracking-wide leading-relaxed">
+      <p className="text-white md:mt-2 text-center tracking-wide leading-relaxed md:text-sm text-xs mt-4">
         Tired of genreating your social captions , getting no proper roadmap ,
         don't know how to write cold email , don't worry help.ai is here to help
         you , genreate anything you want with help.ai
       </p>
-      <div className="flex gap-2 mt-5">
+      <div className="flex gap-2 mt-5 w-full justify-center">
         <Button
           className="bg-transparent text-white"
           size={"lg"}
@@ -118,18 +105,20 @@ const Hero = ({ userid }: heroProps) => {
           <LayoutDashboard className="text-indigo-700" size={20} />
           <p className="text-sm font-semibold">Dashboard</p>
         </Button>
-        <TaskDetail/>
+        {/* <TaskDetail/> */}
       </div>
 
       {/* hero image */}
-      <div className="h-[400px] w-[900px] px-4 mt-8 bg-white rounded-xl">
-        <Image
-          className="w-[200rem] object-cover"
+      <div className="md:h-[400px] h-[400px] w-[400px] md:w-[900px] px-4 mt-8 bg-white rounded-xl flex justify-center items-center ">
+
+        <Image src={`/dashboard.svg`} className=" h-[400px] w-[400px] md:w-[300rem]" height={1500} width={1500} alt="dadhboard" />
+        {/* <Image
+          className="md:w-[200rem] w-[30rem] object-cover"
           src={`/dashboard.jpg`}
           height={5000}
           width={5000}
           alt="imageherodashboard"
-        />
+        /> */}
       </div>
     </div>
   );

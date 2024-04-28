@@ -16,7 +16,8 @@ import {
     BreadcrumbSeparator,
   } from "@/components/ui/breadcrumb"
 import Image from "next/image";
-import { ArrowDown, Dot, File } from "lucide-react";
+import { ArrowBigDown, ArrowDown, ChevronDown, CupSoda, Dot, File } from "lucide-react";
+import TaskstatusComponents from "./TaskstatusComponents";
 
   
 
@@ -165,7 +166,7 @@ const TaskDetail = () => {
                 <div className="px-6 mt-5" >
                 <p className="text-sm font-medium" >Tags</p>
 
-                <div className="flex gap-1 flex-wrap mt-5" >
+                <div className="flex gap-1 flex-wrap mt-5 border-b pb-4" >
                     {
                         tags.map((curr:any)=>{
                             return <div className=" px-3 py-2 border rounded-sm flex justify-center items-center gap-2" >
@@ -176,6 +177,22 @@ const TaskDetail = () => {
                         })
                     }
                 </div>
+
+
+                {/* created by dicv */}
+                <div className=" pb-4 border-b" >
+                    <p className="text-sm font-medium text-zinc-600 mt-4" >Created By</p>
+                    <div className="flex gap-2 items-center mt-3" >
+                    <div className="h-8 w-8 bg-slate-400 rounded-full" >
+                    </div>
+                    <p className="text-sm font-medium" >Nikhil Kumar</p>
+                    </div>
+
+                </div>
+
+
+                {/* update product status */}
+                <TaskstatusComponents taskId={5} />
                 </div>
               
             </div>

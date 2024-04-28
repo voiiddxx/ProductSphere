@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import {
   AlertDialog,
@@ -19,27 +19,36 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { Dot } from "lucide-react";
+import { ChevronDown, CupSoda, Dot } from "lucide-react";
 import { updateTaskStatusasPertaskId } from "@/lib/actions/task.action";
 
+type taskStatusProps = {
+  taskId: number;
+};
 
-    type taskStatusProps = {
-        taskId:number
-    }
+const TaskstatusComponents = ({ taskId }: taskStatusProps) => {
+  const [TaskStatus, setTaskStatus] = useState<any>(null);
 
-const TaskstatusComponents = ({taskId}: taskStatusProps) => {
-
-const [TaskStatus, setTaskStatus] = useState<any>(null);
-
-
-    const handleUpdateSTatus = async()=>{
-        const res = await updateTaskStatusasPertaskId({taskId:taskId , taskStatus:TaskStatus});
-        
-    }
+  const handleUpdateSTatus = async () => {
+    const res = await updateTaskStatusasPertaskId({
+      taskId: taskId,
+      taskStatus: TaskStatus,
+    });
+  };
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>Change task status</AlertDialogTrigger>
+      <AlertDialogTrigger>
+        <div className=" w-full flex justify-between mt-8">
+          <div className="flex items-center gap-2">
+            <CupSoda size={20} />
+            <p className="text-sm font-medium">Update Task Status</p>
+          </div>
+          <div>
+            <ChevronDown />
+          </div>
+        </div>
+      </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
@@ -51,9 +60,11 @@ const [TaskStatus, setTaskStatus] = useState<any>(null);
           <AlertDialogDescription>
             update the status of your task and it get notified to product leader
             {/* select div */}
-            <Select onValueChange={(val)=>{
+            <Select
+              onValueChange={(val) => {
                 setTaskStatus(val);
-            }} >
+              }}
+            >
               <SelectTrigger className="w-full mt-4">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
@@ -94,7 +105,9 @@ const [TaskStatus, setTaskStatus] = useState<any>(null);
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleUpdateSTatus} >Continue</AlertDialogAction>
+          <AlertDialogAction onClick={handleUpdateSTatus}>
+            Continue
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

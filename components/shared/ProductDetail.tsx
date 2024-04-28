@@ -28,6 +28,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Textarea } from "../ui/textarea";
+import { AddReviewAction } from "@/lib/actions/review.action";
 
 type ProductDetailProps = {
   id: any;
@@ -84,6 +85,37 @@ const review = [
 ];
 
 const ProductDetail = ({ id }: ProductDetailProps) => {
+
+  const [reviewRate, setreviewRate] = useState<number>(0);
+  const [reviewComment, setreviewComment] = useState<string>("");
+
+
+  const handleProductReview = async ()=>{
+    const localuser = localStorage.getItem("x-auth-id");
+    const userid = +localuser!;
+    if(!userid){
+        alert("Unauthorized , please login first")
+    }
+    else{
+      const res = await AddReviewAction({
+        data:{
+          comment:reviewComment,
+          count:reviewRate,
+          prodId:+id,
+          userid: userid
+        }
+      });
+      if(res){
+      console.log(res);
+      
+      }
+      else{
+        console.log("Some Error occured");
+      }
+    }
+   
+    
+  }
   const [productCode, setproductCode] = useState<any>(null);
   const [Product, setProduct] = useState<any>(null);
 
@@ -297,15 +329,20 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
                 Give the review based on the expreince , design , creativity and on other factors for this product and 
 
                 <div className="mt-4" > 
-                <input className="outline-none border-none text-xl text-indigo-700 placeholder:text-zinc-500 font-semibold"  placeholder="Rate Between 1-5 Here" />
+                <input onChange={(e)=>{
+                  const data = e.target.value;
+                  setreviewRate(+data);
+                }} type="number" className="outline-none border-none text-xl text-indigo-700 placeholder:text-zinc-500 font-semibold"  placeholder="Rate Between 1-5 Here" />
                 <br />
-                  <input className="outline-none h-12 border-none font-medium  mt-4 w-full text-sm placeholder:text-indigo-700" placeholder="Write your review here" type="text" />
+                  <input onChange={(e)=>{
+                    setreviewComment(e.target.value)
+                  }}  className="outline-none h-12 border-none font-medium  mt-4 w-full text-sm placeholder:text-indigo-700" placeholder="Write your review here" type="text" />
                 </div>
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction>Continue</AlertDialogAction>
+              <AlertDialogAction onClick={handleProductReview} >Continue</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

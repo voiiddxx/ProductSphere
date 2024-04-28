@@ -56,6 +56,8 @@ export const getAllProductAction = async () => {
             include:{
                 members:true,
                 owner:true,
+                reviews:true,
+                Upvote:true,
             }
         });
         if (!productResponse) {

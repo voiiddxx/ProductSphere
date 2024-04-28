@@ -7,6 +7,7 @@ import { getUserUsingClerkid } from "@/lib/actions/user.action";
 import { LayoutDashboard, Star } from "lucide-react";
 import Image from "next/image";
 import { AnimatedTooltip } from "../ui/animated-tooltip";
+import TaskDetail from "./TaskDetail";
 
 type heroProps = {
   userid: string | undefined;
@@ -117,6 +118,7 @@ const Hero = ({ userid }: heroProps) => {
           <LayoutDashboard className="text-indigo-700" size={20} />
           <p className="text-sm font-semibold">Dashboard</p>
         </Button>
+        <TaskDetail/>
       </div>
 
       {/* hero image */}

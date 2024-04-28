@@ -70,8 +70,8 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
           <div className="flex w-full justify-between ">
             {/* left upper part */}
             <div className="flex items-center gap-2">
-              <div className="h-10  w-10 bg-indigo-700 flex justify-center items-center rounded-lg">
-                <Box strokeWidth={1.5} color="white" size={25} />
+              <div className="h-10  w-10 bg-indigo-700 flex justify-center items-center rounded-lg" style={{backgroundColor:data.productcolor}}>
+                <Image className="h-10 w-10 object-cover rounded-md" src={data.productlogo} height={900} width={900} alt="productlogo" />
               </div>
 
               <div>

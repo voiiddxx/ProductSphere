@@ -99,7 +99,7 @@ const DashboardHome = ({}: dashBoardHero) => {
       {User != null && (
         <>
         <div className="mt-5" >
-        <p className="text-sm font-medium" >Your Created Products</p>
+        <p className="text-sm font-medium" >Joined Products</p>
         </div>
         <div className="flex gap-4 mt-5 flex-wrap border-b pb-5">
           {User.memberOfProducts.map((curr: any) => {

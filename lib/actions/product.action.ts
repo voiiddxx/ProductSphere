@@ -109,6 +109,13 @@ export const getProductWithProductIdAction = async (productId: number) => {
             include:{
                 owner:true,
                 members:true,
+                reviews:{
+                    include:{
+                        productrelated:true,
+                        userwhoreviewed:true,
+                    }
+                },
+                Upvote:true,
             }
         });
 

@@ -84,52 +84,50 @@ const review = [
   },
 ];
 
-const ProductDetail = ({ id }: ProductDetailProps) => {
+const starsShow = [1, 2, 3, 4, 5];
 
+const ProductDetail = ({ id }: ProductDetailProps) => {
   const [reviewRate, setreviewRate] = useState<number>(0);
   const [reviewComment, setreviewComment] = useState<string>("");
+  const [AllReviews, setAllReviews] = useState<any>(null);
+  const [starscount, setstarscount] = useState<any[]>([1, 2, 3]);
 
-
-  const handleProductReview = async ()=>{
+  const handleProductReview = async () => {
     const localuser = localStorage.getItem("x-auth-id");
     const userid = +localuser!;
-    if(!userid){
-        alert("Unauthorized , please login first")
-    }
-    else{
+    if (!userid) {
+      alert("Unauthorized , please login first");
+    } else {
       const res = await AddReviewAction({
-        data:{
-          comment:reviewComment,
-          count:reviewRate,
-          prodId:+id,
-          userid: userid
-        }
+        data: {
+          comment: reviewComment,
+          count: reviewRate,
+          prodId: +id,
+          userid: userid,
+        },
       });
-      if(res){
-      console.log(res);
-      
-      }
-      else{
+      if (res) {
+        console.log(res);
+      } else {
         console.log("Some Error occured");
       }
     }
-   
-    
-  }
+  };
   const [productCode, setproductCode] = useState<any>(null);
   const [Product, setProduct] = useState<any>(null);
 
-  // useEffect(() => {
-  //   const getProduct = async () => {
-  //     const prodId = +id;
-  //     const res = await getProductWithProductIdAction(prodId);
-  //     if (res) {
-  //       console.log("Product Detail: ", res);
-  //       setProduct(res);
-  //     }
-  //   };
-  //   getProduct();
-  // }, []);
+  useEffect(() => {
+    const getProduct = async () => {
+      const prodId = +id;
+      const res = await getProductWithProductIdAction(prodId);
+      if (res) {
+        console.log("Product Detail: ", res);
+        setAllReviews(res.reviews);
+        setProduct(res);
+      }
+    };
+    getProduct();
+  }, []);
 
   // const JoinTeamNow = async () => {
   //   const token = localStorage.getItem("x-auth-id");
@@ -323,63 +321,168 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>
-                <h1 className="text-xl font-bold" >Give your review</h1>
+                <h1 className="text-xl font-bold">Give your review</h1>
               </AlertDialogTitle>
               <AlertDialogDescription>
-                Give the review based on the expreince , design , creativity and on other factors for this product and 
-
-                <div className="mt-4" > 
-                <input onChange={(e)=>{
-                  const data = e.target.value;
-                  setreviewRate(+data);
-                }} type="number" className="outline-none border-none text-xl text-indigo-700 placeholder:text-zinc-500 font-semibold"  placeholder="Rate Between 1-5 Here" />
-                <br />
-                  <input onChange={(e)=>{
-                    setreviewComment(e.target.value)
-                  }}  className="outline-none h-12 border-none font-medium  mt-4 w-full text-sm placeholder:text-indigo-700" placeholder="Write your review here" type="text" />
+                Give the review based on the expreince , design , creativity and
+                on other factors for this product and
+                <div className="mt-4">
+                  <input
+                    onChange={(e) => {
+                      const data = e.target.value;
+                      setreviewRate(+data);
+                    }}
+                    type="number"
+                    className="outline-none border-none text-xl text-indigo-700 placeholder:text-zinc-500 font-semibold"
+                    placeholder="Rate Between 1-5 Here"
+                  />
+                  <br />
+                  <input
+                    onChange={(e) => {
+                      setreviewComment(e.target.value);
+                    }}
+                    className="outline-none h-12 border-none font-medium  mt-4 w-full text-sm placeholder:text-indigo-700"
+                    placeholder="Write your review here"
+                    type="text"
+                  />
                 </div>
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleProductReview} >Continue</AlertDialogAction>
+              <AlertDialogAction onClick={handleProductReview}>
+                Continue
+              </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
 
         {/* mapping of revies */}
-        {review.map((curr: any) => {
-          return (
-            <div className="py-2 border-b">
-              <div className="flex gap-4">
-                {/* image div */}
-                <div className="h-10 w-10 bg-indigo-700 rounded-full"></div>
-                {/* text div */}
-                <div>
-                  <h1 className="text-zinc-900 font-medium">{curr.name}</h1>
-                  <p className="text-zinc-600 font-medium text-sm">
-                    email@gmail.com
+
+        {AllReviews != null && AllReviews.length > 0 && (
+          <div>
+            {AllReviews.map((curr: any) => {
+              return (
+                <div className="py-2 border-b">
+                  <div className="flex gap-4">
+                    {/* image div */}
+                    <div className="h-10 w-10 bg-indigo-700 rounded-full">
+                      <Image className="h-10 w-10 rounded-full" src={curr.userwhoreviewed.avatar} height={900} width={900} alt="userimage" />
+                    </div>
+                    {/* text div */}
+                    <div>
+                      <h1 className="text-zinc-900 font-medium">
+                        {curr.userwhoreviewed.username}
+                      </h1>
+                      <p className="text-zinc-600 font-medium text-sm">
+                        {curr.userwhoreviewed.email}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* starts */}
+                  <div className="flex mt-4">
+                    {curr.count > 0 ? (
+                      <Star
+                        className="text-transparent"
+                        fill="blue"
+                        size={20}
+                      />
+                    ) : (
+                      <Star
+                        className="text-transparent"
+                        fill="gray"
+                        size={20}
+                      />
+                    )}
+                    {curr.count > 1 ? (
+                      <Star
+                        className="text-transparent"
+                        fill="blue"
+                        size={20}
+                      />
+                    ) : (
+                      <Star
+                        className="text-transparent"
+                        fill="gray"
+                        size={20}
+                      />
+                    )}
+                    {curr.count > 2 ? (
+                      <Star
+                        className="text-transparent"
+                        fill="blue"
+                        size={20}
+                      />
+                    ) : (
+                      <Star
+                        className="text-transparent"
+                        fill="gray"
+                        size={20}
+                      />
+                    )}
+                    {curr.count > 3 ? (
+                      <Star
+                        className="text-transparent"
+                        fill="blue"
+                        size={20}
+                      />
+                    ) : (
+                      <Star
+                        className="text-transparent"
+                        fill="gray"
+                        size={20}
+                      />
+                    )}
+                    {curr.count > 4 ? (
+                      <Star
+                        className="text-transparent"
+                        fill="blue"
+                        size={20}
+                      />
+                    ) : (
+                      <Star
+                        className="text-transparent"
+                        fill="gray"
+                        size={20}
+                      />
+                    )}
+
+                    {/* {
+                    starscount.map((curr:any)=>{
+                      return <h1>nkcnccmd</h1>
+                    })
+                  } */}
+                    {/* {starscount.map((curr: any) => {
+                      return (
+                       
+                      );
+                    })} */}
+                  </div>
+
+                  {/* review */}
+                  <p
+                    onClick={() => {
+                      console.log(starscount);
+                    }}
+                    className="text-lg text-zinc-700 mt-4 italic"
+                  >
+                    {curr.comment}
                   </p>
                 </div>
-              </div>
-
-              {/* starts */}
-              <div className="flex mt-4">
-                {curr.star.map((curr: any) => {
-                  return (
-                    <Star className="text-transparent" fill="blue" size={20} />
-                  );
-                })}
-              </div>
-
-              {/* review */}
-              <p className="text-lg text-zinc-700 mt-4 italic">{curr.review}</p>
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
 export default ProductDetail;
+
+// {Product.reviews.length > 1 && (
+//   <div>
+//
+//   </div>
+// )}

@@ -8,6 +8,7 @@ import { LayoutDashboard, Star } from "lucide-react";
 import Image from "next/image";
 import { AnimatedTooltip } from "../ui/animated-tooltip";
 import TaskDetail from "./TaskDetail";
+import Link from "next/link";
 
 type heroProps = {
   userid: string | undefined;
@@ -98,13 +99,14 @@ const Hero = ({ userid }: heroProps) => {
         >
           Star it on github
         </Button>
-        <Button
+       <Link href={`/dashboard`} >
+       <Button
           className="bg-white text-indigo-700 font-medium flex gap-2"
           size={"lg"}
         >
           <LayoutDashboard className="text-indigo-700" size={20} />
           <p className="text-sm font-semibold">Dashboard</p>
-        </Button>
+        </Button></Link>
         {/* <TaskDetail/> */}
       </div>
 

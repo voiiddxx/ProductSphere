@@ -2,11 +2,11 @@ import Image from "next/image";
 
 const Layout = ({children}: {children:React.ReactNode})=>{
     return (
-        <div className="h-screen w-full flex justify-center items-center" >
+        <div className="h-screen w-full flex md:flex-row flex-col justify-center items-center" >
 
 
             {/* left div */}
-            <div className="w-1/2 h-screen  flex  flex-col justify-start items-center " >
+            <div className="w-1/2 h-screen  flex  flex-col justify-between md:justify-start items-center md:py-4 py-20 " >
                 {/* logo section */}
                 <div className="w-full pl-10" >
                     <Image className="h-[80px] w-auto"  src={`/MainLogo.svg`} height={900} width={900} alt="logo" />
@@ -18,16 +18,16 @@ const Layout = ({children}: {children:React.ReactNode})=>{
                     <p className="text-sm font-medium text-zinc-600" >Enter your credential to create</p>
                 </div> */}
                 {/* auth components */}
-                <div className="h-full flex justify-center items-center" >
+                <div className="md:h-full flex justify-center items-center " >
                 {children} 
                 </div>
 
-                <div>
-                    <p className="text-sm font-medium text-zinc-600 mb-5" >2023 , Productsphere , all rights resevred</p>
+                <div className="" >
+                    <p className="md:text-sm text-xs md:font-medium font-light text-zinc-600 mb-5" >Productsphere , all rights resevred</p>
                 </div>
             </div>
             {/* right div */}
-            <div className="w-1/2 h-screen  p-2" >
+            <div className="w-1/2 h-screen  p-2 hidden md:block" >
                 <div className="h-full w-full bg-indigo-700 flex justify-center items-center rounded-xl  flex-col" >
                     <div>
                         

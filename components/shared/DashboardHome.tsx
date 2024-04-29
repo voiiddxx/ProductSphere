@@ -5,16 +5,20 @@ import { ArrowRight, Box, Plus, Search } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-type dashBoardHero = {};
+type dashBoardHero = {
+  tokenid :any
+};
 
-const DashboardHome = ({}: dashBoardHero) => {
+const DashboardHome = () => {
   const [Products, setProducts] = useState<any>(null);
   // const [JoinedProducts, setJoinedProducts] = useState<any>(null);
   const [User, setUser] = useState<any>(null);
+  const [userIdhai, setuserIdhai] = useState<any>(null);
 
   useEffect(() => {
     const Localuser = localStorage.getItem("x-auth-id");
     const userId = +Localuser!;
+    setuserIdhai(userId);
 
     const getUserProduct = async () => {
       const res = await getProductAsperuseridAction(userId!);
@@ -38,9 +42,9 @@ const DashboardHome = ({}: dashBoardHero) => {
   }, []);
   return (
     <div className="w-full">
-      {!Products && (
+      {!Products &&  (
         <div className="h-40 w-full flex justify-center items-center flex-col border-dashed border mt-10 ">
-          <p className="text-sm font-medium">No Projects </p>
+          <p className="text-sm font-medium">No Projects  </p>
           <p className="text-xs font-medium text-zinc-500">
             Get Start by creating your first project
           </p>
@@ -53,13 +57,13 @@ const DashboardHome = ({}: dashBoardHero) => {
           </Link>
         </div>
       )}
-  {/* <p>hey {User.data.username} </p> */}
       {User != null && (
         <>
         <div className="mt-5" >
-         <div className="flex mb-8 gap-2" >
+         <div className="flex mb-8 gap-2 md:flex-row flex-col" >
+         <div className="flex gap-2 mb-2" >
          <Link href={`/dashboard/products/create`} >
-         <div className="px-2 py-2 border bg-indigo-700 rounded-md" >
+         <div className="px-2 py-2 border bg-[#2037ff] rounded-md" >
             <p className="font-medium text-xs text-white" >New Product</p>
           </div>
          </Link>
@@ -67,10 +71,11 @@ const DashboardHome = ({}: dashBoardHero) => {
             <p className="font-medium text-xs text-zinc-800" >Join Product</p>
           </div>
 
-          <div className=" w-80 border rounded-md bg-zinc-200 border-zinc-300 flex items-center px-4 gap-2" >
+         </div>
+
+          <div className="w-80 py-2 md:py-0 border rounded-md bg-zinc-200 border-zinc-300 flex items-center px-4 gap-2" >
             <Search size={15} strokeWidth={1.5} />
             <input className="text-xs font-medium outline-none border-none bg-transparent text-zinc-800 placeholder:text-zinc-950" type="text" placeholder="search for a product" />
-
           </div>
 
          </div>
@@ -80,7 +85,7 @@ const DashboardHome = ({}: dashBoardHero) => {
           {User.ownedProducts.map((curr: any) => {
             return (
              <Link href={`/dashboard/products/${curr.productId}`} >
-              <div className="h-[250px] w-[400px] bg-zinc-100 rounded-lg border flex flex-col px-5 py-5 justify-between hover:bg-white">
+              <div className="h-[250px] md:w-[400px] w-[380px] bg-white rounded-lg border flex flex-col px-5 py-5 justify-between hover:bg-white">
                 <div>
                   {/* <div className='h-16 w-16 rounded-full border bg-white' ></div> */}
                   <div
@@ -122,7 +127,7 @@ const DashboardHome = ({}: dashBoardHero) => {
           {User.memberOfProducts.map((curr: any) => {
             return (
              <Link href={`/dashboard/products/${curr.productId}`} >
-              <div className="h-[250px] w-[400px] bg-zinc-100 rounded-lg border flex flex-col px-5 py-5 justify-between hover:bg-white">
+              <div className="h-[250px] md:w-[400px] w-[380px] bg-white rounded-lg border flex flex-col px-5 py-5 justify-between hover:bg-white">
                 <div>
                   {/* <div className='h-16 w-16 rounded-full border bg-white' ></div> */}
                   <div

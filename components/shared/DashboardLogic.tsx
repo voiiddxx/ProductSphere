@@ -1,13 +1,17 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Gem, LayoutGrid, Rabbit, Sun, SunDim, User } from 'lucide-react'
 import DashBoardNav from './DashBoardNav'
 import DashboardHome from './DashboardHome'
 import FindProducts from './FindProducts'
+import { getUserUsingClerkid } from '@/lib/actions/user.action'
 
 const DashboardLogic = () => {
 
     const [NavData, setNavData] = useState<string>("Projects")
+  
+
+   
   return (
     <div className='w-full min-h-screen' >
     <DashBoardNav/>

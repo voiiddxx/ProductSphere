@@ -109,6 +109,8 @@ export const getAllUsers = async()=>{
 
 // server action for getting the user with id
  export const getUserUsinguserId =async(id:any)=>{
+    console.log("The user id parsed" , id);
+    
     try {
         const res = await prisma.user.findFirst({
             where:{

@@ -51,21 +51,21 @@ const Hero = ({ userid }: heroProps) => {
   //   // const res = await createProductAction();
   //   // console.log("Res: ", res);
   // };
-  // useEffect(() => {
-  //   const getUserData = async () => {
-  //     console.log("this is the value of userid: " , userid);
-  //     try {
+  useEffect(() => {
+    const getUserData = async () => {
+      console.log("this is the value of userid: " , userid);
+      try {
 
-  //     const res = await getUserUsingClerkid(userid!);
-  //     console.log("Res: " , res , "resid val is: " , res.id);
-  //     const userval = localStorage.setItem("x-auth-id", res.id);
-  //     } catch (error) {
-  //       console.log(error);
+      const res = await getUserUsingClerkid(userid!);
+      console.log("Res: " , res , "resid val is: " , res.id);
+      const userval = localStorage.setItem("x-auth-id", res.id);
+      } catch (error) {
+        console.log(error);
 
-  //     }
-  //   };
-  //   getUserData();
-  // }, []);
+      }
+    };
+    getUserData();
+  }, []);
   return (
     <div className="mx-[24rem]  flex-col justify-center items-center ">
       <div className="flex flex-row items-center justify-center  w-full md:mt-20 mt-10">

@@ -109,6 +109,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
   const JoinTeamNow = async () => {
     const token = localStorage.getItem("x-auth-id");
     const userId = +token!;
+    // alert(userId);
     const proId = +Product.productId;
     console.log("userId :" , userId , "product Id: " , proId);
 
@@ -130,10 +131,10 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
   return (
     <div className="h-screen w-full md:px-16">
       {/* navbar */}
-      <div className="h-20 w-full border-b"></div>
+      <div className="h-15 w-full border-b"></div>
 
       {/* heading bar tab */}
-      <div className=" w-full flex justify-between md:flex-row flex-col md:px-20 py-4 px-4 items-center border-b">
+      <div className=" w-full flex justify-between md:flex-row flex-col md:px-15 py-4 px-4 items-center border-b">
         {/* left div */}
         <div className="flex gap-6 items-center">
           {/* image div */}
@@ -221,7 +222,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
       </div>
 
       {/* details div */}
-      <div className="mt-5 md:px-20 px-4 border-b py-4">
+      <div className="mt-5 md:px-15 px-4 border-b py-4">
         {/* detail */}
         <div className="md:mr-96">
           <h1 className=" font-medium text-zinc-900 md:text-base text-sm">What is ProductSphere</h1>
@@ -238,7 +239,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
           <div className=" flex gap-5 items-center mt-4">
             <div className="md:px-4 px-2 py-2 border rounded-md flex gap-2 items-center">
               <div className="h-10 w-10 border rounded-sm flex items-center justify-center">
-                <ArrowDown size={20} className="text-indigo-700" style={{color:Product.productcolor}} />
+                <ArrowDown size={15} className="text-indigo-700" style={{color:Product.productcolor}} />
               </div>
               <h1 className="font-medium text-zinc-900 md:text-sm text-[10px]">
                 ProductSphere details
@@ -246,7 +247,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
             </div>
             <div className="px-4 py-2 border rounded-md flex gap-2 items-center">
               <div className="h-10 w-10 border rounded-sm flex items-center justify-center">
-                <ArrowDown size={20} className="text-indigo-700" style={{color:Product.productcolor}} />
+                <ArrowDown size={15} className="text-indigo-700" style={{color:Product.productcolor}} />
               </div>
               <h1 className="font-medium text-zinc-900 md:text-sm text-[10px]">
                 Team Members Data
@@ -256,7 +257,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
         </div>
       </div>
       {/* details end */}
-      <div className="mt-5 md:px-20 px-4 border-b py-4">
+      <div className="mt-5 md:px-15 px-4 border-b py-4">
         <h1 className="font-medium text-zinc-950 md:text-xl text-sm">Techstack</h1>
         <p className="md:text-sm text-xs font-medium text-zinc-600">
           The techstack used in the product
@@ -276,7 +277,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
       </div>
 
       {/* makers div */}
-      <div className="mt-10  px-4 md:px-20">
+      <div className="mt-10  px-4 md:px-15">
         <h1 className="text-xl font-medium">The Makers Behind ProductSphere</h1>
         <p className="text-sm font-medium text-zinc-600 mt-2">
           List of developers who help to build this product
@@ -288,7 +289,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
             {Product.members.map((curr: any) => {
               return (
                 <div
-                  className="h-20 md:w-96 w-full pb-2 flex items-center gap-2
+                  className="h-15 md:w-96 w-full pb-2 flex items-center gap-2
                    border-b"
                 >
                   <div>
@@ -311,7 +312,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
 
       {/* reviews component */}
 
-      <div className=" py-5 border-b md:px-20 px-4">
+      <div className=" py-5 border-b md:px-15 px-4">
         <h1 className="md:text-xl text-sm font-medium text-zinc-900">
           ProductSphere Reviews ({AllReviews.length}){" "}
         </h1>
@@ -392,65 +393,65 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
                       <Star
                         className="text-transparent"
                         fill="blue"
-                        size={20}
+                        size={15}
                       />
                     ) : (
                       <Star
                         className="text-transparent"
                         fill="gray"
-                        size={20}
+                        size={15}
                       />
                     )}
                     {curr.count > 1 ? (
                       <Star
                         className="text-transparent"
                         fill="blue"
-                        size={20}
+                        size={15}
                       />
                     ) : (
                       <Star
                         className="text-transparent"
                         fill="gray"
-                        size={20}
+                        size={15}
                       />
                     )}
                     {curr.count > 2 ? (
                       <Star
                         className="text-transparent"
                         fill="blue"
-                        size={20}
+                        size={15}
                       />
                     ) : (
                       <Star
                         className="text-transparent"
                         fill="gray"
-                        size={20}
+                        size={15}
                       />
                     )}
                     {curr.count > 3 ? (
                       <Star
                         className="text-transparent"
                         fill="blue"
-                        size={20}
+                        size={15}
                       />
                     ) : (
                       <Star
                         className="text-transparent"
                         fill="gray"
-                        size={20}
+                        size={15}
                       />
                     )}
                     {curr.count > 4 ? (
                       <Star
                         className="text-transparent"
                         fill="blue"
-                        size={20}
+                        size={15}
                       />
                     ) : (
                       <Star
                         className="text-transparent"
                         fill="gray"
-                        size={20}
+                        size={15}
                       />
                     )}
 
@@ -467,7 +468,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
                   </div>
 
                   {/* review */}
-                  <p className="text-lg text-zinc-700 mt-4 italic"
+                  <p className="md:text-lg text-sm text-zinc-700 mt-4 italic"
                   >
                     {curr.comment}
                   </p>

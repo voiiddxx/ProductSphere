@@ -6,13 +6,13 @@ const DashBoardNav = () => {
     <div className='h-14 w-full border-b flex justify-between items-center' >
 
         {/* left div */}
-        <div className='h-full w-72  flex items-center pl-6' >
-            <p className='font-medium' >Dashboard</p>
+        <div className='h-full md:w-72  flex items-center pl-6' >
+            <p className='font-medium text-sm md:text-lg' >Dashboard</p>
         </div>
         {/* right div */}
         <div className='flex items-center pl-5 w-full h-full justify-between' >
             <div>
-            <p className='font-medium text-sm' >Your Projects (0) </p>
+            <p className='font-medium md:text-sm text-xs' >Your Projects (0) </p>
             </div>
             <div className='flex gap-4 pr-10 items-center' >
 

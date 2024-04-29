@@ -24,19 +24,19 @@ const TaskAssignedCard = ({ data }: AssignTaskProps) => {
          {/* upper bar logic */}
          {
           data.priority == "High" && (
-            <div className="h-3 w-full bg-red-500 rounded-t-md absolute top-0 left-0" >
+            <div className="h-2 w-full bg-red-500 rounded-t-md absolute top-0 left-0" >
             </div>
           )
         }
         {
           data.priority == "Average" && (
-            <div className="h-3 w-full bg-yellow-500 rounded-t-md absolute top-0 left-0" >
+            <div className="h-2 w-full bg-yellow-500 rounded-t-md absolute top-0 left-0" >
             </div>
           )
         }
         {
           data.priority == "Low" && (
-            <div className="h-3 w-full bg-green-500 rounded-t-md absolute top-0 left-0" >
+            <div className="h-2 w-full bg-green-500 rounded-t-md absolute top-0 left-0" >
             </div>
           )
         }
@@ -71,30 +71,30 @@ const TaskAssignedCard = ({ data }: AssignTaskProps) => {
 
        <div className=" w-full flex justify-between items-center" >
 
-        <div className="flex gap-3" >
+        <div className="flex gap-2" >
         {
            data.priority == "High" && (
-            <div className="px-3 py-1 rounded-full bg-red-100" >
+            <div className="px-2 py-1 rounded-full bg-red-100" >
             <p className="text-[10px] font-medium text-red-600" >{data.priority}</p>
             </div>
            )
         }
         {
            data.priority == "Average" && (
-            <div className="px-3 py-1 rounded-full bg-yellow-100" >
+            <div className="px-2 py-1 rounded-full bg-yellow-100" >
             <p className="text-[10px] font-medium text-yellow-600" >{data.priority}</p>
             </div>
            )
         }
         {
            data.priority == "Low" && (
-            <div className="px-3 py-1 rounded-full bg-green-100" >
+            <div className="px-2 py-1 rounded-full bg-green-100" >
             <p className="text-[10px] font-medium text-green-600" >{data.priority}</p>
             </div>
            )
         }
 
-        <div className="px-3 py-1 rounded-full bg-indigo-100" >
+        <div className="px-2 py-1 rounded-full bg-indigo-100" >
         <p className="text-[10px] font-medium text-indigo-700" >{data.status}</p>
         </div>
 

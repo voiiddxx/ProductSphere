@@ -25,8 +25,8 @@ const page = () => {
             width={1500}
             alt="logo"
           />
-          <p className="text-xs text-zinc-400 mt-1"> / </p>
-          <Breadcrumb> 
+          <p className="text-xs text-zinc-400 mt-1 hidden md:block"> / </p>
+          <Breadcrumb className="hidden md:block" > 
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink href="/">

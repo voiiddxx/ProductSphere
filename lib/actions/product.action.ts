@@ -34,7 +34,7 @@ export const createProductAction = async ({ data }: createProductParams) => {
             return JSON.parse(JSON.stringify({ message: "Some error occured" }));
         }
         console.log("Product Created", products);
-        return JSON.parse(JSON.stringify({ data: products }));
+        return JSON.parse(JSON.stringify({ data: products , status:200 }));
     } catch (error) {
         console.log(error);
         throw new Error(error as string);

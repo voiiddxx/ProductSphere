@@ -20,21 +20,21 @@ const DashboardLogic = () => {
       setNavData("Projects");
      }} className='h-20  mx-8 flex items-center gap-2 border-b' >
         <Sun size={15} strokeWidth={2} />
-        <p className='text-sm font-medium' >Your Projects</p>
+        <p className='text-sm font-medium md:block hidden' >Your Projects</p>
       </div>
      <div onClick={()=>{
         setNavData("FindProjects");
      }} className='h-20  mx-8 flex items-center gap-2 border-b' >
         <LayoutGrid size={15} strokeWidth={2} />
-        <p className='text-sm font-medium' >Find products</p>
+        <p className='text-sm font-medium md:block hidden' >Find products</p>
       </div>
      <div className='h-20  mx-8 flex items-center gap-2 border-b' >
         <Rabbit size={15} strokeWidth={2} />
-        <p className='text-sm font-medium' >Find Developers</p>
+        <p className='text-sm font-medium md:block hidden' >Find Developers</p>
       </div>
      <div className='h-20  mx-8 flex items-center gap-2 border-b' >
         <Gem size={15} strokeWidth={2} />
-        <p className='text-sm font-medium' >Access Premium</p>
+        <p className='text-sm font-medium md:block hidden' >Access Premium</p>
       </div>
      </div>
      {/* bottom bar div */}
@@ -46,8 +46,8 @@ const DashboardLogic = () => {
         </div>
         {/* data div */}
         <div>
-          <p className='text-sm font-medium text-zinc-900' >Nikhil Kumar</p>
-          <p className='text-xs font-medium text-zinc-600' >nikhildesign@gmail.conm</p>
+          <p className='text-sm font-medium md:block hidden text-zinc-900' >Nikhil Kumar</p>
+          <p className='text-xs font-medium md:block hidden text-zinc-600' >nikhildesign@gmail.conm</p>
         </div>
 
       </div>

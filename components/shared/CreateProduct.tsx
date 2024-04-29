@@ -166,6 +166,12 @@ const CreateProduct = () => {
         }
 
       const productRes = await createProductAction({data:{name:values.name , detail:values.detail , visibility:values.visibility , category:"Saas" , startDate:StartDate , endDate:endDate , productcolor:ProductColor , productlogo:imageUrl , url:"thisisurl" , ownerId: parsedData , productCode:ProductCode , skills:productSkills}});
+
+      if(productRes.status == 200){
+        alert("Product Posted");
+      }else{
+        alert("Some error occured");
+      }
     }else{
       console.log("Some Field are missing");
       
@@ -183,9 +189,9 @@ const CreateProduct = () => {
         <Hash size={15} strokeWidth={1.5} />
         <p className="text-sm font-medium">Create a new product</p>
       </div>
-      <div className="w-full h-screen flex">
+      <div className="w-full h-screen flex md:flex-row flex-col">
         {/* left div */}
-        <div className="w-3/5 h-full  px-10 py-5">
+        <div className="md:w-3/5 h-full  px-10 py-5">
           <p className="text-sm font-medium">Genreal Information</p>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -342,13 +348,13 @@ const CreateProduct = () => {
           </Form>
         </div>
         {/* right div */}
-        <div className=" w-2/5 h-screen bg-white border-l my-4 px-4 pt-2">
+        <div className=" md:w-2/5 h-screen bg-white border-l my-4 px-4 pt-2">
           {/* this is row 1 */}
 
           <div>
             <p className="text-sm font-medium">product image/document</p>
 
-            <div className="flex justify-start  gap-4  mt-4">
+            <div className="md:flex justify-start  gap-4  mt-4">
               {/* product image */}
               <input
                 onChange={hanldeProcuctImage}
@@ -378,7 +384,7 @@ const CreateProduct = () => {
                   onClick={() => {
                     handleProductlogoButton.current.click();
                   }}
-                  className="h-60 w-60 border border-dashed rounded-lg flex justify-center items-center flex-col"
+                  className="h-60 md:w-60 w-full border border-dashed rounded-lg flex justify-center items-center flex-col"
                 >
                   <ImagePlus
                     className="text-indigo-800 mb-2"
@@ -415,7 +421,7 @@ const CreateProduct = () => {
                   onClick={() => {
                     handleProductDocumentone.current.click();
                   }}
-                  className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border"
+                  className="h-28 md:w-72 w-full rounded-lg flex justify-center flex-col items-center border"
                 >
                   <Link
                     className="text-indigo-800 mb-2"
@@ -436,7 +442,7 @@ const CreateProduct = () => {
                   onClick={() => {
                     handleProductDocumentSecond.current.click();
                   }}
-                  className="h-28 w-72 rounded-lg flex justify-center flex-col items-center border"
+                  className="h-28  md:w-72 w-full rounded-lg flex justify-center flex-col items-center border"
                 >
                   <Link
                     className="text-indigo-800 mb-2"

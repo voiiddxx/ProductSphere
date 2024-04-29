@@ -99,7 +99,7 @@ const TaskDetail = ({data}:taskData) => {
                                     <div className="h-6 w-6 rounded-full bg-indigo-800" >
                                         <Image src={curr.avatar} className="h-6 w-6 object-cover rounded-full" height={900} width={900} alt="userimage" />
                                     </div>
-                                    <p className="text-sm font-semibold" >nikhil kumar</p>
+                                    <p className="text-sm font-semibold" >{curr.username}</p>
                                     
 
                                 </div>
@@ -133,10 +133,12 @@ const TaskDetail = ({data}:taskData) => {
                     <p className="text-sm font-semibold" >Note:</p>
                     <div className="flex gap-2 mt-5" >
                           <div>
-                          <div className="h-10 w-10 rounded-full bg-indigo-700" ></div>
+                          <div className="h-10 w-10 rounded-full bg-indigo-700" >
+                            <Image src={data.createdBy.avatar} className="h-10 w-10 rounded-full object-cover" height={900} width={900} alt="commentuser" />
+                          </div>
                           </div>
                            <div>
-                            <p className="text-sm font-medium" >Void.tsx</p>
+                            <p className="text-sm font-medium" >{data.createdBy.username}</p>
                             <p className="text-xs font-medium italic mt-2 text-zinc-600" >{data.comment}</p>
                            </div>
                     </div>
@@ -199,7 +201,7 @@ const TaskDetail = ({data}:taskData) => {
 
 
                 {/* update product status */}
-                <TaskstatusComponents taskId={5} />
+                <TaskstatusComponents taskId={data.assignId} />
                 </div>
               
             </div>

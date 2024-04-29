@@ -13,26 +13,26 @@ const DashboardLogic = () => {
     <DashBoardNav/>
     <div className='min-h-screen flex' >
       {/* sidebard div */}
-      <div className='min-h-screen w-80  border-r flex flex-col justify-between' >
+      <div className='min-h-screen md:w-80 w-14  border-r flex flex-col justify-between' >
       {/*  */}
      <div>
      <div onClick={()=>{
       setNavData("Projects");
-     }} className='h-20  mx-8 flex items-center gap-2 border-b' >
+     }} className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b' >
         <Sun size={15} strokeWidth={2} />
         <p className='text-sm font-medium md:block hidden' >Your Projects</p>
       </div>
      <div onClick={()=>{
         setNavData("FindProjects");
-     }} className='h-20  mx-8 flex items-center gap-2 border-b' >
+     }} className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b' >
         <LayoutGrid size={15} strokeWidth={2} />
         <p className='text-sm font-medium md:block hidden' >Find products</p>
       </div>
-     <div className='h-20  mx-8 flex items-center gap-2 border-b' >
+     <div className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b' >
         <Rabbit size={15} strokeWidth={2} />
         <p className='text-sm font-medium md:block hidden' >Find Developers</p>
       </div>
-     <div className='h-20  mx-8 flex items-center gap-2 border-b' >
+     <div className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b' >
         <Gem size={15} strokeWidth={2} />
         <p className='text-sm font-medium md:block hidden' >Access Premium</p>
       </div>
@@ -55,7 +55,7 @@ const DashboardLogic = () => {
       </div>
   </div>
       {/* right div */}
-      <div className='min-h-screen w-full   flex justify-normal items-start px-5' >
+      <div className='min-h-screen w-full   flex justify-normal items-start px-5 bg-slate-100' >
           {/* upper div */}
           
           {/* start project div */}

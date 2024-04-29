@@ -13,7 +13,7 @@ const FindProductCard = ({productData}:findProducCardProps) => {
       
   return (
     <Link href={`/products/${productData.productId}`} >
-    <div className=" w-[400px] border rounded-md px-4 py-4">
+    <div className=" md:w-[400px] w-[330px] bg-white border rounded-md px-4 py-4">
               {/* upper part of card */}
               <div className="flex justify-between items-start">
                 {/* image div */}
@@ -25,20 +25,20 @@ const FindProductCard = ({productData}:findProducCardProps) => {
 
                 <div className="flex items-center text-green-700">
                   <Dot absoluteStrokeWidth strokeWidth={5} />
-                  <p className="text-xs font-medium">{productData.status}</p>
+                  <p className="text-xs font-medium">{productData.status} under Development</p>
                 </div>
               </div>
               {/* upper part ends */}
 
               {/* title and subtitle part */}
               <div>
-                <h1 className="mt-5 font-semibold " style={{color:productData.productcolor}}>
+                <h1 className="mt-5 font-semibold text-muted  text-sm" style={{color:productData.productcolor}}>
                   {productData.name}{" "}
                   <span className="text-xs text-zinc-500 font-medium">
                     (saas)
                   </span>{" "}
                 </h1>
-                <p className="text-sm font-medium text-zinc-700 mt-1">
+                <p className="md:text-sm text-xs font-medium text-zinc-700 mt-1">
                   {productData.detail}
                 </p>
               </div>

@@ -125,42 +125,42 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
     }
   };
 
-  if(Product == null) return <div>please wait</div>
+  if(Product == null) return <div className="min-h-screen w-full flex justify-center items-center" >please wait</div>
 
   return (
-    <div className="h-screen w-full px-12">
+    <div className="h-screen w-full md:px-16">
       {/* navbar */}
       <div className="h-20 w-full border-b"></div>
 
       {/* heading bar tab */}
-      <div className=" w-full flex justify-between px-20 py-4 items-center border-b">
+      <div className=" w-full flex justify-between md:flex-row flex-col md:px-20 py-4 px-4 items-center border-b">
         {/* left div */}
         <div className="flex gap-6 items-center">
           {/* image div */}
-          <div className="h-28 w-28 bg-indigo-700 rounded-md">
+          <div className="md:h-28 h-16 w-16 md:w-28  bg-indigo-700 rounded-md">
           {
               Product!= null && (
-                <Image className="h-28 w-28 object-cover rounded-lg" src={Product.productlogo} height={1500} width={1500} alt="productlogo" />   
+                <Image className="md:h-28 h-16 w-16 md:w-28  object-cover rounded-lg" src={Product.productlogo} height={1500} width={1500} alt="productlogo" />   
               )
             }
           </div>
           {/* text div */}
           <div>
-            <h1 className="text-4xl font-bold text-zinc-900" style={{color:Product.productcolor}} >{Product.name}</h1>
-            <p className="mt-1 text-zinc-600 text-sm">
+            <h1 className="md:text-4xl text-lg font-bold text-zinc-900" style={{color:Product.productcolor}} >{Product.name}</h1>
+            <p className="mt-1 text-zinc-600 md:text-sm text-xs">
               Software for managing the product
             </p>
             <div className="flex items-center gap-10 mt-2">
               <div className="flex gap-1">
-                <Star className="text-transparent" fill="orange" size={25} />
-                <Star className="text-transparent" fill="orange" size={25} />
-                <Star className="text-transparent" fill="orange" size={25} />
-                <Star className="text-transparent" fill="orange" size={25} />
-                <Star className="text-transparent" fill="orange" size={25} />
+                <Star className="text-transparent" fill="orange" size={15} />
+                <Star className="text-transparent" fill="orange" size={15} />
+                <Star className="text-transparent" fill="orange" size={15} />
+                <Star className="text-transparent" fill="orange" size={15} />
+                <Star className="text-transparent" fill="orange" size={15} />
               </div>
               <div className="flex gap-2">
-                <p className="text-zinc-800 text-sm font-medium">15 Reviews</p>
-                <p className="text-zinc-800 text-sm font-medium">
+                <p className="text-zinc-800 md:text-sm text-xs font-medium">15 Reviews</p>
+                <p className="text-zinc-800 md:text-sm text-xs font-medium">
                   2000 Upvotes
                 </p>
               </div>
@@ -168,7 +168,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
           </div>
         </div>
         {/* right div */}
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-8 md:mt-0">
           <Button
             className="border rounded-full text-indigo-700 h-10 w-10" style={{color:Product.productcolor}}
             size={"icon"}
@@ -221,18 +221,18 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
       </div>
 
       {/* details div */}
-      <div className="mt-5 px-20 border-b py-4">
+      <div className="mt-5 md:px-20 px-4 border-b py-4">
         {/* detail */}
-        <div className="mr-96">
-          <h1 className=" font-medium text-zinc-900">What is ProductSphere</h1>
-          <p className="font-medium mt-3 tracking-wide leading-relaxed text-zinc-500 ">
+        <div className="md:mr-96">
+          <h1 className=" font-medium text-zinc-900 md:text-base text-sm">What is ProductSphere</h1>
+          <p className="font-medium mt-3 tracking-wide leading-relaxed md:text-sm text-xs text-zinc-500 ">
             Producter is a product management software designed for
             customer-centric product teams 🚀 Over 2000+ product people use it
             to get feedback, manage tasks, create docs, and share a roadmap 🌍
             Make hard product decisions easy with Producter's all-in-one
             solution ✨
           </p>
-          <h1 className="text-zinc-900 text-sm font-medium mt-10">
+          <h1 className="text-zinc-900 md:text-sm text-xs font-medium mt-10">
             ProductSphere Documents
           </h1>
           <div className=" flex gap-5 items-center mt-4">
@@ -345,7 +345,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
                     onChange={(e) => {
                       setreviewComment(e.target.value);
                     }}
-                    className="outline-none h-12 border-none font-medium  mt-4 w-full text-sm placeholder:text-indigo-700"
+                    className="outline-none h-16 border-none font-medium  mt-4 w-full text-sm placeholder:text-indigo-700"
                     placeholder="Write your review here"
                     type="text"
                   />

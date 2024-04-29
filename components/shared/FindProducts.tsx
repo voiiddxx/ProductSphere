@@ -23,14 +23,14 @@ const FindProducts =  () => {
     } , [])
   
   return (
-    <div className="h-screen w-full px-5">
+    <div className="h-screen w-full md:px-5 bg-slate-100">
       {/* upper bar for heading of the products */}
       <div>
         <div className="flex items-start gap-2 mt-5">   
           {/* <Rabbit className='' size={25} strokeWidth={1.75} /> */}
           <div>
-            <p className="text-xl font-medium text-zinc-900">Find Products</p>
-            <p className="text-sm font-medium text-zinc-500">
+            <p className="md:text-xl text-sm font-medium text-zinc-900">Find Products</p>
+            <p className="md:text-sm text-xs font-medium text-zinc-500">
               Find products upvote and join for build them
             </p>
           </div>
@@ -42,7 +42,7 @@ const FindProducts =  () => {
         <div className="h-10 mt-10  border-b flex items-center">
           <Search size={20} />
           <input
-            className="outline-none border-none px-2 text-sm"
+            className="outline-none border-none px-2 text-sm bg-transparent"
             placeholder="Search for products"
           />
         </div>
@@ -57,7 +57,7 @@ const FindProducts =  () => {
       <div className="flex gap-4 flex-wrap mt-5">
        {
         products!= null && (
-          <div className="flex gap-4" >
+          <div className="flex gap-4 flex-wrap" >
              {products.map((curr: any) => {
           return (
             <FindProductCard productData={curr} />

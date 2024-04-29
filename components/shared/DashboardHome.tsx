@@ -31,7 +31,7 @@ const DashboardHome = ({}: dashBoardHero) => {
       if(res.status == 200){
         setUser(res.data);
       }
-      console.log("Res:" , res);
+      console.log("thisisresdata:" , res);
     }
     getUserWithId();
     getUserProduct();
@@ -53,7 +53,7 @@ const DashboardHome = ({}: dashBoardHero) => {
           </Link>
         </div>
       )}
-
+  {/* <p>hey {User.data.username} </p> */}
       {User != null && (
         <>
         <div className="mt-5" >

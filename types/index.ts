@@ -91,3 +91,9 @@ export type addReviewParams = {
         userid: number
     }
 }
+
+
+export type updateProductStatusParams = {
+    prodId:number,
+    status:string
+}

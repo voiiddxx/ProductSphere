@@ -50,6 +50,7 @@ model Product {
   tasks AssignTasks[] @relation("productTasks")
   Upvote User[] @relation("upvotedProducts")
   reviews Reviews[]
+  productStatus String?
 
   
 

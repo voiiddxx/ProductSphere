@@ -1,6 +1,6 @@
 "use server"
 
-import { AddteamMembersParams, createProductParams, GetUserJoindedProductParams, JoinProductParams } from "@/types";
+import { AddteamMembersParams, createProductParams, GetUserJoindedProductParams, JoinProductParams, updateProductStatusParams } from "@/types";
 import { PrismaClient } from "@prisma/client";
 
 
@@ -222,3 +222,27 @@ export const AddteamMembersActions = async({prodId , teamMember}: AddteamMembers
 }
 
 
+
+
+// server action for updating the prducts status 
+
+export const UpdateProductStatus = async({prodId , status}:updateProductStatusParams)=>{
+    try {
+        const res = await prisma.product.update({
+            where:{
+                productId:prodId,
+            },
+            data:{
+                productStatus:status
+            }
+        });
+
+        if(!res){
+            return JSON.parse(JSON.stringify({data:"Some issue in updation" , status:400}));
+        }
+        return JSON.parse(JSON.stringify({data:res , status:200}));
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

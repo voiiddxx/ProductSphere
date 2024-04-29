@@ -16,7 +16,9 @@ const DashboardLogic = () => {
       <div className='min-h-screen w-80  border-r flex flex-col justify-between' >
       {/*  */}
      <div>
-     <div className='h-20  mx-8 flex items-center gap-2 border-b' >
+     <div onClick={()=>{
+      setNavData("Projects");
+     }} className='h-20  mx-8 flex items-center gap-2 border-b' >
         <Sun size={15} strokeWidth={2} />
         <p className='text-sm font-medium' >Your Projects</p>
       </div>

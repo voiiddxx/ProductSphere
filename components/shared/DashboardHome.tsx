@@ -1,7 +1,7 @@
 "use client";
 import { getProductAsperuseridAction } from "@/lib/actions/product.action";
 import { getUserUsingClerkid, getUserUsinguserId } from "@/lib/actions/user.action";
-import { ArrowRight, Box, Plus } from "lucide-react";
+import { ArrowRight, Box, Plus, Search } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -57,6 +57,23 @@ const DashboardHome = ({}: dashBoardHero) => {
       {User != null && (
         <>
         <div className="mt-5" >
+         <div className="flex mb-8 gap-2" >
+         <Link href={`/dashboard/products/create`} >
+         <div className="px-2 py-2 border bg-indigo-700 rounded-md" >
+            <p className="font-medium text-xs text-white" >New Product</p>
+          </div>
+         </Link>
+         <div className="px-2 py-2 border  rounded-md" >
+            <p className="font-medium text-xs text-zinc-800" >Join Product</p>
+          </div>
+
+          <div className=" w-80 border rounded-md bg-zinc-200 border-zinc-300 flex items-center px-4 gap-2" >
+            <Search size={15} strokeWidth={1.5} />
+            <input className="text-xs font-medium outline-none border-none bg-transparent text-zinc-800 placeholder:text-zinc-950" type="text" placeholder="search for a product" />
+
+          </div>
+
+         </div>
         <p className="text-sm font-medium" >Your Created Products</p>
         </div>
         <div className="flex gap-4 mt-5 flex-wrap border-b pb-5">

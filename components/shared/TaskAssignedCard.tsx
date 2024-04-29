@@ -1,5 +1,6 @@
 import { currentUser } from "@clerk/nextjs";
 import {
+  ArrowUpRight,
   CalendarRangeIcon,
   File,
   Flame,
@@ -68,31 +69,40 @@ const TaskAssignedCard = ({ data }: AssignTaskProps) => {
 
        </div>
 
-       <div className="flex justify-between" >
+       <div className=" w-full flex justify-between items-center" >
 
+        <div className="flex gap-3" >
         {
            data.priority == "High" && (
             <div className="px-3 py-1 rounded-full bg-red-100" >
-            <p className="text-xs font-medium text-red-600" >{data.priority}</p>
+            <p className="text-[10px] font-medium text-red-600" >{data.priority}</p>
             </div>
            )
         }
         {
            data.priority == "Average" && (
             <div className="px-3 py-1 rounded-full bg-yellow-100" >
-            <p className="text-xs font-medium text-yellow-600" >{data.priority}</p>
+            <p className="text-[10px] font-medium text-yellow-600" >{data.priority}</p>
             </div>
            )
         }
         {
            data.priority == "Low" && (
             <div className="px-3 py-1 rounded-full bg-green-100" >
-            <p className="text-xs font-medium text-green-600" >{data.priority}</p>
+            <p className="text-[10px] font-medium text-green-600" >{data.priority}</p>
             </div>
            )
         }
 
+        <div className="px-3 py-1 rounded-full bg-indigo-100" >
+        <p className="text-[10px] font-medium text-indigo-700" >{data.status}</p>
+        </div>
 
+        </div>
+
+        <div>
+          <ArrowUpRight className="text-zinc-700 mr-4" size={15} />
+        </div>
 
      
         

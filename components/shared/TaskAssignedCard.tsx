@@ -3,6 +3,7 @@ import {
   CalendarRangeIcon,
   File,
   Flame,
+  ListTodo,
   MoreVertical,
   User,
 } from "lucide-react";
@@ -15,12 +16,63 @@ type AssignTaskProps = {
 
 const TaskAssignedCard = ({ data }: AssignTaskProps) => {
   return (
-      <div className="h-[200px] w-[300px] rounded-md bg-white relative" >
-        <div className="h-3 w-full bg-red-500 rounded-t-md absolute top-0" >
+      <div className="h-[200px] w-[300px] rounded-md bg-white relative py-5 px-2 flex flex-col justify-between items-start" >
+        
+
+       <div>
+         {/* upper bar logic */}
+         {
+          data.priority == "High" && (
+            <div className="h-3 w-full bg-red-500 rounded-t-md absolute top-0 left-0" >
+            </div>
+          )
+        }
+        {
+          data.priority == "Average" && (
+            <div className="h-3 w-full bg-yellow-500 rounded-t-md absolute top-0 left-0" >
+            </div>
+          )
+        }
+        {
+          data.priority == "Low" && (
+            <div className="h-3 w-full bg-green-500 rounded-t-md absolute top-0 left-0" >
+            </div>
+          )
+        }
+
+
+
+        <div className="flex gap-2 items-center" >
+        {
+          data.priority == "High" && (<div className="h-8 w-8 rounded-full bg-red-50 flex justify-center items-center" >
+          <ListTodo  className="text-red-600" size={18} strokeWidth={1.75} />
+          </div>)
+        }
+        {
+          data.priority == "Average" && (<div className="h-8 w-8 rounded-full bg-yellow-50 flex justify-center items-center" >
+          <ListTodo  className="text-yellow-600" size={18} strokeWidth={1.75} />
+          </div>)
+        }
+        {
+          data.priority == "Low" && (<div className="h-8 w-8 rounded-full bg-green-50 flex justify-center items-center" >
+          <ListTodo  className="text-green-600" size={18} strokeWidth={1.75} />
+          </div>)
+        }
+        <p className="text-lg font-medium" >{data.title}</p>
         </div>
 
-        <div className="h-12 w-12 rounded-full bg-slate-300" >
+        {/* detail */}
+        <div className="" >
+          <p className="text-left text-xs mt-2 font-medium text-zinc-500" >{data.desc}</p>
+        </div>
 
+       </div>
+
+       <div className="flex justify-between" >
+        <div className="px-3 py-1 rounded-full" >
+        <p className="text-sm font-medium" >{data.priority}</p>
+        </div>
+        
         </div>
 
       </div>
@@ -39,7 +91,7 @@ export default TaskAssignedCard;
 //     <p className="text-zinc-700 text-sm font-semibold">{data.title}</p>
 //     <div className="flex gap-2">
 //       <div className="px-[7px] py-[2px] bg-yellow-50 rounded-full flex items-center justify-center text-yellow-600">
-//         <Flame size={12} strokeWidth={2} />
+//         <Flame size={8} strokeWidth={2} />
 //         <p className="text-[10px] font-medium text-yellow-500">
 //           {data.priority}
 //         </p>
@@ -53,7 +105,7 @@ export default TaskAssignedCard;
 //   </div>
 
 //   <div>
-//     <p className="text-xs mt-4 mr-10 text-zinc-500">{data.desc}</p>
+//     <p className="text-xs mt-4 mr-8 text-zinc-500">{data.desc}</p>
 //   </div>
 
 //   <div className="flex gap-1 items-center text-indigo-700 mt-4">
@@ -69,7 +121,7 @@ export default TaskAssignedCard;
 //     <div className=" absolute h-8 w-8 left-5 border bg-zinc-700 rounded-full flex justify-center items-center">
 //       <User strokeWidth={1.5} color="white" size={17} />
 //     </div>
-//     <div className=" absolute h-8 w-8 left-10 border bg-zinc-700 rounded-full flex justify-center items-center">
+//     <div className=" absolute h-8 w-8 left-8 border bg-zinc-700 rounded-full flex justify-center items-center">
 //       <p className="text-sm font-medium text-white">
 //         {data.AssignMembers.length}+
 //       </p>

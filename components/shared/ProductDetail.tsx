@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { File, Sparkle, Star, Triangle } from "lucide-react";
+import { ArrowDown,  Sparkle, Star, Triangle } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -125,7 +125,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
     }
   };
 
-  if(Product == null) return <div className="min-h-screen w-full flex justify-center items-center" >please wait</div>
+  if(Product == null) return <div className="min-h-screen w-full flex justify-center items-center" >Loading , please wait</div>
 
   return (
     <div className="h-screen w-full md:px-16">
@@ -150,7 +150,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
             <p className="mt-1 text-zinc-600 md:text-sm text-xs">
               Software for managing the product
             </p>
-            <div className="flex items-center gap-10 mt-2">
+            <div className="flex items-center gap-2 mt-2">
               <div className="flex gap-1">
                 <Star className="text-transparent" fill="orange" size={15} />
                 <Star className="text-transparent" fill="orange" size={15} />
@@ -159,8 +159,8 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
                 <Star className="text-transparent" fill="orange" size={15} />
               </div>
               <div className="flex gap-2">
-                <p className="text-zinc-800 md:text-sm text-xs font-medium">15 Reviews</p>
-                <p className="text-zinc-800 md:text-sm text-xs font-medium">
+                <p className="text-zinc-600 md:text-sm text-xs font-medium">15 Reviews</p>
+                <p className="text-zinc-600 md:text-sm text-xs font-medium">
                   2000 Upvotes
                 </p>
               </div>
@@ -236,19 +236,19 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
             ProductSphere Documents
           </h1>
           <div className=" flex gap-5 items-center mt-4">
-            <div className="px-4 py-2 border rounded-md flex gap-2 items-center">
+            <div className="md:px-4 px-2 py-2 border rounded-md flex gap-2 items-center">
               <div className="h-10 w-10 border rounded-sm flex items-center justify-center">
-                <File size={20} className="text-indigo-700" style={{color:Product.productcolor}} />
+                <ArrowDown size={20} className="text-indigo-700" style={{color:Product.productcolor}} />
               </div>
-              <h1 className="font-medium text-zinc-900 text-sm">
+              <h1 className="font-medium text-zinc-900 md:text-sm text-[10px]">
                 ProductSphere details
               </h1>
             </div>
             <div className="px-4 py-2 border rounded-md flex gap-2 items-center">
               <div className="h-10 w-10 border rounded-sm flex items-center justify-center">
-                <File size={20} className="text-indigo-700" style={{color:Product.productcolor}} />
+                <ArrowDown size={20} className="text-indigo-700" style={{color:Product.productcolor}} />
               </div>
-              <h1 className="font-medium text-zinc-900 text-sm">
+              <h1 className="font-medium text-zinc-900 md:text-sm text-[10px]">
                 Team Members Data
               </h1>
             </div>
@@ -256,18 +256,18 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
         </div>
       </div>
       {/* details end */}
-      <div className="mt-5 px-20 border-b py-4">
-        <h1 className="font-medium text-zinc-950 text-xl">Techstack</h1>
-        <p className="text-sm font-medium text-zinc-600">
+      <div className="mt-5 md:px-20 px-4 border-b py-4">
+        <h1 className="font-medium text-zinc-950 md:text-xl text-sm">Techstack</h1>
+        <p className="md:text-sm text-xs font-medium text-zinc-600">
           The techstack used in the product
         </p>
 
-        <div className="mr-96 flex gap-5 flex-wrap mt-5">
+        <div className="md:mr-96 flex gap-5 flex-wrap mt-5">
           {
             Product.skills.map((curr:any)=>{
-              return <div className="px-6 py-2 border rounded-full flex justify-center items-center gap-2">
+              return <div className="md:px-6 px-4 py-2 border rounded-full flex justify-center items-center gap-2">
               <Sparkle className="text-indigo-700" style={{color:Product.productcolor}} strokeWidth={1.5} size={18} />
-              <p className="text-indigo-700 font-medium" style={{color:Product.productcolor}} >{curr}</p>
+              <p className="text-indigo-700 text-sm md:text-base font-medium" style={{color:Product.productcolor}} >{curr}</p>
             </div>
             })
           }
@@ -276,7 +276,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
       </div>
 
       {/* makers div */}
-      <div className="mt-10 px-20">
+      <div className="mt-10  px-4 md:px-20">
         <h1 className="text-xl font-medium">The Makers Behind ProductSphere</h1>
         <p className="text-sm font-medium text-zinc-600 mt-2">
           List of developers who help to build this product
@@ -288,11 +288,13 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
             {Product.members.map((curr: any) => {
               return (
                 <div
-                  className="h-20 w-96 rounded-full  flex items-center gap-2
-                  "
+                  className="h-20 md:w-96 w-full pb-2 flex items-center gap-2
+                   border-b"
                 >
+                  <div>
                   <div className="h-10 w-10 bg-slate-500 rounded-full">
                     <Image src={curr.avatar} className="h-10 w-10 rounded-full object-cover" height={900} width={900} alt="userslogo" />
+                  </div>
                   </div>
                   <div>
                     <h1 className="font-medium text-indigo-700" style={{color:Product.productcolor}} >{curr.username}</h1>
@@ -309,11 +311,11 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
 
       {/* reviews component */}
 
-      <div className=" py-5 border-b px-20">
-        <h1 className="text-xl font-medium text-zinc-900">
+      <div className=" py-5 border-b md:px-20 px-4">
+        <h1 className="md:text-xl text-sm font-medium text-zinc-900">
           ProductSphere Reviews ({AllReviews.length}){" "}
         </h1>
-        <p className="text-zinc-600 text-sm font-medium">
+        <p className="text-zinc-600 md:text-sm text-xs font-medium">
           Chcekout all the reviews given by users
         </p>
         <AlertDialog>

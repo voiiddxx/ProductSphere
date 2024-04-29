@@ -18,10 +18,14 @@ import {
 import Image from "next/image";
 import { ArrowBigDown, ArrowDown, ChevronDown, CupSoda, Dot, File } from "lucide-react";
 import TaskstatusComponents from "./TaskstatusComponents";
+import TaskAssignedCard from "./TaskAssignedCard";
 
-  
 
-const TaskDetail = () => {
+  type taskData= {
+    data:any
+  }
+
+const TaskDetail = ({data}:taskData) => {
 
     const memebr = [
         {
@@ -38,7 +42,9 @@ const TaskDetail = () => {
   return (
     <div>
       <Dialog>
-        <DialogTrigger>Open</DialogTrigger>
+        <DialogTrigger>
+          <TaskAssignedCard data={data} />
+        </DialogTrigger>
         <DialogContent className="w-[1400px]">
           <DialogHeader className="border-b pb-4">
             <DialogTitle>

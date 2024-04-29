@@ -24,6 +24,7 @@ import { getTaskAsperProductId } from "@/lib/actions/task.action";
 import TaskAssignedCard from "./TaskAssignedCard";
 import Image from "next/image";
 import Addmemebr from "./Addmemebr";
+import TaskDetail from "./TaskDetail";
 
 type ProductDataProps = {
   data: any;
@@ -180,7 +181,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
               <div className="flex gap-2 flex-wrap mt-5">
             {Tasks.data.map((curr: any) => {
               return (
-                <TaskAssignedCard data={curr} />
+                <TaskDetail data={curr} />
               );
             })}
           </div>

@@ -15,7 +15,6 @@ type AssignTaskProps = {
 
 const TaskAssignedCard = ({ data }: AssignTaskProps) => {
   return (
-    <Link href={`/dashboard/products/tasks/${data.assignId}`} >
      <div className="h-[300px] w-[400px] bg-white border rounded-md px-4 py-2 flex flex-col justify-between">
       {/* task upper title and status part */}
       <div>
@@ -86,7 +85,6 @@ const TaskAssignedCard = ({ data }: AssignTaskProps) => {
         </div>
       </div>
     </div>
-    </Link>
   );
 };
 

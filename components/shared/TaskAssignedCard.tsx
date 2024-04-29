@@ -69,9 +69,32 @@ const TaskAssignedCard = ({ data }: AssignTaskProps) => {
        </div>
 
        <div className="flex justify-between" >
-        <div className="px-3 py-1 rounded-full" >
-        <p className="text-sm font-medium" >{data.priority}</p>
-        </div>
+
+        {
+           data.priority == "High" && (
+            <div className="px-3 py-1 rounded-full bg-red-100" >
+            <p className="text-xs font-medium text-red-600" >{data.priority}</p>
+            </div>
+           )
+        }
+        {
+           data.priority == "Average" && (
+            <div className="px-3 py-1 rounded-full bg-yellow-100" >
+            <p className="text-xs font-medium text-yellow-600" >{data.priority}</p>
+            </div>
+           )
+        }
+        {
+           data.priority == "Low" && (
+            <div className="px-3 py-1 rounded-full bg-green-100" >
+            <p className="text-xs font-medium text-green-600" >{data.priority}</p>
+            </div>
+           )
+        }
+
+
+
+     
         
         </div>
 

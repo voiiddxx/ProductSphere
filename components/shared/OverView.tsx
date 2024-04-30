@@ -13,6 +13,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Star } from "lucide-react";
 import { AnimatedTooltip } from "../ui/animated-tooltip";
+import Image from "next/image";
 
 const users = [
   {
@@ -95,7 +96,19 @@ const feedbacks = [
     star: 3,
   },
 ];
-const OverView = () => {
+
+
+  type OverViewProps = {
+    data:any
+  }
+const OverView = ({data}:OverViewProps) => {
+  console.log("This is product Data: " , data , "size:" ) ;
+  console.log(data.tasks.length);
+
+
+
+  
+  
   return (
     <div className="w-full px-8 py-4 ">
       {/* upper heading bar */}
@@ -120,7 +133,7 @@ const OverView = () => {
             {/* second row */}
             <div>
               <h1 className="text-4xl mt-4 text-orange-600 font-medium ">
-                10+
+                {data.tasks.length}
               </h1>
             </div>
 
@@ -144,7 +157,7 @@ const OverView = () => {
           <div>
             {/* second row */}
             <div>
-              <h1 className="text-4xl mt-4 text-green-600 font-medium ">5+</h1>
+              <h1 className="text-4xl mt-4 text-green-600 font-medium ">{data.tasks.length}+</h1>
             </div>
 
             {/* bottom row */}
@@ -166,7 +179,7 @@ const OverView = () => {
           <div>
             {/* second row */}
             <div>
-              <h1 className="text-4xl mt-4 text-pink-600 font-medium ">25+</h1>
+              <h1 className="text-4xl mt-4 text-pink-600 font-medium ">{data.tasks.length}+ </h1>
             </div>
 
             {/* bottom row */}
@@ -189,7 +202,7 @@ const OverView = () => {
             {/* second row */}
             <div>
               <h1 className="text-4xl mt-4 text-yellow-600 font-medium ">
-                16+
+                {data.members.length}+
               </h1>
             </div>
 
@@ -213,7 +226,7 @@ const OverView = () => {
             {/* second row */}
             <div>
               <h1 className="text-4xl mt-4 text-violet-600 font-medium ">
-                10+
+                {data.reviews.length}
               </h1>
             </div>
 
@@ -241,11 +254,13 @@ const OverView = () => {
             <div className="mt-4 px-3">
               <div className="w-full">
                 <p className="text-xl font-medium">Product Members</p>
-                {users.map((curr: any) => {
+                {data.members.map((curr: any) => {
                   return (
                     <div className="w-full h-20 flex justify-between items-center border-b">
                       <div className="flex gap-2">
-                        <div className="h-10 w-10 rounded-full bg-slate-400"></div>
+                        <div className="h-10 w-10 rounded-full bg-slate-400">
+                          <Image src={curr.avatar} className="h-10 w-10 rounded-full object-cover" height={900} width={900} alt="users" />
+                        </div>
                         <div>
                           <p className="text-sm font-medium text-zinc-900">
                             {curr.username}
@@ -259,12 +274,12 @@ const OverView = () => {
                       <div className="flex gap-5">
                         <div className="px-3 py-1 bg-indigo-100 rounded-full">
                           <p className="text-indigo-700 font-medium text-xs">
-                            5 Assigned tasks
+                            {curr.membersOftasks.length} Assigned tasks
                           </p>
                         </div>
                         <div className="px-3 py-1 bg-green-100 rounded-full">
                           <p className="text-green-700 font-medium text-xs">
-                            4 completed tasks
+                            {curr.taskCreated.length} Created Tasks
                           </p>
                         </div>
                         <div className="px-3 py-1 bg-yellow-100 rounded-full">
@@ -290,17 +305,19 @@ const OverView = () => {
               </p>
 
               <div className="mt-5">
-                {feedbacks.map((curr: any) => {
+                {data.reviews.map((curr: any) => {
                   return (
                     <div className="min-h-20 border-b flex items-start justify-center flex-col ">
                       <div className="flex gap-4">
-                        <div className="h-10 w-10 rounded-full bg-slate-400"></div>
+                        <div className="h-10 w-10 rounded-full bg-slate-400">
+                          <Image src={curr.userwhoreviewed.avatar} className="h-10 w-10 rounded-full object-cover" height={900} width={900} alt="user" />
+                        </div>
                         <div>
                           <p className="text-sm font-medium text-zinc-900">
-                            Nikhil
+                            {curr.userwhoreviewed.username}
                           </p>
                           <p className="text-xs font-normal text-zinc-600">
-                            nikhildesign00@gmail.com
+                            {curr.userwhoreviewed.email}
                           </p>
                         </div>
                       </div>
@@ -310,20 +327,80 @@ const OverView = () => {
                       <div className="mt-3">
                         <div>
                           <div className="px-3 py-1 flex rounded-full">
-                            <Star  size={15} color="orange" fill="orange" />
-                            <StarIcon  size={15} color="orange" fill="orange" />
-                            <StarIcon  size={15} color="orange" fill="orange" />
-                            <StarIcon  size={15} color="gray" fill="gray" />
-                            <StarIcon  size={15} color="gray" fill="gray" />
+                          {curr.count > 0 ? (
+                      <Star
+                        className="text-transparent"
+                        fill="orange"
+                        size={15}
+                      />
+                    ) : (
+                      <Star
+                        className="text-transparent"
+                        fill="gray"
+                        size={15}
+                      />
+                    )}
+                    {curr.count > 1 ? (
+                      <Star
+                        className="text-transparent"
+                        fill="orange"
+                        size={15}
+                      />
+                    ) : (
+                      <Star
+                        className="text-transparent"
+                        fill="gray"
+                        size={15}
+                      />
+                    )}
+                    {curr.count > 2 ? (
+                      <Star
+                        className="text-transparent"
+                        fill="orange"
+                        size={15}
+                      />
+                    ) : (
+                      <Star
+                        className="text-transparent"
+                        fill="gray"
+                        size={15}
+                      />
+                    )}
+                    {curr.count > 3 ? (
+                      <Star
+                        className="text-transparent"
+                        fill="orange"
+                        size={15}
+                      />
+                    ) : (
+                      <Star
+                        className="text-transparent"
+                        fill="gray"
+                        size={15}
+                      />
+                    )}
+                    {curr.count > 4 ? (
+                      <Star
+                        className="text-transparent"
+                        fill="orange"
+                        size={15}
+                      />
+                    ) : (
+                      <Star
+                        className="text-transparent"
+                        fill="gray"
+                        size={15}
+                      />
+                    )}
+
                             <p className="text-xs font-medium text-yellow-700">
-                              4/5 rating
+                              {curr.count}/5 rating
                             </p>
                           </div>
                         </div>
 
                         <p className="text-sm mt-3 mb-3 leading-relaxed tracking-wider" >
-                          Lorem ipsum dolor, sit amet consectetur adipisicing
-                          elit. Id dolorem pariatur dolore sapiente animi?
+                          {curr.comment}
                         </p>
                       </div>
                     </div>

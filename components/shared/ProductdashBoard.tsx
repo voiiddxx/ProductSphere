@@ -39,8 +39,11 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
   const [IsOwner, setIsOwner] = useState<boolean>(false);
   const [Tasks, setTasks] = useState<any>(null);
   const [NavBarData, setNavBarData] = useState<any>(null);
+  const [ProductData, setProductData] = useState<any>(null);
 
   useEffect(() => {
+    console.log("Value of Data: " , data);
+    
     const localUser = localStorage.getItem("x-auth-id");
     const userId = +localUser!;
     if (data.ownerId === userId) {
@@ -52,10 +55,12 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
       const prodId = +data.productId;
       const taskRes = await getTaskAsperProductId(prodId);
       setTasks(taskRes);
-      console.log(data);
+      // console.log(data);
 
       // console.log("taskres",taskRes);
     };
+
+    
     getTasks();
   }, []);
 
@@ -97,7 +102,9 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
               <MousePointerClick size={17} strokeWidth={1.5} />
               <p className="text-xs font-medium ">Product Overveiw</p>
             </div>
-            <div className="flex items-center gap-2 mt-6 px-4 ">
+            <div onClick={()=>{
+              setNavBarData(null);
+            }} className="flex items-center gap-2 mt-6 px-4 ">
               <ListTodo size={17} strokeWidth={1.5} />
               <p className="text-xs font-medium ">Assigned Tasks</p>
             </div>
@@ -294,7 +301,8 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
         )}
 
         {/* navbar logic stays here */}
-        {NavBarData == "Overview" && <OverView />}
+        {NavBarData == "Overview" && <OverView data={data} />}
+        {/* {NavBarData == "Overview" && <OverView data={data} />} */}
       </div>
     </div>
   );

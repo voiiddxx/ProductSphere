@@ -75,27 +75,27 @@ const TaskAssignedCard = ({ data }: AssignTaskProps) => {
         {
            data.priority == "High" && (
             <div className="px-2 py-1 rounded-full bg-red-100" >
-            <p className="text-[10px] font-medium text-red-600" >{data.priority}</p>
+            <p className="text-[10px] font-medium text-red-600" >Priority: {data.priority}</p>
             </div>
            )
         }
         {
            data.priority == "Average" && (
             <div className="px-2 py-1 rounded-full bg-yellow-100" >
-            <p className="text-[10px] font-medium text-yellow-600" >{data.priority}</p>
+            <p className="text-[10px] font-medium text-yellow-600" >Priority: {data.priority}</p>
             </div>
            )
         }
         {
            data.priority == "Low" && (
             <div className="px-2 py-1 rounded-full bg-green-100" >
-            <p className="text-[10px] font-medium text-green-600" >{data.priority}</p>
+            <p className="text-[10px] font-medium text-green-600" >Priority: {data.priority}</p>
             </div>
            )
         }
 
         <div className="px-2 py-1 rounded-full bg-indigo-100" >
-        <p className="text-[10px] font-medium text-indigo-700" >{data.status}</p>
+        <p className="text-[10px] font-medium text-indigo-700" >Status:{data.status}</p>
         </div>
 
         </div>

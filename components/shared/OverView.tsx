@@ -5,11 +5,38 @@ import {
   Leaf,
   ListTodoIcon,
   Loader,
+  MoreHorizontal,
   Network,
   Zap,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+const users = [
+  {
+    username: "void",
+    email: "void@gmail.com",
+  },
+  {
+    username: "void",
+    email: "void@gmail.com",
+  },
+  {
+    username: "void",
+    email: "void@gmail.com",
+  },
+  {
+    username: "void",
+    email: "void@gmail.com",
+  },
+  {
+    username: "void",
+    email: "void@gmail.com",
+  },
+  {
+    username: "void",
+    email: "void@gmail.com",
+  },
+];
 const OverView = () => {
   return (
     <div className="w-full px-8 py-4 ">
@@ -144,22 +171,52 @@ const OverView = () => {
       {/* cards div end */}
 
       {/* tabs div */}
-      <div className="mt-5 border-t pt-5" >
-      <Tabs defaultValue="Members" className="w-full">
-        <TabsList>
-          <TabsTrigger value="Members">Members</TabsTrigger>
-          <TabsTrigger value="Feedbacks">Feedbacks</TabsTrigger>
-          <TabsTrigger value="Upvotes">Upvotes</TabsTrigger>
-          <TabsTrigger value="password">Password</TabsTrigger>
-        </TabsList>
-        <TabsContent value="account">
-          Make changes to your account here.
-        </TabsContent>
-        <TabsContent value="password">Change your password here.</TabsContent>
-      </Tabs>
+      <div className="mt-5 border-t pt-5">
+        <Tabs defaultValue="Members" className="w-full">
+          <TabsList>
+            <TabsTrigger value="Members">Members</TabsTrigger>
+            <TabsTrigger value="Feedbacks">Feedbacks</TabsTrigger>
+            <TabsTrigger value="Upvotes">Upvotes</TabsTrigger>
+            <TabsTrigger value="password">Password</TabsTrigger>
+          </TabsList>
+          <TabsContent value="Members">
+            <div className="mt-4 px-3">
+              <div className="w-full" >
+                <p className="text-xl font-medium" >Product Members</p>
+                {users.map((curr: any) => {
+                  return <div className="w-full h-20 flex justify-between items-center border-b" >
+                    <div className="flex gap-2" >
+                    <div className="h-10 w-10 rounded-full bg-slate-400" ></div>
+                    <div>
+                        <p className="text-sm font-medium text-zinc-900" >{curr.username}</p>
+                        <p className="text-xs font-normal text-zinc-600" >{curr.email}</p>
+                    </div>
+                    </div>
+
+                    <div className="flex gap-5" >
+                        <div className="px-3 py-1 bg-indigo-100 rounded-full" >
+                            <p className="text-indigo-700 font-medium text-xs" >5 Assigned tasks</p>
+                        </div>
+                        <div className="px-3 py-1 bg-green-100 rounded-full" >
+                            <p className="text-green-700 font-medium text-xs" >4 completed tasks</p>
+                        </div>
+                        <div className="px-3 py-1 bg-yellow-100 rounded-full" >
+                            <p className="text-yellow-700 font-medium text-xs" >4 completed tasks</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <MoreHorizontal className="text-zinc-800" />
+                    </div>
+                  </div>;
+                })}
+              </div>
+            </div>
+          </TabsContent>
+          <TabsContent value="password">Change your password here.</TabsContent>
+        </Tabs>
       </div>
       {/* tabs div end */}
-      
     </div>
   );
 };

@@ -7,9 +7,11 @@ import {
   Loader,
   MoreHorizontal,
   Network,
+  StarIcon,
   Zap,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Star } from "lucide-react";
 
 const users = [
   {
@@ -35,6 +37,29 @@ const users = [
   {
     username: "void",
     email: "void@gmail.com",
+  },
+];
+
+const feedbacks = [
+  {
+    comment: "this is good product",
+    star: 3,
+  },
+  {
+    comment: "this is good product",
+    star: 3,
+  },
+  {
+    comment: "this is good product",
+    star: 3,
+  },
+  {
+    comment: "this is good product",
+    star: 3,
+  },
+  {
+    comment: "this is good product",
+    star: 3,
   },
 ];
 const OverView = () => {
@@ -181,39 +206,99 @@ const OverView = () => {
           </TabsList>
           <TabsContent value="Members">
             <div className="mt-4 px-3">
-              <div className="w-full" >
-                <p className="text-xl font-medium" >Product Members</p>
+              <div className="w-full">
+                <p className="text-xl font-medium">Product Members</p>
                 {users.map((curr: any) => {
-                  return <div className="w-full h-20 flex justify-between items-center border-b" >
-                    <div className="flex gap-2" >
-                    <div className="h-10 w-10 rounded-full bg-slate-400" ></div>
-                    <div>
-                        <p className="text-sm font-medium text-zinc-900" >{curr.username}</p>
-                        <p className="text-xs font-normal text-zinc-600" >{curr.email}</p>
-                    </div>
-                    </div>
+                  return (
+                    <div className="w-full h-20 flex justify-between items-center border-b">
+                      <div className="flex gap-2">
+                        <div className="h-10 w-10 rounded-full bg-slate-400"></div>
+                        <div>
+                          <p className="text-sm font-medium text-zinc-900">
+                            {curr.username}
+                          </p>
+                          <p className="text-xs font-normal text-zinc-600">
+                            {curr.email}
+                          </p>
+                        </div>
+                      </div>
 
-                    <div className="flex gap-5" >
-                        <div className="px-3 py-1 bg-indigo-100 rounded-full" >
-                            <p className="text-indigo-700 font-medium text-xs" >5 Assigned tasks</p>
+                      <div className="flex gap-5">
+                        <div className="px-3 py-1 bg-indigo-100 rounded-full">
+                          <p className="text-indigo-700 font-medium text-xs">
+                            5 Assigned tasks
+                          </p>
                         </div>
-                        <div className="px-3 py-1 bg-green-100 rounded-full" >
-                            <p className="text-green-700 font-medium text-xs" >4 completed tasks</p>
+                        <div className="px-3 py-1 bg-green-100 rounded-full">
+                          <p className="text-green-700 font-medium text-xs">
+                            4 completed tasks
+                          </p>
                         </div>
-                        <div className="px-3 py-1 bg-yellow-100 rounded-full" >
-                            <p className="text-yellow-700 font-medium text-xs" >4 completed tasks</p>
+                        <div className="px-3 py-1 bg-yellow-100 rounded-full">
+                          <p className="text-yellow-700 font-medium text-xs">
+                            4 completed tasks
+                          </p>
                         </div>
-                    </div>
+                      </div>
 
-                    <div>
+                      <div>
                         <MoreHorizontal className="text-zinc-800" />
+                      </div>
                     </div>
-                  </div>;
+                  );
                 })}
               </div>
             </div>
           </TabsContent>
-          <TabsContent value="password">Change your password here.</TabsContent>
+          <TabsContent value="Feedbacks">
+            <div className="px-4 py-4">
+              <p className="text-2xl font-medium text-zinc-800">
+                Product feedback
+              </p>
+
+              <div className="mt-5">
+                {feedbacks.map((curr: any) => {
+                  return (
+                    <div className="min-h-20 border-b flex items-start justify-center flex-col ">
+                      <div className="flex gap-4">
+                        <div className="h-10 w-10 rounded-full bg-slate-400"></div>
+                        <div>
+                          <p className="text-sm font-medium text-zinc-900">
+                            Nikhil
+                          </p>
+                          <p className="text-xs font-normal text-zinc-600">
+                            nikhildesign00@gmail.com
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* second div */}
+
+                      <div className="mt-3">
+                        <div>
+                          <div className="px-3 py-1 flex rounded-full">
+                            <Star  size={15} color="orange" fill="orange" />
+                            <StarIcon  size={15} color="orange" fill="orange" />
+                            <StarIcon  size={15} color="orange" fill="orange" />
+                            <StarIcon  size={15} color="gray" fill="gray" />
+                            <StarIcon  size={15} color="gray" fill="gray" />
+                            <p className="text-xs font-medium text-yellow-700">
+                              4/5 rating
+                            </p>
+                          </div>
+                        </div>
+
+                        <p className="text-sm mt-3 mb-3 leading-relaxed tracking-wider" >
+                          Lorem ipsum dolor, sit amet consectetur adipisicing
+                          elit. Id dolorem pariatur dolore sapiente animi?
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </TabsContent>
         </Tabs>
       </div>
       {/* tabs div end */}

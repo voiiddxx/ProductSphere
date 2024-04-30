@@ -130,6 +130,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
 
   return (
     <div className="h-screen w-full md:px-16">
+        
       {/* navbar */}
       <div className="h-15 w-full border-b"></div>
 

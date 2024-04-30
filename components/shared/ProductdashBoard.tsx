@@ -66,9 +66,9 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
       {/* middle part */}
       <div className="h-screen w-full">
         {/* middle upper navbar */}
-        <div className=" w-full bg-zinc-50 flex flex-col justify-center py-5 px-10 border-b">
+        <div className=" w-full bg-zinc-50 flex flex-col justify-center py-5 md:px-10 px-4 border-b">
           {/* upper div product name and other sections */}
-          <div className="flex w-full justify-between ">
+          <div className="flex md:flex-row flex-col gap-4  w-full justify-between ">
             {/* left upper part */}
             <div className="flex items-center gap-2">
               <div className="h-10  w-10 bg-indigo-700 flex justify-center items-center rounded-lg" style={{backgroundColor:data.productcolor}}>
@@ -119,7 +119,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
           </div>
 
           {/* bottom nav bar of upper bar */}
-          <div className="w-full flex mt-5 gap-10">
+          <div className="w-full md:flex mt-5 gap-10 hidden">
             {/* first div */}
             <div className="flex  items-center">
               <Dot

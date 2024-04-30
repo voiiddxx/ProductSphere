@@ -5,7 +5,7 @@ import React from 'react'
 const DetailsSidebar = () => {
     
   return (
-    <div className='h-full w-[300px] border-r flex flex-col justify-between' >
+    <div className='h-full w-[80px] md:w-[300px] border-r flex flex-col justify-between' >
         {/* upper div */}
         <div className='w-full' >
             {/* product logo div */}
@@ -18,7 +18,7 @@ const DetailsSidebar = () => {
             </div>
 
             {/* main nav links */}
-            <div className=' flex flex-col mt-5 px-5' >
+            <div className=' md:flex hidden flex-col mt-5 px-5' >
                 <div className=' flex gap-1 items-center' >
                 <p className='font-medium text-zinc-800 text-sm' >ProductSphere</p>
                 <CornerRightDown size={15} strokeWidth={1.75}/>
@@ -42,7 +42,7 @@ const DetailsSidebar = () => {
                             {/* nav 2 */}
 
                             
-            <div className=' flex flex-col mt-5 px-5' >
+            <div className=' md:flex flex-col mt-5 px-5 hidden' >
                 <div className=' flex gap-1 items-center' >
                 <p className='font-medium text-zinc-800 text-sm' >ProductSphere</p>
                 <CornerRightDown size={15} strokeWidth={1.75}/>

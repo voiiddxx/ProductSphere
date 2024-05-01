@@ -26,7 +26,7 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
   const [Selectedmembers, setSelectedmembers] = useState<any>([]);
   const [ClickedMember, setClickedMember] = useState<any>(null);
   const [MemberstToAdd, setMemberstToAdd] = useState<any[]>([]);
-
+  const [IsLoading, setIsLoading] = useState<boolean>(true);
   const handleUserChange = (curr: any) => {
     setMemberstToAdd([...MemberstToAdd, +curr.id]);
     setSelectedmembers([...Selectedmembers, curr]);
@@ -48,16 +48,15 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
     getAllmembers();
   }, []);
 
-
   // add team mebers action
-  const addteamMemeber =async ()=>{
+  const addteamMemeber = async () => {
     console.log(MemberstToAdd);
-    const res = await AddteamMembersActions({teamMember:MemberstToAdd , prodId:productId});
+    const res = await AddteamMembersActions({
+      teamMember: MemberstToAdd,
+      prodId: productId,
+    });
     console.log(res);
-    
-    
-
-  }
+  };
   return (
     <AlertDialog>
       <AlertDialogTrigger>
@@ -171,7 +170,9 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={addteamMemeber} >Continue</AlertDialogAction>
+          <AlertDialogAction onClick={addteamMemeber}>
+            Continue
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

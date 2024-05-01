@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ArrowDown,  Sparkle, Star, Triangle } from "lucide-react";
+import { ArrowDown,  LoaderIcon,  Sparkle, Star, Triangle } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -68,6 +68,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
   const [reviewRate, setreviewRate] = useState<number>(0);
   const [reviewComment, setreviewComment] = useState<string>("");
   const [AllReviews, setAllReviews] = useState<any>(null);
+  const [Isloading, setIsloading] = useState<boolean>(false);
 
   const handleProductReview = async () => {
     const localuser = localStorage.getItem("x-auth-id");
@@ -111,6 +112,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
   }, []);
 
   const JoinTeamNow = async () => {
+    setIsloading(true);
     const token = localStorage.getItem("x-auth-id");
     const userId = +token!;
     // alert(userId);
@@ -120,14 +122,17 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
     try {
       const res = await JoinProductAction({productCode:productCode , productId:proId , userdId:userId});
       if(res.status == 200){
+        setIsloading(false);
         toast.success("Product Joined , You Can Contribute Now")
         console.log("Join Res: " , res);
       }else{
+        setIsloading(false);
         toast.error("Invalid Product Code")
         console.log("Some error found");
 
       }
     } catch (error) {
+      setIsloading(false);
       console.log(error);
     }
   };
@@ -212,7 +217,12 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
                 {/* buttons */}
                 <div className="flex mt-10 justify-end gap-2" >
                   <Button variant={"outline"} >Cancel</Button>
-                  <Button onClick={JoinTeamNow}  className="bg-indigo-700" style={{backgroundColor:Product.productcolor}}>Join Now</Button>
+                 {
+                  Isloading == true ?  <Button disabled onClick={JoinTeamNow}  className="bg-indigo-700 flex gap-2" style={{backgroundColor:Product.productcolor}}>
+                    <LoaderIcon className="text-zinc-200 animate-spin" />
+                    <p>Please wait...</p>
+                  </Button> :  <Button onClick={JoinTeamNow}  className="bg-indigo-700" style={{backgroundColor:Product.productcolor}}>Join Now</Button>
+                 }
 
                 </div>
                 {/* product join dialogue box */}

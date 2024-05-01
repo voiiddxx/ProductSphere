@@ -38,7 +38,7 @@ type ProductDataProps = {
 const ProductdashBoard = ({ data }: ProductDataProps) => {
   const [IsOwner, setIsOwner] = useState<boolean>(false);
   const [Tasks, setTasks] = useState<any>(null);
-  const [NavBarData, setNavBarData] = useState<any>(null);
+  const [NavBarData, setNavBarData] = useState<any>("Overview");
   const [ProductData, setProductData] = useState<any>(null);
 
   useEffect(() => {
@@ -288,6 +288,14 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
               <p className="text-xs font-normal mt-1 text-zinc-500">
                 All the tasks you have assigned to the team members
               </p>
+
+              {
+                Tasks.data.length < 1 && (
+                  <div className="flex w-full justify-center items-center mt-28" >
+                    <p>No Data found</p>
+                  </div>
+                )
+              }
               {Tasks && (
                 <div className="flex gap-6 flex-wrap mt-5">
                   {Tasks.data.map((curr: any) => {

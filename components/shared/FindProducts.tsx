@@ -23,7 +23,7 @@ const FindProducts =  () => {
     } , [])
   
   return (
-    <div className="h-screen w-full md:px-5 bg-slate-100">
+    <div className="h-screen w-full md:px-5 bg-zinc-100">
       {/* upper bar for heading of the products */}
       <div>
         <div className="flex items-start gap-2 mt-5">   

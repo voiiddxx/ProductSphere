@@ -85,7 +85,7 @@ const DashboardHome = () => {
           {User.ownedProducts.map((curr: any) => {
             return (
              <Link href={`/dashboard/products/${curr.productId}`} >
-              <div className="h-[250px] md:w-[400px] w-[380px] bg-white rounded-lg border flex flex-col px-5 py-5 justify-between hover:bg-white">
+              <div className="h-[250px] md:w-[400px] hover:bg-zinc-200 w-[380px] bg-white rounded-lg border flex flex-col px-5 py-5 justify-between hover:border-zinc-400">
                 <div>
                   {/* <div className='h-16 w-16 rounded-full border bg-white' ></div> */}
                   <div

@@ -13,7 +13,7 @@ const FindProductCard = ({productData}:findProducCardProps) => {
       
   return (
     <Link href={`/products/${productData.productId}`} >
-    <div className=" md:w-[400px] w-[330px] bg-white border rounded-md px-4 py-4">
+    <div className=" md:w-[400px] w-[330px] h-[380px] bg-white border rounded-md px-4 py-4">
               {/* upper part of card */}
               <div className="flex justify-between items-start">
                 {/* image div */}

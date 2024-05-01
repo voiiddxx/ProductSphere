@@ -7,6 +7,7 @@ import {
   ImagePlus,
   Link,
   Linkedin,
+  LoaderIcon,
   Plus,
   Search,
   User,
@@ -53,10 +54,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import { createProductAction } from "@/lib/actions/product.action";
-
-
+import { toast, Toaster } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(2).max(15),
@@ -74,8 +74,6 @@ const colortheme = [
   { color: "#478d00", colorid: 7 },
 ];
 
-
-
 const productteamMember = [
   { member: "Nikhil" },
   { member: "Rajjev" },
@@ -83,14 +81,7 @@ const productteamMember = [
   { member: "Govinda" },
 ];
 
-
-
-
-
-
-
 const CreateProduct = () => {
-
   const handleProductlogoButton = useRef<any>(null);
   const handleProductDocumentone = useRef<any>(null);
   const handleProductDocumentSecond = useRef<any>(null);
@@ -109,30 +100,23 @@ const CreateProduct = () => {
   const [productSkills, setproductSkills] = useState<any>([]);
   const [ProductCode, setProductCode] = useState<any>(null);
 
+  const [isLoading, setisLoading] = useState<boolean>(false);
 
+  const handleAddTechstack = () => {
+    setproductSkills([...productSkills, AddSkill]);
+  };
 
-  
-
-
-
-
-  const handleAddTechstack = ()=>{
-      setproductSkills([...productSkills , AddSkill]);
-  }
-
-
-  const hanldeProcuctImage = (e:any)=>{
+  const hanldeProcuctImage = (e: any) => {
     setproductLogo(e.target.files);
     const file = e.target.files[0];
-    if(file){
-        const reader = new FileReader();
-        reader.onloadend = ()=>{
-            setshowLogo(reader.result);
-        }
-        reader.readAsDataURL(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setshowLogo(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
-
-  }
+  };
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -144,47 +128,63 @@ const CreateProduct = () => {
     },
   });
 
-
-
- 
-
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setisLoading(true);
+    const ownerIdForproduct = localStorage.getItem("x-auth-id");
+    console.log("this is", ownerIdForproduct);
 
-    const ownerIdForproduct = localStorage.getItem('x-auth-id');
-    console.log("this is",ownerIdForproduct);
-    
-    const parsedData = + ownerIdForproduct!;
-    console.log("this is",parsedData);
-    
-    if(productLogo && productSkills && ProductColor && StartDate && endDate && ProductCode){
-      console.log("this is image url: " , productLogo);
-      
-        const imageUrl = await uploadDataonCloudinary(productLogo);
-        if(!imageUrl){
-          return Error("Some error found");
-        }
+    const parsedData = +ownerIdForproduct!;
+    console.log("this is", parsedData);
 
-      const productRes = await createProductAction({data:{name:values.name , detail:values.detail , visibility:values.visibility , category:"Saas" , startDate:StartDate , endDate:endDate , productcolor:ProductColor , productlogo:imageUrl , url:"thisisurl" , ownerId: parsedData , productCode:ProductCode , skills:productSkills}});
+    if (
+      productLogo &&
+      productSkills &&
+      ProductColor &&
+      StartDate &&
+      endDate &&
+      ProductCode
+    ) {
+      console.log("this is image url: ", productLogo);
 
-      if(productRes.status == 200){
-        alert("Product Posted");
-      }else{
-        alert("Some error occured");
+      const imageUrl = await uploadDataonCloudinary(productLogo);
+      if (!imageUrl) {
+        return Error("Some error found");
       }
-    }else{
-      console.log("Some Field are missing");
-      
-    }
-   
-  }
 
-  const handleData = () => {
-    console.log("this is start data", StartDate);
-  };
+      const productRes = await createProductAction({
+        data: {
+          name: values.name,
+          detail: values.detail,
+          visibility: values.visibility,
+          category: "Saas",
+          startDate: StartDate,
+          endDate: endDate,
+          productcolor: ProductColor,
+          productlogo: imageUrl,
+          url: "thisisurl",
+          ownerId: parsedData,
+          productCode: ProductCode,
+          skills: productSkills,
+        },
+      });
+
+      if (productRes.status == 200) {
+        setisLoading(false);
+        toast.success("Product Added🚀");
+      } else {
+        setisLoading(false);
+        toast.error("Some Issue occured");
+      }
+    } else {
+      setisLoading(false);
+      toast.info("Some fields are missing");
+    }
+  }
 
   return (
     <div className="w-full min-h-screen ">
+      <Toaster position="top-right" richColors />
       <div className="h-12 w-full bg-zinc-100 flex pl-10 gap-2 items-center">
         <Hash size={15} strokeWidth={1.5} />
         <p className="text-sm font-medium">Create a new product</p>
@@ -245,7 +245,8 @@ const CreateProduct = () => {
                         <Textarea
                           className="h-[150px]"
                           placeholder="Platform build to enhance the product building experience in team , using this product you can enhanced the experince of product building experince⚡"
-                         {...field} />
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -342,8 +343,19 @@ const CreateProduct = () => {
                 </div>
               </div>
               {/* fifth row */}
-
-              <Button type="submit" >Submit</Button>
+              <div className="flex gap-24 justify-between">
+                <Button className="w-full mt-4" variant={"outline"}>
+                  Cancel
+                </Button>
+                {
+                  isLoading == true ? <Button disabled className="w-full flex justify-center items-center gap-2 mt-4 bg-indigo-700" type="submit">
+                    <LoaderIcon className="text-zinc-300 animate-spin" />
+                    <p>Please wait...</p>
+                </Button> : <Button className="w-full mt-4 bg-indigo-700" type="submit">
+                  Submit
+                </Button>
+                } 
+              </div>
             </form>
           </Form>
         </div>
@@ -470,29 +482,38 @@ const CreateProduct = () => {
               {productSkills.map((curr: any) => {
                 return (
                   <div className="flex bg-zinc-100 text-indigo-700 px-2 py-2 rounded-sm gap-1 relative">
-                   
-                    <Zap  strokeWidth={1.5} size={15} />
+                    <Zap strokeWidth={1.5} size={15} />
                     <p className="text-xs font-medium">{curr}</p>
                   </div>
                 );
               })}
               <Dialog>
                 <DialogTrigger>
-                <div className="flex gap-1 border px-2 py-2 rounded-lg border-dashed items-center text-indigo-700" >
+                  <div className="flex gap-1 border px-2 py-2 rounded-lg border-dashed items-center text-indigo-700">
                     <Plus size={16} strokeWidth={1.5} />
-                    <p className="text-xs font-semibold" >Add TechStack</p>
+                    <p className="text-xs font-semibold">Add TechStack</p>
                   </div>
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle>Are you absolutely sure?</DialogTitle>
                     <DialogDescription>
-                      you can add your product techstack one by one so please don't add more than one techstak at a time
-                      <Input onChange={(e)=>{
-                        setAddSkill(e.target.value);
-                      }} className="mt-4"  placeholder="Enter your techstack here" />
-                      <div className="w-full flex justify-end" >
-                        <Button onClick={handleAddTechstack} className="bg-indigo-700 mt-4" >Submit</Button>
+                      you can add your product techstack one by one so please
+                      don't add more than one techstak at a time
+                      <Input
+                        onChange={(e) => {
+                          setAddSkill(e.target.value);
+                        }}
+                        className="mt-4"
+                        placeholder="Enter your techstack here"
+                      />
+                      <div className="w-full flex justify-end">
+                        <Button
+                          onClick={handleAddTechstack}
+                          className="bg-indigo-700 mt-4"
+                        >
+                          Submit
+                        </Button>
                       </div>
                     </DialogDescription>
                   </DialogHeader>
@@ -542,9 +563,13 @@ const CreateProduct = () => {
           {/* row 4 */}
           <div className="mt-5">
             <p className="text-sm font-medium">Product Code</p>
-            <Input onChange={(e)=>{
-              setProductCode(e.target.value);
-            }} className="mt-2" placeholder="Enter Your Code here" />
+            <Input
+              onChange={(e) => {
+                setProductCode(e.target.value);
+              }}
+              className="mt-2"
+              placeholder="Enter Your Code here"
+            />
             <div className="flex text-zinc-600 mt-2">
               <Volume1 strokeWidth={1.5} size={17} />
               <p className="text-xs font-normal">

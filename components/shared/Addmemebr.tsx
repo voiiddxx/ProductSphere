@@ -11,11 +11,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Check, GitBranch, Network, PlusCircle, Search, X } from "lucide-react";
+import { Check, Dot, GitBranch, Network, PlusCircle, Search, X } from "lucide-react";
 import { getAllUsers } from "@/lib/actions/user.action";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import { AddteamMembersActions } from "@/lib/actions/product.action";
+import { toast, Toaster } from "sonner";
 
 type AddmemebrsProps = {
   productId: number;
@@ -50,15 +51,25 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
 
   // add team mebers action
   const addteamMemeber = async () => {
+    setIsLoading(true);
     console.log(MemberstToAdd);
     const res = await AddteamMembersActions({
       teamMember: MemberstToAdd,
       prodId: productId,
     });
+
+    if(res.status == 400){
+      toast.error("Some issue happend");
+    }
+    if(res.status == 200){
+      toast.success("Members added");
+    }
+
     console.log(res);
   };
   return (
     <AlertDialog>
+      <Toaster position="top-right" richColors />
       <AlertDialogTrigger>
         <div className="flex">
           <Network size={15} strokeWidth={1.5} />
@@ -68,9 +79,9 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            <div className="flex">
-              <GitBranch size={15} />
-              <p className="text-sm font-medium">Add team meber</p>
+            <div className="flex items-center">
+              <Dot className="text-indigo-700" absoluteStrokeWidth strokeWidth={8} />
+              <p className="text-sm font-medium">Add Product Members</p>
             </div>
           </AlertDialogTitle>
           <AlertDialogDescription>
@@ -157,7 +168,7 @@ const Addmemebr = ({ productId }: AddmemebrsProps) => {
                           </div>
                         ) : (
                           <div>
-                            <PlusCircle size={25} className="text-indigo-700" />
+                            <PlusCircle size={25} strokeWidth={1.5} className="text-indigo-700" />
                           </div>
                         )}
                       </div>

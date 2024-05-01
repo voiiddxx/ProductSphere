@@ -289,7 +289,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
                 All the tasks you have assigned to the team members
               </p>
               {Tasks && (
-                <div className="flex gap-2 flex-wrap mt-5">
+                <div className="flex gap-6 flex-wrap mt-5">
                   {Tasks.data.map((curr: any) => {
                     return <TaskDetail data={curr} />;
                   })}

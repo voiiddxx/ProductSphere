@@ -59,7 +59,7 @@ const DashboardLogic = () => {
       </div>
   </div>
       {/* right div */}
-      <div className='min-h-screen w-full   flex justify-normal items-start px-5 bg-slate-100' >
+      <div className='min-h-screen w-full   flex justify-normal items-start px-5 bg-zinc-100' >
           {/* upper div */}
           
           {/* start project div */}

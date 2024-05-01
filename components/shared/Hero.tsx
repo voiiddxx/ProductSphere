@@ -83,7 +83,7 @@ const Hero = ({ userid }: heroProps) => {
         </div>
       </div>
       <h1 className="md:text-6xl font-bold  md:tracking-normal md:leading-tight text-white mt-5 text-center text-3xl leading-snug">
-        Manage Your Product <br /> With Help of <span className="text-zinc-950 bg-white rounded-md px-4" >
+        Manage Your Product <br /> With Help of <span className="text-white rounded-md px-4" >
         ProductSphere</span> {" "}
       </h1>
       <p className="text-white md:mt-2 text-center tracking-wide leading-relaxed md:text-sm text-xs mt-4">

@@ -28,6 +28,8 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { AddReviewAction } from "@/lib/actions/review.action";
+import { Toaster, toast } from 'sonner'
+import { color } from "framer-motion";
 
 type ProductDetailProps = {
   id: any;
@@ -71,6 +73,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
     const localuser = localStorage.getItem("x-auth-id");
     const userid = +localuser!;
     if (!userid) {
+      toast.info("Unauthorized , please login first")
       alert("Unauthorized , please login first");
     } else {
       const res = await AddReviewAction({
@@ -81,11 +84,12 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
           userid: userid,
         },
       });
-      if (res) {
+      if (res.status==200) {
+        toast.success("Comment Added")
         console.log(res.data);
         // setAllReviews([...AllReviews , res.data]);
-        
       } else {
+        toast.error("Some issue occured");
         console.log("Some Error occured");
       }
     }
@@ -115,9 +119,11 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
 
     try {
       const res = await JoinProductAction({productCode:productCode , productId:proId , userdId:userId});
-      if(res){
+      if(res.status == 200){
+        toast.success("Product Joined , You Can Contribute Now")
         console.log("Join Res: " , res);
       }else{
+        toast.error("Invalid Product Code")
         console.log("Some error found");
 
       }
@@ -130,7 +136,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
 
   return (
     <div className="h-screen w-full md:px-16">
-        
+        <Toaster richColors position="top-right" />
       {/* navbar */}
       <div className="h-15 w-full border-b"></div>
 
@@ -329,7 +335,7 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>
-                <h1 className="text-xl font-bold">Give your review</h1>
+                <h1 className="text-xl font-bold" style={{color:Product.productcolor}}>Give your review</h1>
               </AlertDialogTitle>
               <AlertDialogDescription>
                 Give the review based on the expreince , design , creativity and
@@ -341,7 +347,8 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
                       setreviewRate(+data);
                     }}
                     type="number"
-                    className="outline-none border-none text-xl text-indigo-700 placeholder:text-zinc-500 font-semibold"
+                    style={{color:Product.productcolor}}
+                    className="outline-none border-none text-xl  placeholder:text-zinc-500 font-semibold"
                     placeholder="Rate Between 1-5 Here"
                   />
                   <br />
@@ -349,7 +356,8 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
                     onChange={(e) => {
                       setreviewComment(e.target.value);
                     }}
-                    className="outline-none h-16 border-none font-medium  mt-4 w-full text-sm placeholder:text-indigo-700"
+                    style={{color:Product.productcolor}}
+                    className="outline-none h-16 border-none font-medium  mt-4 w-full text-sm"
                     placeholder="Write your review here"
                     type="text"
                   />

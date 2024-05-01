@@ -74,6 +74,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { AssignNewTasks } from "@/lib/actions/task.action";
+import { Toaster, toast } from 'sonner'
 
 
 //  assign task schema
@@ -111,9 +112,11 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
   });
 
   const handleAddTaskMembers = (curr:any)=>{
+    toast.info("Added");
       setTaskmembersforPost([...TaskmembersforPost , curr.id])
       setTaskMembers([...TaskMembers , curr.avatar]);
   }
+
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -160,6 +163,7 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
 
   return (
     <Drawer>
+      <Toaster position="top-right" richColors />
       <DrawerTrigger className="flex gap-1 ">
         <ListTodo size={15} strokeWidth={1.5} />
         <p className="text-xs font-medium">Assign Tasks</p>
@@ -361,21 +365,42 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                         {ProdMembers != null && (
                           <>
                             <AlertDialog>
-                              <AlertDialogTrigger>Open</AlertDialogTrigger>
+                              <AlertDialogTrigger>
+                                <div className="h-10 w-10 flex justify-center items-center rounded-full border" >
+                                  <Plus size={18} strokeWidth={1.5} />
+                                </div>
+                              </AlertDialogTrigger>
                               <AlertDialogContent>
                                 <AlertDialogHeader>
                                   <AlertDialogTitle>
                                     <p className="text-xl font-medium text-zinc-800" >Assing task members</p>
                                     <p className="text-sm font-medium text-zinc-500" >Select your task team members</p>
-                                  </AlertDialogTitle>
-                                  <AlertDialogDescription>
-                                  <div className="border-t w-full" >
-
-                            
 
                                     {
+                              TaskMembers.length > 0 && (
+                                <div className="flex gap-3 flex-wrap mt-4 mb-4" >
+                                   {TaskMembers.map((curr: any) => {
+                              return (
+                                <div className="h-10 w-10 relative rounded-full bg-indigo-700 flex justify-center items-center">
+                                  
+                                  <Image className="h-10 w-10 rounded-full object-cover" src={curr} height={900} width={900} alt="avatar" />
+                                </div>
+                              );
+                            })}
+                                </div>
+                              )
+                            }
+                                  </AlertDialogTitle>
+                                  <AlertDialogDescription>
+                                  <div className="border-t w-full " >
+
+                                    <div className="flex gap-4" >
+                                 
+                                    </div>
+
+                                   {
                                       ProdMembers.map((curr:any)=>{
-                                        return <div   className="border-b w-full flex justify-between py-4" >
+                                        return <div className="border-b w-full flex justify-between py-4" >
 
                                           {/* left div */}
                                           <div className="flex gap-2" >
@@ -394,7 +419,6 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                                         </div>
                                       })
                                     }
-
                                   </div>
                                   </AlertDialogDescription>
                                 </AlertDialogHeader>
@@ -408,7 +432,7 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                             </AlertDialog>
                             {
                               TaskMembers.length > 0 && (
-                                <div>
+                                <div className="flex gap-3 flex-wrap" >
                                    {TaskMembers.map((curr: any) => {
                               return (
                                 <div onClick={()=>{

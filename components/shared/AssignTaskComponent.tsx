@@ -95,7 +95,7 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
   const [StartDate, setStartDate] = useState<any>(null);
   const AttachmentButton = useRef<any>(null);
   const [PinnedComment, setPinnedComment] = useState<any>(null);
-  const [Tags, setTags] = useState<any>(["dndnne" , "dsmnnj"]);
+  const [Tags, setTags] = useState<any>([]);
   const [TagToBeAdded, setTagToBeAdded] = useState<any>(null);
   const [Priority, setPriority] = useState<any>(null);
   const [ProdMembers, setProdMembers] = useState<any>(null);

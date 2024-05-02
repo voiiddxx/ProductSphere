@@ -6,6 +6,7 @@ import {
   ListTodoIcon,
   Loader,
   MoreHorizontal,
+  MousePointerClick,
   Network,
   StarIcon,
   Zap,
@@ -71,7 +72,6 @@ const people = [
     image:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
   },
-  
 ];
 
 const feedbacks = [
@@ -97,25 +97,23 @@ const feedbacks = [
   },
 ];
 
-
-  type OverViewProps = {
-    data:any
-  }
-const OverView = ({data}:OverViewProps) => {
-  console.log("This is product Data: " , data , "size:" ) ;
+type OverViewProps = {
+  data: any;
+};
+const OverView = ({ data }: OverViewProps) => {
+  console.log("This is product Data: ", data, "size:");
   console.log(data.tasks.length);
 
-
-
-  
-  
   return (
     <div className="w-full px-8 py-4 ">
       {/* upper heading bar */}
       <div className="w-full flex justify-between">
         <h1 className="text-2xl font-semibold">Overall Insights</h1>
-        <div className="flex gap-2">
-          <Button>Edit Product</Button>
+        <div className="flex gap-2 mr-20">
+          <Button className="flex gap-2" style={{backgroundColor:data.productcolor}} >
+            <MousePointerClick color="white" />
+            <p className="font-medium text-white" >Edit product</p>
+          </Button>
         </div>
       </div>
       {/* upper heading bar end */}
@@ -157,7 +155,9 @@ const OverView = ({data}:OverViewProps) => {
           <div>
             {/* second row */}
             <div>
-              <h1 className="text-4xl mt-4 text-green-600 font-medium ">{data.tasks.length}+</h1>
+              <h1 className="text-4xl mt-4 text-green-600 font-medium ">
+                {data.tasks.length}+
+              </h1>
             </div>
 
             {/* bottom row */}
@@ -179,7 +179,9 @@ const OverView = ({data}:OverViewProps) => {
           <div>
             {/* second row */}
             <div>
-              <h1 className="text-4xl mt-4 text-pink-600 font-medium ">{data.tasks.length}+ </h1>
+              <h1 className="text-4xl mt-4 text-pink-600 font-medium ">
+                {data.tasks.length}+{" "}
+              </h1>
             </div>
 
             {/* bottom row */}
@@ -259,7 +261,13 @@ const OverView = ({data}:OverViewProps) => {
                     <div className="w-full h-20 flex justify-between items-center border-b">
                       <div className="flex gap-2">
                         <div className="h-10 w-10 rounded-full bg-slate-400">
-                          <Image src={curr.avatar} className="h-10 w-10 rounded-full object-cover" height={900} width={900} alt="users" />
+                          <Image
+                            src={curr.avatar}
+                            className="h-10 w-10 rounded-full object-cover"
+                            height={900}
+                            width={900}
+                            alt="users"
+                          />
                         </div>
                         <div>
                           <p className="text-sm font-medium text-zinc-900">
@@ -310,7 +318,13 @@ const OverView = ({data}:OverViewProps) => {
                     <div className="min-h-20 border-b flex items-start justify-center flex-col ">
                       <div className="flex gap-4">
                         <div className="h-10 w-10 rounded-full bg-slate-400">
-                          <Image src={curr.userwhoreviewed.avatar} className="h-10 w-10 rounded-full object-cover" height={900} width={900} alt="user" />
+                          <Image
+                            src={curr.userwhoreviewed.avatar}
+                            className="h-10 w-10 rounded-full object-cover"
+                            height={900}
+                            width={900}
+                            alt="user"
+                          />
                         </div>
                         <div>
                           <p className="text-sm font-medium text-zinc-900">
@@ -327,71 +341,71 @@ const OverView = ({data}:OverViewProps) => {
                       <div className="mt-3">
                         <div>
                           <div className="px-3 py-1 flex rounded-full">
-                          {curr.count > 0 ? (
-                      <Star
-                        className="text-transparent"
-                        fill="orange"
-                        size={15}
-                      />
-                    ) : (
-                      <Star
-                        className="text-transparent"
-                        fill="gray"
-                        size={15}
-                      />
-                    )}
-                    {curr.count > 1 ? (
-                      <Star
-                        className="text-transparent"
-                        fill="orange"
-                        size={15}
-                      />
-                    ) : (
-                      <Star
-                        className="text-transparent"
-                        fill="gray"
-                        size={15}
-                      />
-                    )}
-                    {curr.count > 2 ? (
-                      <Star
-                        className="text-transparent"
-                        fill="orange"
-                        size={15}
-                      />
-                    ) : (
-                      <Star
-                        className="text-transparent"
-                        fill="gray"
-                        size={15}
-                      />
-                    )}
-                    {curr.count > 3 ? (
-                      <Star
-                        className="text-transparent"
-                        fill="orange"
-                        size={15}
-                      />
-                    ) : (
-                      <Star
-                        className="text-transparent"
-                        fill="gray"
-                        size={15}
-                      />
-                    )}
-                    {curr.count > 4 ? (
-                      <Star
-                        className="text-transparent"
-                        fill="orange"
-                        size={15}
-                      />
-                    ) : (
-                      <Star
-                        className="text-transparent"
-                        fill="gray"
-                        size={15}
-                      />
-                    )}
+                            {curr.count > 0 ? (
+                              <Star
+                                className="text-transparent"
+                                fill="orange"
+                                size={15}
+                              />
+                            ) : (
+                              <Star
+                                className="text-transparent"
+                                fill="gray"
+                                size={15}
+                              />
+                            )}
+                            {curr.count > 1 ? (
+                              <Star
+                                className="text-transparent"
+                                fill="orange"
+                                size={15}
+                              />
+                            ) : (
+                              <Star
+                                className="text-transparent"
+                                fill="gray"
+                                size={15}
+                              />
+                            )}
+                            {curr.count > 2 ? (
+                              <Star
+                                className="text-transparent"
+                                fill="orange"
+                                size={15}
+                              />
+                            ) : (
+                              <Star
+                                className="text-transparent"
+                                fill="gray"
+                                size={15}
+                              />
+                            )}
+                            {curr.count > 3 ? (
+                              <Star
+                                className="text-transparent"
+                                fill="orange"
+                                size={15}
+                              />
+                            ) : (
+                              <Star
+                                className="text-transparent"
+                                fill="gray"
+                                size={15}
+                              />
+                            )}
+                            {curr.count > 4 ? (
+                              <Star
+                                className="text-transparent"
+                                fill="orange"
+                                size={15}
+                              />
+                            ) : (
+                              <Star
+                                className="text-transparent"
+                                fill="gray"
+                                size={15}
+                              />
+                            )}
 
                             <p className="text-xs font-medium text-yellow-700">
                               {curr.count}/5 rating
@@ -399,7 +413,7 @@ const OverView = ({data}:OverViewProps) => {
                           </div>
                         </div>
 
-                        <p className="text-sm mt-3 mb-3 leading-relaxed tracking-wider" >
+                        <p className="text-sm mt-3 mb-3 leading-relaxed tracking-wider">
                           {curr.comment}
                         </p>
                       </div>
@@ -410,16 +424,14 @@ const OverView = ({data}:OverViewProps) => {
             </div>
           </TabsContent>
           {/* upvotes content */}
-          <TabsContent value="Upvotes" >
-                <div className="pt-5 px-4 py-4" >
-                <p className="text-2xl font-medium text-zinc-900" >Folks</p>
-                </div>
-                <div className="flex gap-3 flex-wrap w-full mt-5" >
-                <AnimatedTooltip items={people} />
-                </div>
-
+          <TabsContent value="Upvotes">
+            <div className="pt-5 px-4 py-4">
+              <p className="text-2xl font-medium text-zinc-900">Folks</p>
+            </div>
+            <div className="flex gap-3 flex-wrap w-full mt-5">
+              <AnimatedTooltip items={people} />
+            </div>
           </TabsContent>
-          
         </Tabs>
       </div>
       {/* tabs div end */}

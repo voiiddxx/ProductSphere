@@ -1,3 +1,4 @@
+import { SignedIn, UserButton } from '@clerk/nextjs'
 import { Github, Inbox } from 'lucide-react'
 import React from 'react'
 
@@ -19,6 +20,10 @@ const DashBoardNav = () => {
                 <p className='px-2 py-1 border rounded-md cursor-pointer hover:bg-zinc-100 text-xs font-medium' >feedback</p>
                 <Github size={17} strokeWidth={1.5} />
                 <Inbox size={17} strokeWidth={1.5} />
+                <SignedIn>
+                  <UserButton afterSignOutUrl='/' >
+                  </UserButton>
+                </SignedIn>
             </div>
 
         </div>

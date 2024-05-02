@@ -16,6 +16,7 @@ import {
   CalendarIcon,
   Dot,
   File,
+  Hash,
   Link,
   ListTodo,
   Pin,
@@ -143,6 +144,7 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
 
   const handleTags = () => {
     setTags([...Tags , TagToBeAdded]);
+    toast.info(`${TagToBeAdded} added`)
   };
 
 
@@ -153,8 +155,6 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
   const getProductForTaskmembers = async ()=>{
     const productId = +prodId;
     const ProdRes = await getProductWithProductIdAction(productId);
-    console.log("Data:" , ProdRes);
-    console.log("This is the value of members: " , ProdRes.members);
     setProdMembers(ProdRes.members);
   }
 
@@ -543,7 +543,7 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                     {/* prority div ends here */}
 
                     {/* tags div starts here */}
-                    <div className="px-4 py-7 border-b">
+                    <div className="px-4 py-7 border-b ">
                       <p className="text-sm mb-4 font-medium text-zinc-900">
                         Tags
                       </p>
@@ -553,7 +553,7 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                           {Tags.map((curr: any) => {
                             return (
                               <div className="px-4 py-2 border rounded-md flex justify-center items-center gap-1 text-indigo-700 ">
-                                <TagsIcon size={15} strokeWidth={1.75} />
+                                <Dot className="text-indigo-700" size={15} strokeWidth={4} absoluteStrokeWidth />
                                 <p>{curr}</p>
                               </div>
                             );
@@ -563,24 +563,28 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
 
                       <Dialog>
                         <DialogTrigger>
-                          <div className="flex gap-1 border px-2 py-2 rounded-lg border-dashed items-center text-indigo-700">
+                          <div className="flex gap-1 border px-2 py-2 rounded-lg border-dashed items-center text-indigo-700 mt-2">
                             <Plus size={16} strokeWidth={1.5} />
                             <p className="text-xs font-semibold">
-                              Add TechStack
+                              Add Tags
                             </p>
                           </div>
                         </DialogTrigger>
                         <DialogContent>
                           <DialogHeader>
-                            <DialogTitle>Are you absolutely sure?</DialogTitle>
+                            <DialogTitle>
+                              <div className="flex gap-2" >
+                                  <Hash/>
+                          <p className="text-zinc-900 font-medium text-sm" >Add Tags</p>
+                              </div>
+                            </DialogTitle>
                             <DialogDescription>
-                              you can add your product techstack one by one so
-                              please don't add more than one techstak at a time
+                              add the tags which is related to the assigned tasks
                               <Input
                                 onChange={(e) => {
                                   setTagToBeAdded(e.target.value);
                                 }}
-                                className="mt-4"
+                                className="mt-4 outline-none border-none"
                                 placeholder="Enter your techstack here"
                               />
                               <div className="w-full flex justify-end">

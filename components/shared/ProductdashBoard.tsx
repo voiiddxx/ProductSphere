@@ -36,35 +36,21 @@ type ProductDataProps = {
 };
 
 const ProductdashBoard = ({ data }: ProductDataProps) => {
-  const [IsOwner, setIsOwner] = useState<boolean>(false);
   const [Tasks, setTasks] = useState<any>(null);
   const [NavBarData, setNavBarData] = useState<any>("Overview");
-  const [ProductData, setProductData] = useState<any>(null);
 
   useEffect(() => {
-    console.log("Value of Data: " , data);
-    
-    const localUser = localStorage.getItem("x-auth-id");
-    const userId = +localUser!;
-    if (data.ownerId === userId) {
-      setIsOwner(true);
-      // console.log("Values are:  " , data.ownerId , "another val is : " , userId);
-    }
-
+   
     const getTasks = async () => {
       const prodId = +data.productId;
       const taskRes = await getTaskAsperProductId(prodId);
       setTasks(taskRes);
-      // console.log(data);
-
-      // console.log("taskres",taskRes);
     };
 
     
     getTasks();
   }, []);
 
-  const tasks = [5, 8, 4, 4, 454, 55];
   return (
     <div className="h-screen w-full flex bg-zinc-50">
       {/* sidebar part */}

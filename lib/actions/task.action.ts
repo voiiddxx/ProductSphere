@@ -104,8 +104,6 @@ export const AssignNewTasks = async ({ data }: AssignTasksParams) => {
                 }
             },
         });
-        console.log("this is log value", res);
-
         if (!res) {
             return JSON.parse(JSON.stringify({ message: "Some error occured", status: 400 }));
         }
@@ -209,6 +207,8 @@ export const updateTaskStatusasPertaskId = async ({taskId , taskStatus}:UpdateTa
                 status:taskStatus
             }
         });
+        console.log(res);
+        
 
         if(!res){
             return JSON.parse(JSON.stringify({message:"Some issue occured", status:400}));
@@ -267,3 +267,5 @@ export const addTaskMemeners = async ()=>{
         
     }
 }
+
+

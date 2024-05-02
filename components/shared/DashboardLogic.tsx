@@ -6,6 +6,7 @@ import DashboardHome from './DashboardHome'
 import FindProducts from './FindProducts'
 import { getUserUsingClerkid } from '@/lib/actions/user.action'
 import Developer from './Developer'
+import Profile from './Profile'
 
 const DashboardLogic = () => {
 
@@ -23,25 +24,27 @@ const DashboardLogic = () => {
      <div>
      <div onClick={()=>{
       setNavData("Projects");
-     }} className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b' >
+     }} className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b cursor-pointer' >
         <Sun size={15} strokeWidth={2} />
         <p className='text-sm font-medium md:block hidden' >Your Projects</p>
       </div>
      <div onClick={()=>{
         setNavData("FindProjects");
-     }} className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b' >
+     }} className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b cursor-pointer' >
         <LayoutGrid size={15} strokeWidth={2} />
         <p className='text-sm font-medium md:block hidden' >Find products</p>
       </div>
      <div onClick={()=>{
       setNavData("Developer")
-     }} className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b' >
+     }} className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b cursor-pointer' >
         <Rabbit size={15} strokeWidth={2} />
         <p className='text-sm font-medium md:block hidden' >Find Developers</p>
       </div>
-     <div className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b' >
+     <div onClick={()=>{
+      setNavData("Profile");
+     }} className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b cursor-pointer' >
         <Gem size={15} strokeWidth={2} />
-        <p className='text-sm font-medium md:block hidden' >Access Premium</p>
+        <p className='text-sm font-medium md:block hidden' >My Profile</p>
       </div>
      </div>
      {/* bottom bar div */}
@@ -79,6 +82,11 @@ const DashboardLogic = () => {
           {
             NavData == "Developer" && (
               <Developer/>
+            )
+          }
+          {
+            NavData == "Profile" && (
+              <Profile/>
             )
           }
       </div>

@@ -1,6 +1,7 @@
 "use client";
 import { getAllUsers } from "@/lib/actions/user.action";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Developer = () => {
@@ -30,6 +31,7 @@ const Developer = () => {
         <div className="flex flex-wrap gap-8 mt-10">
           {developers.map((curr: any) => {
             return (
+             <Link href={`/user/${curr.id}`} >
               <div className="h-[350px] w-[350px] bg-white rounded-md">
                 {/* upper div */}
                 <div className="h-[150px] w-full rounded-t-md bg-indigo-300 relative">
@@ -51,6 +53,7 @@ const Developer = () => {
                     <p className="mt-10 text-indigo-700 text-xs" >view more</p>
                 </div>
               </div>
+              </Link>
             );
           })}
         </div>

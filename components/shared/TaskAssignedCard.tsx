@@ -17,7 +17,7 @@ type AssignTaskProps = {
 
 const TaskAssignedCard = ({ data }: AssignTaskProps) => {
   return (
-      <div className="h-[200px] w-[300px] rounded-md bg-white relative py-5 px-2 flex flex-col justify-between items-start" >
+      <div className="h-[250px] w-[350px] rounded-md bg-white relative py-5 px-2 flex flex-col justify-between items-start" >
         
 
        <div>
@@ -43,7 +43,7 @@ const TaskAssignedCard = ({ data }: AssignTaskProps) => {
 
 
 
-        <div className="flex gap-2 items-center" >
+        <div className="flex gap-2 items-start" >
         {
           data.priority == "High" && (<div className="h-8 w-8 rounded-full bg-red-50 flex justify-center items-center" >
           <ListTodo  className="text-red-600" size={18} strokeWidth={1.75} />
@@ -59,7 +59,7 @@ const TaskAssignedCard = ({ data }: AssignTaskProps) => {
           <ListTodo  className="text-green-600" size={18} strokeWidth={1.75} />
           </div>)
         }
-        <p className="text-lg font-medium" >{data.title}</p>
+        <p className="text-lg font-medium text-left" >{data.title}</p>
         </div>
 
         {/* detail */}

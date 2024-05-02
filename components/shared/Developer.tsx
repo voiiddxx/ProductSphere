@@ -34,7 +34,12 @@ const Developer = () => {
              <Link href={`/user/${curr.id}`} >
               <div className="h-[350px] w-[350px] bg-white rounded-md">
                 {/* upper div */}
-                <div className="h-[150px] w-full rounded-t-md bg-indigo-300 relative">
+                <div className="h-[150px] w-full rounded-t-md bg-gradient-to-br from-zinc-900 to-zinc-700 relative flex justify-between items-center">
+                  <div></div>
+                  <div>
+                    
+                  <h1 className="text-zinc-700 text-4xl mr-4 font-semibold" >#{curr.id}</h1>
+                  </div>
                   <div className="absolute h-[90px] w-[90px] bg-white rounded-full bottom-[-30px]  left-5 border-solid border-[10px] border-white flex items-center justify-center">
                     <Image
                       src={curr.avatar}

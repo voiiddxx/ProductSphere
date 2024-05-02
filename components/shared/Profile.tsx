@@ -1,3 +1,5 @@
+"use client"
+
 import { Tabs } from "@radix-ui/react-tabs";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -18,9 +20,25 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Input } from "../ui/input";
+import UpdateUserform from "./UpdateUserform";
 
 const Profile = async () => {
   const [user, setuser] = useState<any>(null);
+  const [gitub, setgitub] = useState<any>(null)
+  const [linkedin, setlinkedin] = useState<any>(null)
+  const [bio, setbio] = useState<any>(null)
+  const [about, setabout] = useState<any>(null)
+  const [skills, setskills] = useState<any>([])
+  const [skillstobeadded, setskillstobeadded] = useState<any>(null);
+
+
+  const handleSkill = ()=>{
+    setskills([...skills , skillstobeadded]);
+  }
+  
+
+  
 
   useEffect(() => {
     const getUser = async () => {
@@ -83,32 +101,42 @@ const Profile = async () => {
           </div>
 
           <div>
-            <Dialog>
-              <DialogTrigger>
-                {" "}
-                <Button variant={"outline"}>Edit profile</Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>
-                    <div>
-                        <MousePointerClickIcon size={20}  />
-                        <p className="text-sm font-semibold text-zinc-900" >Edit your profile</p>
-                    </div>
-                  </DialogTitle>
-                  <DialogDescription>
-                    This action cannot be undone. This will permanently delete
-                    your account and remove your data from our servers.
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
+           <UpdateUserform/>
           </div>
         </div>
+
+        {
+          user.data.skills.length > 0 && (
+            <div className="mt-4" >
+          <p className="text-sm font-medium" >Skills</p>
+          <div className="flex gap-4 mt-4" >
+          {
+            user.data.skills.map((curr:any)=>{
+              return <div className="bg-slate-200 text-indigo-700 px-2 py-1 rounded-full flex justify-center items-center" >
+                <p className="text-sm font-medium" >{curr}</p>
+              </div>
+            })
+          }
+          </div>
+
+        </div>
+          )
+        }
+
+
+        {
+          user.data.about && (
+            <div className="mt-8" >
+              <p className="font-medium text-zinc-900 text-sm" >About</p>
+              <p className="text-sm font-medium tracking-wide leading-relaxed" >{user.data.about}</p>
+            </div>
+          )
+        }
+
       </div>
 
       {/* products section */}
-      <div className="mx-96 mt-5">
+      <div className="mx-72 mt-5">
         <Tabs defaultValue="account" className="">
           <TabsList>
             <TabsTrigger value="account">Owned Products</TabsTrigger>

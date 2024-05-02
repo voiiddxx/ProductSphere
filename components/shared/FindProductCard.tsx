@@ -25,10 +25,10 @@ const FindProductCard = ({productData}:findProducCardProps) => {
         <div className='' >
           <p className='text-xs font-medium text-zinc-400' >Productivity</p>
           <h1 className='text-2xl mt-1 font-semibold' style={{color:productData.productcolor}} >{productData.name}</h1>
-          <p className='text-xs font-normal text-zinc-500 mt-1 leading-relaxed tracking-wide' >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit id atque inventore perspiciatis? Ab ea dolore deleniti aliquid iste alias.</p>
+          <p className='text-xs font-normal text-zinc-500 mt-1 leading-relaxed tracking-wide' >{productData.detail}</p>
     <div className='flex gap-2 mt-2' >
     <Star className='' color='orange' fill='orange' size={15} />
-    <p className='text-xs' >5 reviews</p>
+    <p className='text-xs font-medium' >{productData.reviews.length} reviews</p>
     </div>
         </div>
 
@@ -37,7 +37,7 @@ const FindProductCard = ({productData}:findProducCardProps) => {
       <div>
         <div className='h-[100px] w-[100px] border rounded-md flex flex-col justify-center items-center' style={{color:productData.productcolor}} >
             <ChevronUp size={20} absoluteStrokeWidth strokeWidth={2} />
-            <p className='text-xl font-medium' >5</p>
+            <p className='text-xl font-medium' >{productData.Upvote.length}</p>
 
         </div>
       </div>

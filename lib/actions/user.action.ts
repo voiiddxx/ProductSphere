@@ -95,9 +95,8 @@ export const getAllUsers = async()=>{
     try {
         const allusersResponse = await prisma.user.findMany({});
         if(!allusersResponse){
-            return JSON.parse(JSON.stringify({messae:"No Users Found"}));
+            return JSON.parse(JSON.stringify({messae:"No Users Found" , status:400}));
         }
-        console.log("Users List: " , allusersResponse);
         return JSON.parse(JSON.stringify(allusersResponse));
     } catch (error) {
         console.log(error);

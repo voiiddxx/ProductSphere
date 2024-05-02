@@ -5,6 +5,7 @@ import DashBoardNav from './DashBoardNav'
 import DashboardHome from './DashboardHome'
 import FindProducts from './FindProducts'
 import { getUserUsingClerkid } from '@/lib/actions/user.action'
+import Developer from './Developer'
 
 const DashboardLogic = () => {
 
@@ -32,7 +33,9 @@ const DashboardLogic = () => {
         <LayoutGrid size={15} strokeWidth={2} />
         <p className='text-sm font-medium md:block hidden' >Find products</p>
       </div>
-     <div className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b' >
+     <div onClick={()=>{
+      setNavData("Developer")
+     }} className='h-20  md:mx-8 justify-center md:justify-normal flex items-center gap-2 border-b' >
         <Rabbit size={15} strokeWidth={2} />
         <p className='text-sm font-medium md:block hidden' >Find Developers</p>
       </div>
@@ -71,6 +74,11 @@ const DashboardLogic = () => {
           {
             NavData == "FindProjects" && (
                 <FindProducts/>
+            )
+          }
+          {
+            NavData == "Developer" && (
+              <Developer/>
             )
           }
       </div>

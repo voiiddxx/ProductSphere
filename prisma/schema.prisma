@@ -27,6 +27,11 @@ model User {
   membersOftasks AssignTasks[] @relation("AssignedTaskMemebers")
   upvotedProducts Product[] @relation("upvotedProducts")
   reviewed Reviews[]
+  bio String?
+  about String?
+  github String?
+  linkedin String?
+  skills String[]
 }
 
 model Product {

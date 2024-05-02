@@ -1,7 +1,7 @@
 "use server"
 
 
-import { CreateUseronSuperbaseParams, updateUserParams } from '@/types';
+import { CreateUseronSuperbaseParams, updateDataParamsForUser, updateUserParams } from '@/types';
 import { PrismaClient } from '@prisma/client'
 import { string } from 'zod';
 
@@ -108,7 +108,6 @@ export const getAllUsers = async()=>{
 
 // server action for getting the user with id
  export const getUserUsinguserId =async(id:any)=>{
-    console.log("The user id parsed" , id);
     
     try {
         const res = await prisma.user.findFirst({
@@ -118,6 +117,7 @@ export const getAllUsers = async()=>{
             include:{
                 memberOfProducts:true,
                 ownedProducts:true,
+                
             }
         });
         if(!res){
@@ -129,4 +129,26 @@ export const getAllUsers = async()=>{
         
     }
  }
+
+
+
+//  server action for updating the user profile 
+
+export const updateUserProfile = async({data , userid}: updateDataParamsForUser )=>{
+    try {
+        const res = await prisma.user.update({
+            where:{
+                id:userid
+            },
+            data:data
+        });
+        if(!res){
+            return JSON.parse(JSON.stringify({message:"Some error occured" , data:400}));
+        }
+        return JSON.parse(JSON.stringify({data:res , status:200}));
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
 

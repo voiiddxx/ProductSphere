@@ -19,6 +19,7 @@ import {
   Hash,
   Link,
   ListTodo,
+  LoaderIcon,
   Pin,
   Plus,
   TagsIcon,
@@ -101,6 +102,7 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
   const [Priority, setPriority] = useState<any>(null);
   const [ProdMembers, setProdMembers] = useState<any>(null);
   const [TaskmembersforPost, setTaskmembersforPost] = useState<any>([]);
+  const [Isloading, setIsloading] = useState<boolean>(false);
 
 
   // 1. Define your form.
@@ -121,6 +123,7 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
+      setIsloading(true);
     const userid = localStorage.getItem("x-auth-id");
     const creatorid = +userid!;
     const productId = +prodId;
@@ -129,13 +132,19 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
       const res = await AssignNewTasks({ data:{
         title:values.name , desc:values.detail , dueDate:StartDate , documents:"thisisdocunment" , comment:PinnedComment , creatorid:creatorid , priority:Priority , prodId:productId , status:"Not Started yet" , tags:Tags , taskmembersNow   :TaskmembersforPost
       }});
-      if(res){
+      if(res.status == 200){
+        setIsloading(false);
+        toast.success("Task Assigned")
         console.log("Task Assigned: " , res);
       }else{
+        setIsloading(false);
+        toast.error("Some error occured")
         console.log("Some error occured");
         
       }
     }else{
+      setIsloading(false);
+      toast.info("Please fill all input feilds  ")
       console.log("Please fill all details");
       
     }
@@ -348,9 +357,14 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                         </div>
                         {/* comment section ends here */}
 
-                        <Button className="bg-indigo-700 mt-5" type="submit">
+                       {
+                        Isloading == true ?  <Button className="bg-indigo-700 mt-10 w-full flex gap-2 " disabled type="submit">
+                          <LoaderIcon className="text-zinc-200 animate-spin" />
+                          <p>Please wait...</p>
+                      </Button> :  <Button className="bg-indigo-700 mt-10 w-full" type="submit">
                           Submit
                         </Button>
+                       }
                       </form>
                     </Form>
                   </div>
@@ -449,9 +463,7 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
                           </>
                         )}
                       </div>
-                      <div className="h-10 w-10 border rounded-full flex justify-center items-center mt-4">
-                        <Plus size={25} strokeWidth={2} />
-                      </div>
+                      
                     </div>
                     {/* upper div for assiging the members ends here */}
 

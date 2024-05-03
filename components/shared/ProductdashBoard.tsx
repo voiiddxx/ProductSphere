@@ -1,26 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import DetailsSidebar from "./DetailsSidebar";
 import {
-  ArrowLeft,
-  Box,
-  CalendarRangeIcon,
-  CheckCheck,
   ChevronDown,
   CornerRightDown,
   Dot,
-  File,
-  Filter,
-  Flame,
   Home,
   ListFilter,
-  ListTodo,
   ListTodoIcon,
   LucideWorkflow,
   MessageCircleDashed,
-  MoreVertical,
-  MousePointerClick,
-  Network,
   PackageCheck,
   Search,
   Settings,

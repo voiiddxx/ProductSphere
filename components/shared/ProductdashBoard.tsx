@@ -12,6 +12,7 @@ import {
   File,
   Filter,
   Flame,
+  Home,
   ListFilter,
   ListTodo,
   LucideWorkflow,
@@ -66,62 +67,48 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
               width={1500}
               alt="productlogo"
             />
-            <div className="flex text-zinc-600 items-center ml-5 gap-1">
-              <ArrowLeft size={16} strokeWidth={1.5} />
-              <p className="text-xs">Back</p>
-            </div>
+           
           </div>
 
           {/* main nav links */}
-          <div className=" md:flex hidden flex-col mt-5 px-5">
-            <div className=" flex gap-1 items-center">
-              <p className="font-medium text-zinc-800 text-sm">Primary</p>
-              <CornerRightDown size={15} strokeWidth={1.75} />
-            </div>
-            {/* nav 1 */}
-            <div
-              onClick={() => {
-                setNavBarData("Overview");
-              }}
-              className="flex items-center gap-2 mt-6 px-4 "
-            >
-              <MousePointerClick size={17} strokeWidth={1.5} />
-              <p className="text-xs font-medium ">Product Overveiw</p>
-            </div>
-            <div onClick={()=>{
-              setNavBarData(null);
-            }} className="flex items-center gap-2 mt-6 px-4 ">
-              <ListTodo size={17} strokeWidth={1.5} />
-              <p className="text-xs font-medium ">Assigned Tasks</p>
-            </div>
-            <div className="flex items-center gap-2 mt-6 px-4 ">
-              <CheckCheck size={17} strokeWidth={1.5} />
-              <p className="text-xs font-medium ">Completed Tasks</p>
-            </div>
+
+          <div className="w-full" >
+            {/* first row */}
+           {
+            NavBarData == "Overview" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
+            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+              </div> :  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
+            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+              </div> 
+           }
+           {
+            NavBarData == "Completed" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
+            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+              </div> :  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
+            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+              </div> 
+           }
+           {
+            NavBarData == "More" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
+            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+              </div> :  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
+            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+              </div> 
+           }
+           {
+            NavBarData == "Pending" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
+            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+              </div> :  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
+            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+              </div> 
+           }
+
           </div>
+         
 
           {/* nav 2 */}
 
-          <div className=" md:flex flex-col mt-5 px-5 hidden">
-            <div className=" flex gap-1 items-center">
-              <p className="font-medium text-zinc-800 text-sm">ProductSphere</p>
-              <CornerRightDown size={15} strokeWidth={1.75} />
-            </div>
-            {/* nav 1 */}
-            <div className="flex items-center gap-2 mt-6 px-4 ">
-              <MousePointerClick size={17} strokeWidth={1.5} />
-              <p className="text-xs font-medium ">Product details</p>
-            </div>
-            <div className="flex items-center gap-2 mt-6 px-4 ">
-              <ListTodo size={17} strokeWidth={1.5} />
-              <p className="text-xs font-medium ">Assigned Tasks</p>
-            </div>
-            <div className="flex items-center gap-2 mt-6 px-4 ">
-              <CheckCheck size={17} strokeWidth={1.5} />
-              <p className="text-xs font-medium ">Completed Tasks</p>
-            </div>
-            {/* nav 2 */}
-          </div>
+          
         </div>
         {/* middle div */}
         {/* bottom div */}

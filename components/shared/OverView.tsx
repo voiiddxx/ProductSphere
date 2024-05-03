@@ -15,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Star } from "lucide-react";
 import { AnimatedTooltip } from "../ui/animated-tooltip";
 import Image from "next/image";
+import Link from "next/link";
 
 const users = [
   {
@@ -258,6 +259,7 @@ const OverView = ({ data }: OverViewProps) => {
                 <p className="text-xl font-medium">Product Members</p>
                 {data.members.map((curr: any) => {
                   return (
+                    <Link href={`/user/${curr.id}`} >
                     <div className="w-full h-20 flex justify-between items-center border-b">
                       <div className="flex gap-2">
                         <div className="h-10 w-10 rounded-full bg-slate-400">
@@ -301,6 +303,7 @@ const OverView = ({ data }: OverViewProps) => {
                         <MoreHorizontal className="text-zinc-800" />
                       </div>
                     </div>
+                    </Link>
                   );
                 })}
               </div>

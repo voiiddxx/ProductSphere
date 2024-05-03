@@ -12,7 +12,7 @@ const DashBoardNav = () => {
         </div>
         {/* right div */}
         <div className='flex items-center pl-5 w-full h-full justify-between' >
-            <div>
+            <div className='hidden md:block' >
             <p className='font-medium md:text-sm text-xs' >Your Projects (0) </p>
             </div>
             <div className='flex gap-4 pr-10 items-center' >

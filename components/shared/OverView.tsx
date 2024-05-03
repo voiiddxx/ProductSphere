@@ -123,24 +123,24 @@ const OverView = ({ data }: OverViewProps) => {
 
       {/* cards div */}
       <div className="w-full flex flex-wrap gap-4 mt-5">
-        <div className="h-[170px] w-[250px] bg-white  rounded-md px-5 py-4 flex flex-col justify-between">
+        <div className="h-[170px] w-[250px] bg-orange-500  rounded-md px-5 py-4 flex flex-col justify-between">
           {/* first row */}
           <div className="w-full flex justify-between">
-            <div className="h-10 w-10 rounded-full bg-orange-100 flex justify-center items-center">
-              <ListTodoIcon className="text-orange-600" size={20} />
+            <div className="h-10 w-10 rounded-full bg-orange-50 flex justify-center items-center">
+              <ListTodoIcon className="text-orange-500" size={20} />
             </div>
           </div>
           <div>
             {/* second row */}
             <div>
-              <h1 className="text-4xl mt-4 text-orange-600 font-medium ">
+              <h1 className="text-4xl mt-4 text-white font-medium ">
                 {data.tasks.length}
               </h1>
             </div>
 
             {/* bottom row */}
             <div>
-              <p className="text-xs mt-2 font-normal text-gray-500">
+              <p className="text-xs mt-2 font-normal text-white">
                 Total Assigned Tasks
               </p>
             </div>
@@ -148,96 +148,96 @@ const OverView = ({ data }: OverViewProps) => {
         </div>
 
         {/* second card=================== */}
-        <div className="h-[170px] w-[250px] bg-white  rounded-md px-5 py-4 flex flex-col justify-between">
+        <div className="h-[170px] w-[250px] bg-green-500  rounded-md px-5 py-4 flex flex-col justify-between">
           {/* first row */}
           <div className="w-full flex justify-between">
-            <div className="h-10 w-10 rounded-full bg-green-100 flex justify-center items-center">
-              <Leaf className="text-green-600" size={20} />
+            <div className="h-10 w-10 rounded-full bg-green-50 flex justify-center items-center">
+              <Leaf className="text-green-500" size={20} />
             </div>
           </div>
           <div>
             {/* second row */}
             <div>
-              <h1 className="text-4xl mt-4 text-green-600 font-medium ">
+              <h1 className="text-4xl mt-4 text-white font-medium ">
                 {data.tasks.length}+
               </h1>
             </div>
 
             {/* bottom row */}
             <div>
-              <p className="text-xs mt-2 font-normal text-gray-500">
+              <p className="text-xs mt-2 font-normal text-white">
                 Total completed tasks
               </p>
             </div>
           </div>
         </div>
         {/* third card ====================== */}
-        <div className="h-[170px] w-[250px] bg-white  rounded-md px-5 py-4 flex flex-col justify-between">
+        <div className="h-[170px] w-[250px] bg-pink-500  rounded-md px-5 py-4 flex flex-col justify-between">
           {/* first row */}
           <div className="w-full flex justify-between">
-            <div className="h-10 w-10 rounded-full bg-pink-100 flex justify-center items-center">
-              <Loader className="text-pink-600" size={20} />
+            <div className="h-10 w-10 rounded-full bg-pink-50 flex justify-center items-center">
+              <Loader className="text-pink-500" size={20} />
             </div>
           </div>
           <div>
             {/* second row */}
             <div>
-              <h1 className="text-4xl mt-4 text-pink-600 font-medium ">
+              <h1 className="text-4xl mt-4 text-white font-medium ">
                 {data.tasks.length}+{" "}
               </h1>
             </div>
 
             {/* bottom row */}
             <div>
-              <p className="text-xs mt-2 font-normal text-gray-500">
+              <p className="text-xs mt-2 font-normal text-white">
                 Total Pending Tasks
               </p>
             </div>
           </div>
         </div>
         {/* fourth card ==================== */}
-        <div className="h-[170px] w-[250px] bg-white  rounded-md px-5 py-4 flex flex-col justify-between">
+        <div className="h-[170px] w-[250px] bg-yellow-500  rounded-md px-5 py-4 flex flex-col justify-between">
           {/* first row */}
           <div className="w-full flex justify-between">
-            <div className="h-10 w-10 rounded-full bg-yellow-100 flex justify-center items-center">
-              <Network className="text-yellow-600" size={20} />
+            <div className="h-10 w-10 rounded-full bg-yellow-50 flex justify-center items-center">
+              <Network className="text-yellow-500" size={20} />
             </div>
           </div>
           <div>
             {/* second row */}
             <div>
-              <h1 className="text-4xl mt-4 text-yellow-600 font-medium ">
+              <h1 className="text-4xl mt-4 text-white font-medium ">
                 {data.members.length}+
               </h1>
             </div>
 
             {/* bottom row */}
             <div>
-              <p className="text-xs mt-2 font-normal text-gray-500">
+              <p className="text-xs mt-2 font-normal text-white">
                 Total Product members
               </p>
             </div>
           </div>
         </div>
         {/* fifth card============================== */}
-        <div className="h-[170px] w-[250px] bg-white  rounded-md px-5 py-4 flex flex-col justify-between">
+        <div className="h-[170px] w-[250px] bg-violet-500  rounded-md px-5 py-4 flex flex-col justify-between">
           {/* first row */}
           <div className="w-full flex justify-between">
-            <div className="h-10 w-10 rounded-full bg-violet-100 flex justify-center items-center">
-              <Zap className="text-violet-600" size={20} />
+            <div className="h-10 w-10 rounded-full bg-violet-50 flex justify-center items-center">
+              <Zap className="text-violet-500" size={20} />
             </div>
           </div>
           <div>
             {/* second row */}
             <div>
-              <h1 className="text-4xl mt-4 text-violet-600 font-medium ">
+              <h1 className="text-4xl mt-4 text-white font-medium ">
                 {data.reviews.length}
               </h1>
             </div>
 
             {/* bottom row */}
             <div>
-              <p className="text-xs mt-2 font-normal text-gray-500">
+              <p className="text-xs mt-2 font-normal text-white">
                 Total Product feedbacks
               </p>
             </div>
@@ -268,7 +268,7 @@ const OverView = ({ data }: OverViewProps) => {
                 <p className="font-medium text-sm" >Members ({data.Upvote.length}) </p>
               </div>
             </TabsTrigger>
-            <TabsTrigger value="password">Password</TabsTrigger>
+
           </TabsList>
           <TabsContent value="Members">
             <div className="mt-4 px-3">
@@ -292,25 +292,25 @@ const OverView = ({ data }: OverViewProps) => {
                           <p className="text-sm font-medium text-zinc-900">
                             {curr.username}
                           </p>
-                          <p className="text-xs font-normal text-zinc-600">
+                          <p className="text-xs font-normal text-zinc-500">
                             {curr.email}
                           </p>
                         </div>
                       </div>
 
                       <div className="flex gap-5">
-                        <div className="px-3 py-1 bg-indigo-100 rounded-full">
+                        <div className="px-3 py-1 bg-indigo-50 rounded-full">
                           <p className="text-indigo-700 font-medium text-xs">
                             {curr.membersOftasks.length} Assigned tasks
                           </p>
                         </div>
-                        <div className="px-3 py-1 bg-green-100 rounded-full">
+                        <div className="px-3 py-1 bg-green-50 rounded-full">
                           <p className="text-green-700 font-medium text-xs">
                             {curr.taskCreated.length} Created Tasks
                           </p>
                         </div>
-                        <div className="px-3 py-1 bg-yellow-100 rounded-full">
-                          <p className="text-yellow-700 font-medium text-xs">
+                        <div className="px-3 py-1 bg-yellow-50 rounded-full">
+                          <p className="text-yellow-700 font-medium text-xs"> 
                             4 completed tasks
                           </p>
                         </div>
@@ -350,7 +350,7 @@ const OverView = ({ data }: OverViewProps) => {
                           <p className="text-sm font-medium text-zinc-900">
                             {curr.userwhoreviewed.username}
                           </p>
-                          <p className="text-xs font-normal text-zinc-600">
+                          <p className="text-xs font-normal text-zinc-500">
                             {curr.userwhoreviewed.email}
                           </p>
                         </div>

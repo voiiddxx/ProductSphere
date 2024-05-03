@@ -21,6 +21,7 @@ import {
   MoreVertical,
   MousePointerClick,
   Network,
+  PackageCheck,
   Search,
   Settings,
   SunMoon,
@@ -84,6 +85,15 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
                 setNavBarData("Overview")
               }} className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
             <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+              </div> 
+           }
+           {
+            NavBarData == null ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
+            <PackageCheck size={20} /> <p className="font-semibold text-sm" >All Tasks</p>
+              </div> :  <div onClick={()=>{
+                setNavBarData(null);
+              }} className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
+            <PackageCheck size={20} /> <p className="font-semibold text-sm" >All Tasks</p>
               </div> 
            }
            {

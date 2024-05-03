@@ -15,12 +15,15 @@ import {
   Home,
   ListFilter,
   ListTodo,
+  ListTodoIcon,
   LucideWorkflow,
+  MessageCircleDashed,
   MoreVertical,
   MousePointerClick,
   Network,
   Search,
   Settings,
+  SunMoon,
   User,
 } from "lucide-react";
 import { Button } from "../ui/button";
@@ -77,29 +80,33 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
            {
             NavBarData == "Overview" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
             <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
-              </div> :  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
+              </div> :  <div onClick={()=>{
+                setNavBarData("Overview")
+              }} className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
             <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
               </div> 
            }
            {
             NavBarData == "Completed" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
-            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
-              </div> :  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
-            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+            <ListTodoIcon size={20} /> <p className="font-semibold text-sm" >Completed tasks</p>
+              </div> :  <div onClick={()=>{
+                setNavBarData("Completed");
+              }} className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
+            <ListTodoIcon size={20} /> <p className="font-semibold text-sm" >Completed tasks</p>
               </div> 
            }
            {
             NavBarData == "More" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
-            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+            <SunMoon size={20} /> <p className="font-semibold text-sm" >Pending Tasks</p>
               </div> :  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
-            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+            <SunMoon size={20} /> <p className="font-semibold text-sm" >Pending Tasks</p>
               </div> 
            }
            {
-            NavBarData == "Pending" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
-            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+            NavBarData == "Discuion" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
+            <MessageCircleDashed size={20} /> <p className="font-semibold text-sm" >Discussion</p>
               </div> :  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
-            <Home size={20} /> <p className="font-semibold text-sm" >Overview</p>
+            <MessageCircleDashed size={20} /> <p className="font-semibold text-sm" >Discussion</p>
               </div> 
            }
 

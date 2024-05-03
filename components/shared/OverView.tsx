@@ -9,6 +9,8 @@ import {
   MousePointerClick,
   Network,
   StarIcon,
+  Triangle,
+  UsersRound,
   Zap,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -108,7 +110,7 @@ const OverView = ({ data }: OverViewProps) => {
   return (
     <div className="w-full px-8 py-4 ">
       {/* upper heading bar */}
-      <div className="w-full flex justify-between">
+      <div className="w-full flex justify-between mt-4">
         <h1 className="text-2xl font-semibold">Overall Insights</h1>
         <div className="flex gap-2 mr-20">
           <Button className="flex gap-2" style={{backgroundColor:data.productcolor}} >
@@ -248,9 +250,24 @@ const OverView = ({ data }: OverViewProps) => {
       <div className="mt-5 border-t pt-5">
         <Tabs defaultValue="Members" className="w-full">
           <TabsList>
-            <TabsTrigger value="Members">Members</TabsTrigger>
-            <TabsTrigger value="Feedbacks">Feedbacks</TabsTrigger>
-            <TabsTrigger value="Upvotes">Upvotes</TabsTrigger>
+            <TabsTrigger value="Members">
+              <div className="flex gap-1" >
+                <UsersRound size={17} />
+                <p className="font-medium text-sm" >Members ({data.members.length}) </p>
+              </div>
+            </TabsTrigger>
+            <TabsTrigger value="Feedbacks">
+            <div className="flex gap-1" >
+                <Star size={17} />
+                <p className="font-medium text-sm" >Reviews ({data.reviews.length}) </p>
+              </div>
+            </TabsTrigger>
+            <TabsTrigger value="Upvotes">
+            <div className="flex gap-1" >
+                <Triangle size={17} />
+                <p className="font-medium text-sm" >Members ({data.Upvote.length}) </p>
+              </div>
+            </TabsTrigger>
             <TabsTrigger value="password">Password</TabsTrigger>
           </TabsList>
           <TabsContent value="Members">

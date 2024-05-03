@@ -35,6 +35,7 @@ import Image from "next/image";
 import Addmemebr from "./Addmemebr";
 import TaskDetail from "./TaskDetail";
 import OverView from "./OverView";
+import MyAssignedTask from "./MyAssignedTask";
 
 type ProductDataProps = {
   data: any;
@@ -43,6 +44,7 @@ type ProductDataProps = {
 const ProductdashBoard = ({ data }: ProductDataProps) => {
   const [Tasks, setTasks] = useState<any>(null);
   const [NavBarData, setNavBarData] = useState<any>("Overview");
+  const [UserTaskOnly, setUserTaskOnly] = useState<any>([]);
 
   useEffect(() => {
    
@@ -51,10 +53,30 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
       const taskRes = await getTaskAsperProductId(prodId);
       setTasks(taskRes);
     };
-
-    
     getTasks();
   }, []);
+
+  const getMyData = ()=>{
+    console.log("this is val of tasks:" , Tasks.data);
+    const userid = localStorage.getItem("x-auth-id");
+    const res = [...Tasks.data];
+    console.log("This is task Data:" , res);
+    const MyTasks = res.filter(task=>{
+     const asingd =  task.AssignMembers.some((curr:any)=>{
+      console.log(curr.username , "id:" , curr.id , "checking with id :" , +userid!);
+      return curr.id === +userid!;
+      
+     });
+     console.log("Task:", task.title, "User ID:", userid, "Is User Assigned:", asingd);
+     
+     return asingd;
+    });
+    console.log("This is value of my tasks after filter , " , MyTasks);
+    setUserTaskOnly(MyTasks);
+    
+    
+    
+  }
 
   return (
     <div className="h-screen w-full flex bg-zinc-50">
@@ -97,12 +119,12 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
               </div> 
            }
            {
-            NavBarData == "Completed" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
-            <ListTodoIcon size={20} /> <p className="font-semibold text-sm" >Completed tasks</p>
+            NavBarData == "MyTask" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
+            <ListTodoIcon size={20} /> <p className="font-semibold text-sm" >My tasks</p>
               </div> :  <div onClick={()=>{
-                setNavBarData("Completed");
+                setNavBarData("MyTask");
               }} className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
-            <ListTodoIcon size={20} /> <p className="font-semibold text-sm" >Completed tasks</p>
+            <ListTodoIcon size={20} /> <p className="font-semibold text-sm" >My tasks</p>
               </div> 
            }
            {
@@ -115,7 +137,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
            {
             NavBarData == "Discuion" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
             <MessageCircleDashed size={20} /> <p className="font-semibold text-sm" >Discussion</p>
-              </div> :  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
+              </div> :  <div onClick={getMyData} className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
             <MessageCircleDashed size={20} /> <p className="font-semibold text-sm" >Discussion</p>
               </div> 
            }
@@ -300,6 +322,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
 
         {/* navbar logic stays here */}
         {NavBarData == "Overview" && <OverView data={data} />}
+        {NavBarData == "MyTask" && <MyAssignedTask data={UserTaskOnly} />}
         {/* {NavBarData == "Overview" && <OverView data={data} />} */}
       </div>
     </div>

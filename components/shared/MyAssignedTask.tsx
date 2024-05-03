@@ -25,15 +25,16 @@ const MyAssignedTask = ({ data }: MytasksProps) => {
 
         const getPendingTasks = ()=>{
             const res = [...data];
-            const pending = res.filter(curr => curr.status === 'Pending');
+            const pending = res.filter(curr => curr.status !== 'Completed');
             console.log("This is pending tasks" , pending);
+            setPendingTasks(pending);
         }
 
 
         const getCompletedTasks = ()=>{
             const res = [...data];
             const completed = res.filter(curr => curr.status === 'Completed');
-            console.log("This is pending tasks" , completed);
+            setcompleteTasks(completed);
         }
   return (
     <>
@@ -70,13 +71,13 @@ const MyAssignedTask = ({ data }: MytasksProps) => {
                 <p className="font-medium text-sm" >All Tasks </p>
               </div>
           </TabsTrigger>
-          <TabsTrigger  value="complted">
+          <TabsTrigger onClick={getCompletedTasks}  value="completed">
           <div className="flex gap-1" >
                 <ListTodo size={17} />
                 <p className="font-medium text-sm" >Completed Tasks </p>
               </div>
           </TabsTrigger>
-          <TabsTrigger value="pending">
+          <TabsTrigger onClick={getPendingTasks} value="pending">
           <div className="flex gap-1" >
                 <Loader size={17} />
                 <p className="font-medium text-sm" >Pending Tasks </p>
@@ -104,7 +105,48 @@ const MyAssignedTask = ({ data }: MytasksProps) => {
         )}
       </div>
         </TabsContent>
-        <TabsContent value="completed">Change your password here.</TabsContent>
+        <TabsContent value="completed">
+        <div className="w-full  gap-2 mt-5">
+        <p className="text-sm font-medium">Assigned Tasks</p>
+        <p className="text-xs font-normal mt-1 text-zinc-500">
+          All the tasks you have assigned to the team members
+        </p>
+
+        {completeTasks.length < 1 && (
+          <div className="flex w-full justify-center items-center mt-28">
+            <p>No Data found</p>
+          </div>
+        )}
+        {completeTasks && (
+          <div className="flex gap-6 flex-wrap mt-5">
+            {completeTasks.map((curr: any) => {
+              return <TaskDetail data={curr} />;
+            })}
+          </div>
+        )}
+      </div>
+        </TabsContent>
+        <TabsContent value="pending">
+        <div className="w-full  gap-2 mt-5">
+        <p className="text-sm font-medium">Assigned Tasks</p>
+        <p className="text-xs font-normal mt-1 text-zinc-500">
+          All the tasks you have assigned to the team members
+        </p>
+
+        {PendingTasks.length < 1 && (
+          <div className="flex w-full justify-center items-center mt-28">
+            <p>No Data found</p>
+          </div>
+        )}
+        {PendingTasks && (
+          <div className="flex gap-6 flex-wrap mt-5">
+            {PendingTasks.map((curr: any) => {
+              return <TaskDetail data={curr} />;
+            })}
+          </div>
+        )}
+      </div>
+        </TabsContent>
       </Tabs>
 
       </div>

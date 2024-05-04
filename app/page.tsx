@@ -13,7 +13,7 @@ export default async function Home() {
   
   return (
     <>
-    <main className="flex h-screen w-full flex-col items-center  bg-indigo-700 bg-grid-white/[0.02]">
+    <main className="flex h-screen w-full flex-col items-center bg-gradient-to-b from-slate-200 to-white">
       <NavBar/>
     <Hero userid={user?.id}/>
     {/* <div className="flex gap-5" > */}

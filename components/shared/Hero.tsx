@@ -74,7 +74,7 @@ const Hero = ({ userid }: heroProps) => {
             <p className="md:text-sm text-xs font-semibold text-gray-600 mb-4 " >New Feature - ProdAI comming soon</p>
 
           </div>
-          <h1 className="text-5xl text-center tracking-normal leading-snug font-semibold" >Manage your products like never before with productsphere</h1>
+          <h1 className="text-5xl text-center tracking-normal leading-snug font-semibold" >Manage your products like never before with <span className="text-indigo-600" >productsphere</span> </h1>
           <p className=" text-center font-medium px-10 mt-2 text-zinc-600" >The only platform for managing product with your team , platform for product hunting , find developers for your product and ask them to join</p>
           <Button className="mt-6 bg-indigo-600 h-[60px] w-[250px]" >
             <p className="font-medium text-white leading-snug tracking-wider " >Build product with team</p>

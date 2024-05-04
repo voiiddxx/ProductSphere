@@ -1,10 +1,23 @@
-import { Box, BoxesIcon, Dices, Dot, Hash, Pyramid, Rabbit, Zap } from "lucide-react";
+import {
+  Box,
+  BoxesIcon,
+  Dices,
+  Dot,
+  Hash,
+  Pyramid,
+  Rabbit,
+  Zap,
+} from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const OtherFold = () => {
-  const val = <Dot />;
-
   const userCases = [
     {
       icon: <Pyramid size={22} color="white" strokeWidth={1.5} />,
@@ -81,7 +94,7 @@ const OtherFold = () => {
       {/* upper div end */}
 
       {/* upper second div */}
-      <div className="w-full flex flex-col items-center mt-10">
+      <div className="w-full flex flex-col items-center mt-20">
         <h1 className="text-2xl font-medium text-zinc-900">
           Manage Products, Easily
         </h1>
@@ -146,9 +159,9 @@ const OtherFold = () => {
                 </p>
               </div>
               <h1 className="text-lg font-medium mt-4 pr-10">
-                  Share your chatbots with your team & collaboratively simplify
-                  research.
-                </h1>
+                Share your chatbots with your team & collaboratively simplify
+                research.
+              </h1>
             </div>
             <div className="h-[750px] w-full bg-yellow-200">
               <Image
@@ -168,34 +181,73 @@ const OtherFold = () => {
       {/* upper second div end */}
 
       {/* upper third div start */}
-      <div className="flex flex-col justify-center items-center w-full mt-20" >
-           
-           <h1 className="text-2xl font-medium text-zinc-900" >An Alternate of Product Hunt</h1>
-            <p className="text-sm font-medium text-zinc-500 mt-3"  >Hunt the product whenever you want</p>
+      <div className="flex flex-col justify-center items-center w-full mt-32">
+        <h1 className="text-2xl font-medium text-zinc-900">
+          An Alternate of Product Hunt
+        </h1>
+        <p className="text-sm font-medium text-zinc-500 mt-3">
+          Hunt the product whenever you want
+        </p>
 
-            {/* card */}
-            <div className="pb-4 w-[80rem] mt-8 rounded-lg  mx-20 bg-zinc-100 border" >
-            <div className="w-full h-[300px] " >
-                <Image className="h-full w-full object-contain" src={`/product.png`} height={1500} width={1500} alt="producthunt" />
-            </div>
-            <div className="flex px-10 gap-2 items-center" >
-          <BoxesIcon size={20} className="text-indigo-700" strokeWidth={2} />
-          <p className="font-medium text-indigo-700 text-xl" >Hunt Products</p>
-            </div>
-            <div className="ml-10 mr-32">
-                <p className="text-sm font-medium text-gray-600 mt-4" >Add apps to your Biolinky page to engage your audience such as a Spotify player, <br /> Youtube video, a Soundcloud player, etc to your page.</p>
-            </div>
-            </div>
+        {/* card */}
+        <div className="pb-4 w-[80rem] mt-8 rounded-lg  mx-20 bg-zinc-100 border">
+          <div className="w-full h-[300px] ">
+            <Image
+              className="h-full w-full object-contain"
+              src={`/product.png`}
+              height={1500}
+              width={1500}
+              alt="producthunt"
+            />
+          </div>
+          <div className="flex px-10 gap-2 items-center">
+            <BoxesIcon size={20} className="text-indigo-700" strokeWidth={2} />
+            <p className="font-medium text-indigo-700 text-xl">Hunt Products</p>
+          </div>
+          <div className="ml-10 mr-32">
+            <p className="text-sm font-medium text-gray-600 mt-4">
+              Add apps to your Biolinky page to engage your audience such as a
+              Spotify player, <br /> Youtube video, a Soundcloud player, etc to
+              your page.
+            </p>
+          </div>
+        </div>
 
-            <div className="h-48 w-full" >
-                
-            </div>
-
-            
-           
+        <div className="h-48 w-full"></div>
       </div>
       {/* upper third div end */}
-      
+
+      {/* feedback sectionn */}
+      <div className="w-full flex items-center justify-center flex-col">
+        <div className="flex flex-col items-center justify-center">
+          <h1 className="text-2xl font-medium text-zinc-900">FAQs</h1>
+          <p className="text-sm font-medium text-gray-600 mt-4">
+            Get answers of your queries
+          </p>
+        </div>
+        <div className="mt-10">
+          <Accordion className="w-[80rem]" type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      </div>
     </div>
   );
 };

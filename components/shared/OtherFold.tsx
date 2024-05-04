@@ -71,9 +71,9 @@ const OtherFold = () => {
         <h1 className="text-3xl font-medium text-zinc-900">
           Real-world use-cases
         </h1>
-        <p className="text-zinc-500 font-medium text-center mt-2">
+        <p className="text-zinc-500 font-medium text-center mt-2 text-xs md:text-base">
           Take a look at some of the ways you can use Afforai to your advantage,{" "}
-          <br /> based on some real feedback from our users.
+          <br /> <span className="hidden md:inline-block" > based on some real feedback from our users.</span>
         </p>
 
         {/* mapping the data and the icons */}
@@ -283,32 +283,32 @@ const OtherFold = () => {
         <div className="mt-10">
           <Accordion className="md:w-[80rem] w-[22rem]"  type="single" collapsible>
             <AccordionItem value="item-1">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionTrigger>Can I join products without code?</AccordionTrigger>
               <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
+                No, you can't join products without code , only the team leader can add you without product code
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionTrigger>any pricing?</AccordionTrigger>
               <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
+                NO, This platform is absolutely free.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionTrigger>What is prodAI</AccordionTrigger>
               <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
+                ProdAI is an assistant which helps you to manage product easlily , prodAI will be comming soon.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
         </div>
 
         <div className="w-full mt-28 h-[400px] bg-gradient-to-b from-violet-700 to-indigo-700 flex items-center justify-between flex-col" >
-           <div className="flex flex-col justify-center items-center mt-16" >
-           <h1 className="text-4xl font-medium text-white" >Ready to level up you product management skills</h1>
-            <h1 className="text-4xl font-medium text-white mt-1" >Upskill yourself with productsphere</h1>
+           <div className="flex flex-col justify-center items-center mt-16 " >
+           <h1 className="md:text-4xl text-xl text-center font-medium text-white" >Ready to level up you product management skills</h1>
+            <h1 className="md:text-4xl text-xl font-medium text-white mt-1" >Upskill yourself with productsphere</h1>
           <div className="flex gap-2" >
-          <Button className="bg-white text-violet-700 mt-5" size={"lg"} >Upskill With productsphere</Button>
+          <Button className="bg-white text-violet-700 mt-5 hidden md:inline-block" size={"lg"} >Upskill With productsphere</Button>
           <Button className=" bg-transparent text-white mt-5" variant={"outline"} size={"lg"} >Register Now</Button>
            </div>
           </div>

@@ -102,8 +102,56 @@ const OtherFold = () => {
           Key feature of productsphere
         </p>
 
+             {/* for mobile use case */}
+             <div className="md:hidden" >
+             <div className="h-[440px] mx-5 mt-10 bg-zinc-100 rounded-lg flex flex-col justify-between border ">
+              <div className="ml-10 mt-5">
+                <div className="flex items-center gap-1 mt-4">
+                  <Rabbit size={18} color="black" />
+                  <p className="text-sm font-medium text-zinc-900">
+                    Hunt products anytime
+                  </p>
+                </div>
+                <h1 className="text-lg font-medium mt-4 pr-10">
+                  Share your chatbots with your team & collaboratively simplify
+                  research.
+                </h1>
+              </div>
+              <Image
+                src={`/2.png`}
+                className="h-[300px] w-full object-cover rounded-b-lg"
+                height={1500}
+                width={1500}
+                alt="image"
+              />
+            </div>
+             <div className="h-[440px] mx-5 mt-10 bg-zinc-100 rounded-lg flex flex-col justify-between border ">
+              <div className="ml-10 mt-5">
+                <div className="flex items-center gap-1 mt-4">
+                  <Rabbit size={18} color="black" />
+                  <p className="text-sm font-medium text-zinc-900">
+                    Hunt products anytime
+                  </p>
+                </div>
+                <h1 className="text-lg font-medium mt-4 pr-10">
+                  Share your chatbots with your team & collaboratively simplify
+                  research.
+                </h1>
+              </div>
+              <Image
+                src={`/x.png`}
+                className="h-[300px] w-full object-cover rounded-b-lg"
+                height={1500}
+                width={1500}
+                alt="image"
+              />
+            </div>
+             </div>
+            {/* for mobile use case end */}
+            
+
         {/* image div */}
-        <div className="flex h-[900px] w-full mt-8 items-center justify-center gap-2">
+        <div className="md:flex h-[900px] w-full mt-8 items-center justify-center gap-2 hidden ">
           {/* left div */}
           <div className="flex flex-col w-1/2 gap-2">
             <div className="h-[440px]  ml-20 bg-zinc-100 rounded-lg flex flex-col justify-between border ">
@@ -190,7 +238,7 @@ const OtherFold = () => {
         </p>
 
         {/* card */}
-        <div className="pb-4 w-[80rem] mt-8 rounded-lg  mx-20 bg-zinc-100 border">
+        <div className="pb-4 md:w-[80rem] w-[20rem] mt-8 rounded-lg  mx-20 bg-zinc-100 border">
           <div className="w-full h-[300px] ">
             <Image
               className="h-full w-full object-contain"
@@ -226,7 +274,7 @@ const OtherFold = () => {
           </p>
         </div>
         <div className="mt-10">
-          <Accordion className="w-[80rem]" type="single" collapsible>
+          <Accordion className="md:w-[80rem] w-[20rem]"  type="single" collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger>Is it accessible?</AccordionTrigger>
               <AccordionContent>

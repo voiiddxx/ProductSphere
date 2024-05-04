@@ -44,6 +44,20 @@ const Hero = ({ userid }: heroProps) => {
       image:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
     },
+    {
+      id: 4,
+      name: "Emily Davis",
+      designation: "UX Designer",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    },
+    {
+      id: 4,
+      name: "Emily Davis",
+      designation: "UX Designer",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    },
     
   ];
 
@@ -64,7 +78,7 @@ const Hero = ({ userid }: heroProps) => {
     getUserData();
   }, []);
   return (
-    <div className="mx-[24rem]  flex-col justify-center items-center ">
+    <div className="mx-[24rem] flex-col justify-center items-center ">
 
 
         {/* upper div */}
@@ -77,7 +91,7 @@ const Hero = ({ userid }: heroProps) => {
 
 
           {/* h1 for mobile use cases */}
-          <h1 className="md:text-5xl text-3xl text-center leading-relaxed tracking-normal font-semibold md:hidden" >Manage your products like never before with <span className="text-indigo-600" >productsphere</span> </h1>
+          <h1 className="md:text-5xl text-4xl text-center  font-semibold md:hidden" >Manage your products with <span className="text-indigo-600" >productsphere</span> </h1>
 
           {/* heading for web use cases */}
           <h1 className="md:text-5xl text-3xl text-center leading-relaxed tracking-normal font-semibold hidden md:inline-block" >Manage your products like never </h1>

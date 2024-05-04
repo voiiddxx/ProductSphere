@@ -1,4 +1,4 @@
-import { Box, Dices, Dot, Hash, Pyramid, Rabbit, Zap } from "lucide-react";
+import { Box, BoxesIcon, Dices, Dot, Hash, Pyramid, Rabbit, Zap } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
@@ -166,6 +166,36 @@ const OtherFold = () => {
       </div>
 
       {/* upper second div end */}
+
+      {/* upper third div start */}
+      <div className="flex flex-col justify-center items-center w-full mt-20" >
+           
+           <h1 className="text-2xl font-medium text-zinc-900" >An Alternate of Product Hunt</h1>
+            <p className="text-sm font-medium text-zinc-500 mt-3"  >Hunt the product whenever you want</p>
+
+            {/* card */}
+            <div className="pb-4 w-[80rem] mt-8 rounded-lg  mx-20 bg-zinc-100 border" >
+            <div className="w-full h-[300px] " >
+                <Image className="h-full w-full object-contain" src={`/product.png`} height={1500} width={1500} alt="producthunt" />
+            </div>
+            <div className="flex px-10 gap-2 items-center" >
+          <BoxesIcon size={20} className="text-indigo-700" strokeWidth={2} />
+          <p className="font-medium text-indigo-700 text-xl" >Hunt Products</p>
+            </div>
+            <div className="ml-10 mr-32">
+                <p className="text-sm font-medium text-gray-600 mt-4" >Add apps to your Biolinky page to engage your audience such as a Spotify player, <br /> Youtube video, a Soundcloud player, etc to your page.</p>
+            </div>
+            </div>
+
+            <div className="h-48 w-full" >
+                
+            </div>
+
+            
+           
+      </div>
+      {/* upper third div end */}
+      
     </div>
   );
 };

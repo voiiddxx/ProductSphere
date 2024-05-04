@@ -238,8 +238,8 @@ const OtherFold = () => {
         </p>
 
         {/* card */}
-        <div className="pb-4 md:w-[80rem] w-[20rem] mt-8 rounded-lg  mx-20 bg-zinc-100 border">
-          <div className="w-full h-[300px] ">
+        <div className="pb-4 md:w-[80rem] w-[25rem] mt-8 rounded-lg  mx-20 bg-zinc-100 border">
+          <div className="w-full md:h-[300px] h-[200px] ">
             <Image
               className="h-full w-full object-contain"
               src={`/product.png`}
@@ -248,12 +248,12 @@ const OtherFold = () => {
               alt="producthunt"
             />
           </div>
-          <div className="flex px-10 gap-2 items-center">
-            <BoxesIcon size={20} className="text-indigo-700" strokeWidth={2} />
-            <p className="font-medium text-indigo-700 text-xl">Hunt Products</p>
+          <div className="flex md:px-10 px-4 gap-1 items-center">
+            <BoxesIcon size={15} className="text-indigo-700" strokeWidth={2} />
+            <p className="font-medium text-indigo-700 md:text-xl text-sm">Hunt Products</p>
           </div>
-          <div className="ml-10 mr-32">
-            <p className="text-sm font-medium text-gray-600 mt-4">
+          <div className="ml-4 mr-2">
+            <p className="md:text-sm text-[10px] font-medium text-gray-600 mt-4">
               Add apps to your Biolinky page to engage your audience such as a
               Spotify player, <br /> Youtube video, a Soundcloud player, etc to
               your page.
@@ -274,7 +274,7 @@ const OtherFold = () => {
           </p>
         </div>
         <div className="mt-10">
-          <Accordion className="md:w-[80rem] w-[20rem]"  type="single" collapsible>
+          <Accordion className="md:w-[80rem] w-[22rem]"  type="single" collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger>Is it accessible?</AccordionTrigger>
               <AccordionContent>

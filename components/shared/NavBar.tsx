@@ -7,7 +7,7 @@ import Link from 'next/link'
 const NavBar = () => {
   return (
     <div className='md:h-40  h-20 w-full md:py-4 py-2 md:px-28 px-4 flex items-center justify-center' >
-        <div className='md:h-16 sticky top-0 z-50 border h-14 w-full bg-white rounded-lg flex justify-between' >
+        <div className='md:h-16  border h-14 w-full bg-white rounded-lg flex justify-between' >
             {/* left side icons for logo */}
             <div className='flex items-center justify-center' >
                 <Image className='md:h-16 h-14 w-auto ml-5'  src={`/MainLogo.svg`} height={900} width={900} alt='"productspherelogo' />

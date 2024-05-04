@@ -68,14 +68,15 @@ const Hero = ({ userid }: heroProps) => {
 
 
         {/* upper div */}
-        <div className=" py-8 mt-10 w-full flex flex-col justify-center items-center px-56" >
+        <div className=" py-8 mt-10 w-full flex flex-col justify-center items-center md:px-56" >
           <div className="flex gap-2" >
             <div className="h-4 w-4 bg-red-400 rounded-full animate-pulse" ></div>
             <p className="md:text-sm text-xs font-semibold text-gray-600 mb-4 " >New Feature - ProdAI comming soon</p>
 
           </div>
-          <h1 className="text-5xl text-center tracking-normal leading-snug font-semibold" >Manage your products like never before with <span className="text-indigo-600" >productsphere</span> </h1>
-          <p className=" text-center font-medium px-10 mt-2 text-zinc-600" >The only platform for managing product with your team , platform for product hunting , find developers for your product and ask them to join</p>
+          <h1 className="md:text-5xl text-3xl text-center tracking-normal leading-snug font-semibold" >Manage your products like never before with <span className="text-indigo-600" >productsphere</span> </h1>
+          <p className=" text-center font-medium px-10 mt-4 text-zinc-600 text-xs md:text-base hidden md:block" >The only platform for managing product with your team , platform for product hunting , find developers for your product and ask them to join</p>
+          <p className=" text-center font-medium px-10 mt-4 text-zinc-600 text-xs md:text-base md:hidden" >Create Product - find product , find developer - product hunting - management</p>
           <Button className="mt-6 bg-indigo-600 h-[60px] w-[250px]" >
             <p className="font-medium text-white leading-snug tracking-wider " >Build product with team</p>
           </Button>
@@ -88,7 +89,7 @@ const Hero = ({ userid }: heroProps) => {
         </div>  
 
       {/* image component */}
-      <div className="h-[60rem] w-[80rem] " >
+      <div className="md:h-[60rem] md:w-[80rem] h-[20rem] w-[25rem] " >
       <Image src={`/dash.svg`} className="h-full w-full object-contain" height={2000} width={2000}  alt="dashboard" />
       </div>
       {/* <div className="flex flex-row items-center justify-center  w-full md:mt-20 mt-10">

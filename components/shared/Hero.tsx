@@ -68,10 +68,21 @@ const Hero = ({ userid }: heroProps) => {
 
 
         {/* upper div */}
-        <div className="h-[450px] w-full flex flex-col justify-center items-center px-56" >
+        <div className=" py-8 mt-10 w-full flex flex-col justify-center items-center px-56" >
+          <div className="flex gap-2" >
+            <div className="h-4 w-4 bg-red-400 rounded-full animate-pulse" ></div>
+            <p className="md:text-sm text-xs font-semibold text-gray-600 mb-4 " >New Feature - ProdAI comming soon</p>
+
+          </div>
           <h1 className="text-5xl text-center tracking-normal leading-snug font-semibold" >Manage your products like never before with productsphere</h1>
           <p className=" text-center font-medium px-10 mt-2 text-zinc-600" >The only platform for managing product with your team , platform for product hunting , find developers for your product and ask them to join</p>
-          <Button className="mt-6 bg-indigo-600 h-[60px] w-[250px]" >Build Your First Product</Button>
+          <Button className="mt-6 bg-indigo-600 h-[60px] w-[250px]" >
+            <p className="font-medium text-white leading-snug tracking-wider " >Build product with team</p>
+          </Button>
+          <p className="text-xs font-medium text-zinc-700 mt-8" >Join with our 50+ contributers</p>
+           <div className="flex flex-row items-center justify-center  w-full md:mt-2 mt-3">
+        <AnimatedTooltip items={people} />
+      </div>
 
           
         </div>  

@@ -72,7 +72,7 @@ export const AnimatedTooltip = ({
               <div className="font-bold text-white relative z-30 text-base">
                 {item.name}
               </div>
-              <div className="text-white text-xs">{item.designation}</div>
+              <div className="text-white text-xs">Builder</div>
             </motion.div>
           )}
           <Image
@@ -81,7 +81,7 @@ export const AnimatedTooltip = ({
             width={100}
             src={item.image}
             alt={item.name}
-            className="object-cover !m-0 !p-0 object-top rounded-full h-10 w-10 md:h-14 md:w-14 border-2 group-hover:scale-105 group-hover:z-30 border-white  relative transition duration-500"
+            className="object-cover !m-0 !p-0 object-top rounded-full h-10 w-10 md:h-10 md:w-10 border-2 group-hover:scale-105 group-hover:z-30 border-white  relative transition duration-500"
           />
         </div>
       ))}

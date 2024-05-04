@@ -67,6 +67,15 @@ const Hero = ({ userid }: heroProps) => {
     <div className="mx-[24rem]  flex-col justify-center items-center ">
 
 
+        {/* upper div */}
+        <div className="h-[450px] w-full flex flex-col justify-center items-center px-56" >
+          <h1 className="text-5xl text-center tracking-normal leading-snug font-semibold" >Manage your products like never before with productsphere</h1>
+          <p className=" text-center font-medium px-10 mt-2 text-zinc-600" >The only platform for managing product with your team , platform for product hunting , find developers for your product and ask them to join</p>
+          <Button className="mt-6 bg-indigo-600 h-[60px] w-[250px]" >Build Your First Product</Button>
+
+          
+        </div>  
+
       {/* image component */}
       <div className="h-[60rem] w-[80rem] " >
       <Image src={`/dash.svg`} className="h-full w-full object-contain" height={2000} width={2000}  alt="dashboard" />

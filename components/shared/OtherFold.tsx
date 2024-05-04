@@ -8,6 +8,7 @@ import {
   PackagePlus,
   Pyramid,
   Rabbit,
+  TrendingUp,
   Zap,
 } from "lucide-react";
 import Image from "next/image";
@@ -24,43 +25,43 @@ const OtherFold = () => {
   const userCases = [
     {
       icon: <Pyramid size={22} color="white" strokeWidth={1.5} />,
-      heading: "Learn Topic Complexity",
-      desc: "Afforai has helped researches gain education in hard topics regardless of the level, from High School, to Post-Doctoral.",
+      heading: "Explore Like ProductHunt",
+      desc: "The platform allows users to discover launched products and those in development, opportunities for exploration.",
     },
     {
       icon: <Rabbit size={22} color="white" strokeWidth={1.5} />,
-      heading: "Learn Topic Complexity",
-      desc: "Afforai has helped researches gain education in hard topics regardless of the level, from High School, to Post-Doctoral.",
+      heading: "Be a Contributer",
+      desc: "Easily contribute to any product by joining with a referral code, simplifying participation",
     },
     {
       icon: <Box size={22} color="white" strokeWidth={1.5} />,
-      heading: "Learn Topic Complexity",
-      desc: "Afforai has helped researches gain education in hard topics regardless of the level, from High School, to Post-Doctoral.",
+      heading: "Build Product",
+      desc: "Boost productivity and streamline product management by building with your team,  easy product management.",
     },
     {
       icon: <Zap size={22} color="white" strokeWidth={1.5} />,
-      heading: "Learn Topic Complexity",
-      desc: "Afforai has helped researches gain education in hard topics regardless of the level, from High School, to Post-Doctoral.",
+      heading: "Manage Product",
+      desc: "You can manage the product with easy , can assign tasks , add team members to your product",
     },
     {
       icon: <Dices size={22} color="white" strokeWidth={1.5} />,
-      heading: "Learn Topic Complexity",
-      desc: "Afforai has helped researches gain education in hard topics regardless of the level, from High School, to Post-Doctoral.",
+      heading: "Assign Task And team",
+      desc: "You can easily assign team mebers for a product and can assign the, tasks respectively , and can manage with ease",
     },
     {
       icon: <Hash size={22} color="white" strokeWidth={1.5} />,
-      heading: "Learn Topic Complexity",
-      desc: "Afforai has helped researches gain education in hard topics regardless of the level, from High School, to Post-Doctoral.",
+      heading: "Themed product",
+      desc: "While Assigning the product you can assign a theme to your product , it will give a better user experince",
     },
     {
-      icon: <Hash size={22} color="white" strokeWidth={1.5} />,
-      heading: "Learn Topic Complexity",
-      desc: "Afforai has helped researches gain education in hard topics regardless of the level, from High School, to Post-Doctoral.",
+      icon: <CodeXml size={22} color="white" strokeWidth={1.5} />,
+      heading: "Developers Hunting",
+      desc: "You can easily hunt for developers who are working on any saas product , and can connect with them.",
     },
     {
-      icon: <Hash size={22} color="white" strokeWidth={1.5} />,
-      heading: "Learn Topic Complexity",
-      desc: "Afforai has helped researches gain education in hard topics regardless of the level, from High School, to Post-Doctoral.",
+      icon: <TrendingUp size={22} color="white" strokeWidth={1.5} />,
+      heading: "Go for review",
+      desc: "You can review any products can upvote the products you like and can explore feedbacks of you created products",
     },
   ];
   return (

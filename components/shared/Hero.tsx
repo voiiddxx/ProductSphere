@@ -74,7 +74,17 @@ const Hero = ({ userid }: heroProps) => {
             <p className="md:text-sm text-xs font-semibold text-gray-600 mb-4 " >New Feature - ProdAI comming soon</p>
 
           </div>
-          <h1 className="md:text-5xl text-3xl text-center tracking-normal leading-snug font-semibold" >Manage your products like never before with <span className="text-indigo-600" >productsphere</span> </h1>
+
+
+          {/* h1 for mobile use cases */}
+          <h1 className="md:text-5xl text-3xl text-center leading-relaxed tracking-normal font-semibold md:hidden" >Manage your products like never before with <span className="text-indigo-600" >productsphere</span> </h1>
+
+          {/* heading for web use cases */}
+          <h1 className="md:text-5xl text-3xl text-center leading-relaxed tracking-normal font-semibold hidden md:inline-block" >Manage your products like never </h1>
+          
+          <h1 className="md:text-5xl text-3xl text-center leading-relaxed tracking-normal font-semibold hidden md:inline-block mt-2" >before with <span className="text-indigo-600" >productsphere</span> </h1>
+          
+          {/* heading for web use cases end */}
           <p className=" text-center font-medium px-10 mt-4 text-zinc-600 text-xs md:text-base hidden md:block" >The only platform for managing product with your team , platform for product hunting , find developers for your product and ask them to join</p>
           <p className=" text-center font-medium px-10 mt-4 text-zinc-600 text-xs md:text-base md:hidden" >Create Product - find product , find developer - product hunting - management</p>
           <Button className="mt-6 bg-indigo-600 h-[60px] w-[250px]" >

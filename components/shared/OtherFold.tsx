@@ -1,9 +1,11 @@
 import {
   Box,
   BoxesIcon,
+  CodeXml,
   Dices,
   Dot,
   Hash,
+  PackagePlus,
   Pyramid,
   Rabbit,
   Zap,
@@ -16,6 +18,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "../ui/button";
 
 const OtherFold = () => {
   const userCases = [
@@ -157,19 +160,20 @@ const OtherFold = () => {
             <div className="h-[440px]  ml-20 bg-zinc-100 rounded-lg flex flex-col justify-between border ">
               <div className="ml-10 mt-5">
                 <div className="flex items-center gap-1 mt-4">
-                  <Rabbit size={18} color="black" />
-                  <p className="text-sm font-medium text-zinc-900">
+                  <div className="h-8 w-8 bg-gradient-to-b from-indigo-700 to-indigo-400 flex items-center justify-center rounded-full" >
+                  <Rabbit size={18} color="white" />
+                  </div>
+                  <p className="text-sm font-medium text-indigo-700">
                     Hunt products anytime
                   </p>
                 </div>
                 <h1 className="text-lg font-medium mt-4 pr-10">
-                  Share your chatbots with your team & collaboratively simplify
-                  research.
+                ProductSphere offers a curated selection, akin to ProductHunt, facilitating discovery and exploration.
                 </h1>
               </div>
               <Image
-                src={`/2.png`}
-                className="h-[300px] w-full object-cover rounded-b-lg"
+                src={`/product.png`}
+                className="h-[280px] w-full object-cover rounded-b-lg"
                 height={1500}
                 width={1500}
                 alt="image"
@@ -178,14 +182,15 @@ const OtherFold = () => {
             <div className="h-[450px]  ml-20 bg-zinc-100 rounded-lg flex flex-col justify-between border ">
               <div className="ml-10 mt-5">
                 <div className="flex items-center gap-1 mt-4">
-                  <Rabbit size={18} color="black" />
-                  <p className="text-sm font-medium text-zinc-900">
-                    Hunt products anytime
+                <div className="h-8 w-8 bg-gradient-to-b from-indigo-700 to-indigo-400 flex items-center justify-center rounded-full" >
+                  <CodeXml size={18} color="white" />
+                  </div>
+                  <p className="text-sm text-indigo-700 font-medium">
+                    Saas Developers Hub
                   </p>
                 </div>
                 <h1 className="text-lg font-medium mt-4 pr-10">
-                  Share your chatbots with your team & collaboratively simplify
-                  research.
+                Explore a diverse community of SaaS builders, unleashing innovation and collaboration in software development.
                 </h1>
               </div>
               <Image
@@ -200,15 +205,16 @@ const OtherFold = () => {
           {/* right div */}
           <div className="flex w-1/2 h-[900px] bg-zinc-100 mr-20 border rounded-lg flex-col justify-between">
             <div className="h-[150px] w-full px-4 py-4">
-              <div className="flex gap-1">
-                <Rabbit size={18} color="black" />
-                <p className="text-sm font-medium text-zinc-900">
-                  Hunt products anytime
+              <div className="flex gap-1 items-center">
+              <div className="h-8 w-8 bg-gradient-to-b from-indigo-700 to-indigo-400 flex items-center justify-center rounded-full" >
+                  <PackagePlus size={18} color="white" />
+                  </div>
+                <p className="text-sm font-medium text-indigo-700">
+                  Build Product with team
                 </p>
               </div>
               <h1 className="text-lg font-medium mt-4 pr-10">
-                Share your chatbots with your team & collaboratively simplify
-                research.
+              Collaborate, develop, manage tasks, collect feedback, analyze data—streamlined processes for effective product lifecycle management.
               </h1>
             </div>
             <div className="h-[750px] w-full bg-yellow-200">
@@ -252,7 +258,7 @@ const OtherFold = () => {
             <BoxesIcon size={15} className="text-indigo-700" strokeWidth={2} />
             <p className="font-medium text-indigo-700 md:text-xl text-sm">Hunt Products</p>
           </div>
-          <div className="ml-4 mr-2">
+          <div className="ml-4 mr-2 md:ml-10">
             <p className="md:text-sm text-[10px] font-medium text-gray-600 mt-4">
               Add apps to your Biolinky page to engage your audience such as a
               Spotify player, <br /> Youtube video, a Soundcloud player, etc to
@@ -295,7 +301,25 @@ const OtherFold = () => {
             </AccordionItem>
           </Accordion>
         </div>
+
+        <div className="w-full mt-28 h-[400px] bg-gradient-to-b from-violet-700 to-indigo-700 flex items-center justify-between flex-col" >
+           <div className="flex flex-col justify-center items-center mt-16" >
+           <h1 className="text-4xl font-medium text-white" >Ready to level up you product management skills</h1>
+            <h1 className="text-4xl font-medium text-white mt-1" >Upskill yourself with productsphere</h1>
+          <div className="flex gap-2" >
+          <Button className="bg-white text-violet-700 mt-5" size={"lg"} >Upskill With productsphere</Button>
+          <Button className=" bg-transparent text-white mt-5" variant={"outline"} size={"lg"} >Register Now</Button>
+           </div>
+          </div>
+          <div>
+            <p className="text-white mb-4 text-sm font-light" >Productsphere - Product by voiiddxx </p>
+           </div>
       </div>
+      </div>
+
+
+      {/* footer section */}
+      
     </div>
   );
 };

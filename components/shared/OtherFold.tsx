@@ -20,6 +20,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const OtherFold = () => {
   const userCases = [
@@ -261,9 +262,7 @@ const OtherFold = () => {
           </div>
           <div className="ml-4 mr-2 md:ml-10">
             <p className="md:text-sm text-[10px] font-medium text-gray-600 mt-4">
-              Add apps to your Biolinky page to engage your audience such as a
-              Spotify player, <br /> Youtube video, a Soundcloud player, etc to
-              your page.
+              Productsphere helps you to find the product which are in development period so you can contrubute <br /> into them , as well you can hunt for the developers for your products too
             </p>
           </div>
         </div>
@@ -308,8 +307,16 @@ const OtherFold = () => {
            <h1 className="md:text-4xl text-xl text-center font-medium text-white" >Ready to level up you product management skills</h1>
             <h1 className="md:text-4xl text-xl font-medium text-white mt-1" >Upskill yourself with productsphere</h1>
           <div className="flex gap-2" >
-          <Button className="bg-white text-violet-700 mt-5 hidden md:inline-block" size={"lg"} >Upskill With productsphere</Button>
-          <Button className=" bg-transparent text-white mt-5" variant={"outline"} size={"lg"} >Register Now</Button>
+         <Link href={`/dashboard`} >
+         <Button className="bg-white text-violet-700 mt-5 hidden md:inline-block" size={"lg"} >Upskill With productsphere</Button>
+         </Link>
+         <Link href={`/dashboard`} >
+         <Button className=" bg-transparent text-white mt-5" variant={"outline"} size={"lg"} >Register Now</Button>
+         </Link>
+           </div>
+
+           <div>
+           
            </div>
           </div>
           <div>

@@ -522,7 +522,7 @@ const CreateProduct = () => {
             </div>
           </div>
           {/* row 3 */}
-          <div className="mt-5">
+          {/* <div className="mt-5">
             <p className="text-sm font-medium">Product Team members</p>
             <div className=" flex flex-col gap-2 mt-2">
               <div className="flex items-center gap-3">
@@ -559,7 +559,7 @@ const CreateProduct = () => {
                 );
               })}
             </div>
-          </div>
+          </div> */}
           {/* row 4 */}
           <div className="mt-5">
             <p className="text-sm font-medium">Product Code</p>

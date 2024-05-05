@@ -38,25 +38,25 @@ const Hero = ({ userid }: heroProps) => {
         "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
     },
     {
-      id: 4,
+      id: 16,
       name: "Emily Davis",
       designation: "UX Designer",
       image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+        "https://images.unsplash.com/photo-1531256456869-ce942a665e80?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-      id: 4,
+      id: 9,
       name: "Emily Davis",
       designation: "UX Designer",
       image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-      id: 4,
+      id: 8,
       name: "Emily Davis",
       designation: "UX Designer",
       image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+        "https://images.unsplash.com/photo-1596215143922-eedeaba0d91c?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     
   ];
@@ -101,9 +101,10 @@ const Hero = ({ userid }: heroProps) => {
           {/* heading for web use cases end */}
           <p className=" text-center font-medium px-10 mt-4 text-zinc-600 text-xs md:text-base hidden md:block" >The only platform for managing product with your team , platform for product hunting , find developers for your product and ask them to join</p>
           <p className=" text-center font-medium px-10 mt-4 text-zinc-600 text-xs md:text-base md:hidden" >Create Product - find product , find developer - product hunting - management</p>
-          <Button className="mt-6 bg-indigo-600 h-[60px] w-[250px]" >
-            <p className="font-medium text-white leading-snug tracking-wider " >Build product with team</p>
-          </Button>
+         <Link href={`/dashboard`}>
+         <Button className="mt-6 bg-indigo-600 h-[60px] w-[250px]" >
+            <p className="font-medium text-white leading-snug tracking-wider text-[15px] " >Build product with team</p>
+          </Button></Link>
           <p className="text-xs font-medium text-zinc-700 mt-8" >Join with our 50+ contributers</p>
            <div className="flex flex-row items-center justify-center  w-full md:mt-2 mt-3">
         <AnimatedTooltip items={people} />

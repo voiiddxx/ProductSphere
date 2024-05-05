@@ -30,6 +30,7 @@ import {
 import { AddReviewAction } from "@/lib/actions/review.action";
 import { Toaster, toast } from 'sonner'
 import { color } from "framer-motion";
+import Link from "next/link";
 
 type ProductDetailProps = {
   id: any;
@@ -172,9 +173,9 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
                 <Star className="text-transparent" fill="orange" size={15} />
               </div>
               <div className="flex gap-2">
-                <p className="text-zinc-600 md:text-sm text-xs font-medium">15 Reviews</p>
+                <p className="text-zinc-600 md:text-sm text-xs font-medium">{Product.reviews.length} Reviews</p>
                 <p className="text-zinc-600 md:text-sm text-xs font-medium">
-                  2000 Upvotes
+                  0 Upvotes
                 </p>
               </div>
             </div>
@@ -182,19 +183,10 @@ const ProductDetail = ({ id }: ProductDetailProps) => {
         </div>
         {/* right div */}
         <div className="flex gap-2 mt-8 md:mt-0">
-          <Button
-            className="border rounded-full text-indigo-700 h-10 w-10" style={{color:Product.productcolor}}
-            size={"icon"}
-            variant={"link"}
-          >
-            <div>
-              <Triangle size={15} />
-              <p className="text-xs font-medium" >15</p>
-            </div>
-          </Button>
-          <Button variant={"outline"} size={"lg"}>
+         
+          <Link href={Product.url} ><Button variant={"outline"} size={"lg"}>
             Visit Website
-          </Button>
+          </Button></Link>
           <div className="">
         <Dialog>
           <DialogTrigger>

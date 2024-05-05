@@ -1,39 +1,76 @@
 <img width="2200" alt="poster" src="https://github.com/voiiddxx/ProductSphere/assets/95859137/bd3c3ddd-afc1-4321-807d-66be1fade951">
 
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# ProductSphere⚡
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ProductSphere is a comprehensive platform designed to empower developers in managing their products efficiently. Whether you're working solo or leading a team, ProductSphere offers the tools you need to streamline product development, collaborate effectively, and connect with like-minded individuals in the developer ⚡
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Product Management**: Create and manage your products seamlessly within ProductSphere. Add team members, assign tasks, and track progress effortlessly.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Team Collaboration**: Foster teamwork and productivity by collaborating with your team members in real-time. Share updates, files, and feedback easily.
 
-## Deploy on Vercel
+- **Product Discovery**: Explore a diverse range of products being built by developers worldwide. Discover interesting projects and join them using unique product referral codes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Developer Network**: Connect with developers from around the globe. Build your network, exchange ideas, and recruit contributors for your projects.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Contribution Opportunities**:  Showcase your skills and expertise to attract collaborators. Explore opportunities to contribute to exciting projects within the community.
+
+
+### Usage:
+1. **Create Products**: Start by creating a new product within your dashboard. Provide essential details such as product name, description, and objectives.
+2. **Add Team Members**: Invite team members to join your product by sending them an invitation. Assign roles and responsibilities to ensure smooth collaboration.
+3. **Manage Tasks**: Break down your product development process into manageable tasks. Assign tasks to team members, set deadlines, and track progress.
+4. **Explore Products**: Browse through the ProductSphere community to discover exciting projects. Join products that align with your interests and expertise.
+5. **Connect with Developers**: Engage with fellow developers by exploring profiles and initiating connections. Build relationships and collaborate on innovative projects.
+
+
+
+
+
+## Tech Stack 💻
+
+### Client
+- Next JS
+- Tailwind CSS
+- Shadcn Ui
+- Server components
+- Server actions
+- Aceternity ui
+
+### Storage and ORM
+- Superbase
+- PostgreSQL
+- Pirsma
+
+### Authentication and user management
+- Clerk
+
+### Deployment
+- Vercel for deployment
+
+
+
+
+
+## Contributing:
+We welcome contributions from developers who are passionate about improving ProductSphere. If you have ideas for new features or enhancements, please submit a pull request for improvement
+
+
+
+### Contact:
+For support or inquiries, please contact us at nikhildesign00@gmail.com.
+
+
+### Stay Connected:
+Join the conversation on social media and stay updated on the latest news and announcements:
+- Twitter: [Nikhil Kumar](https://x.com/Nikhil_tsx?t=Onc3Re2MylbgHTUPa6oPJg&s=08)
+- Linkedin: [Nikhil Kumar](https://linkedin.com/in/nikhil-kumar-1043b7239)
+

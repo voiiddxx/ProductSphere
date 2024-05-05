@@ -1,3 +1,6 @@
+<img width="2200" alt="poster" src="https://github.com/voiiddxx/ProductSphere/assets/95859137/bd3c3ddd-afc1-4321-807d-66be1fade951">
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

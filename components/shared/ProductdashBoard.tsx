@@ -24,6 +24,7 @@ import Addmemebr from "./Addmemebr";
 import TaskDetail from "./TaskDetail";
 import OverView from "./OverView";
 import MyAssignedTask from "./MyAssignedTask";
+import { get } from "http";
 
 type ProductDataProps = {
   data: any;
@@ -107,9 +108,10 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
               </div> 
            }
            {
-            NavBarData == "MyTask" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
+            NavBarData == "MyTask" ?  <div  className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
             <ListTodoIcon size={20} /> <p className="font-semibold text-sm" >My tasks</p>
               </div> :  <div onClick={()=>{
+                  getMyData();
                 setNavBarData("MyTask");
               }} className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
             <ListTodoIcon size={20} /> <p className="font-semibold text-sm" >My tasks</p>
@@ -125,7 +127,7 @@ const ProductdashBoard = ({ data }: ProductDataProps) => {
            {
             NavBarData == "Discuion" ?  <div className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-indigo-700" >
             <MessageCircleDashed size={20} /> <p className="font-semibold text-sm" >Discussion</p>
-              </div> :  <div onClick={getMyData} className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
+              </div> :  <div  className="h-16 border-b  w-full flex items-center  justify-start px-8 gap-1 text-zinc-600" >
             <MessageCircleDashed size={20} /> <p className="font-semibold text-sm" >Discussion</p>
               </div> 
            }

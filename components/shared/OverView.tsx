@@ -113,10 +113,7 @@ const OverView = ({ data }: OverViewProps) => {
       <div className="w-full flex justify-between mt-4">
         <h1 className="text-2xl font-semibold">Overall Insights</h1>
         <div className="flex gap-2 mr-20">
-          <Button className="flex gap-2" style={{backgroundColor:data.productcolor}} >
-            <MousePointerClick color="white" />
-            <p className="font-medium text-white" >Edit product</p>
-          </Button>
+          
         </div>
       </div>
       {/* upper heading bar end */}
@@ -309,11 +306,7 @@ const OverView = ({ data }: OverViewProps) => {
                             {curr.taskCreated.length} Created Tasks
                           </p>
                         </div>
-                        <div className="px-3 py-1 bg-yellow-50 rounded-full">
-                          <p className="text-yellow-700 font-medium text-xs"> 
-                            4 completed tasks
-                          </p>
-                        </div>
+                      
                       </div>
 
                       <div>
@@ -449,7 +442,7 @@ const OverView = ({ data }: OverViewProps) => {
               <p className="text-2xl font-medium text-zinc-900">Folks</p>
             </div>
             <div className="flex gap-3 flex-wrap w-full mt-5">
-              <AnimatedTooltip items={people} />
+              
             </div>
           </TabsContent>
         </Tabs>

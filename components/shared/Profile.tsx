@@ -93,9 +93,14 @@ const Profile = async () => {
                 saas products
               </p>
               <div className="flex gap-4 mt-4">
-                <Github size={18} strokeWidth={1.75} />
+                <Link href={user.data.github} >
+                <Github size={18} strokeWidth={1.75} /></Link>
+                <Link href={user.data.linkedin} >
                 <Linkedin size={18} strokeWidth={1.75} />
-                <Mail size={18} strokeWidth={1.75} />
+                </Link>
+                <Link href={user.data.email} >
+               <Mail size={18} strokeWidth={1.75} />
+                </Link>
               </div>
             </div>
           </div>
@@ -147,7 +152,7 @@ const Profile = async () => {
               <div className="flex gap-8 flex-wrap  mt-8">
                 {user.data.ownedProducts.map((curr: any) => {
                   return (
-                    <Link href={`/user.data/${curr.id}`}>
+                    <Link href={`/products/${curr.productId}`}>
                       <div className="h-[350px] w-[350px] bg-white rounded-md shadow-[0px_20px_20px_10px_#edf2f7]">
                         {/* upper div */}
                         <div className="h-[150px] w-full rounded-t-md bg-gradient-to-tr from-zinc-900 to-zinc-700 relative">
@@ -198,7 +203,7 @@ const Profile = async () => {
               <div className="flex gap-8 flex-wrap  mt-8">
                 {user.data.memberOfProducts.map((curr: any) => {
                   return (
-                    <Link href={`/user.data/${curr.id}`}>
+                    <Link href={`/products/${curr.productId}`}>
                       <div className="h-[350px] w-[350px] bg-white rounded-md shadow-[0px_20px_20px_10px_#edf2f7]">
                         {/* upper div */}
                         <div className="h-[150px] w-full rounded-t-md bg-gradient-to-tr from-zinc-900 to-zinc-700 relative">

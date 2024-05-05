@@ -265,7 +265,7 @@ const OverView = ({ data }: OverViewProps) => {
             <TabsTrigger value="Upvotes">
             <div className="flex gap-1" >
                 <Triangle size={17} />
-                <p className="font-medium text-sm" >Members ({data.Upvote.length}) </p>
+                <p className="font-medium text-sm" >Upvotes ({data.Upvote.length}) </p>
               </div>
             </TabsTrigger>
 

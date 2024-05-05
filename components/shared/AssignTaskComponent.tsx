@@ -43,7 +43,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
 import { Popover, PopoverTrigger } from "../ui/popover";
-import { cn } from "@/lib/utils";
+import uploadDataonCloudinary, { cn } from "@/lib/utils";
 import { PopoverContent } from "@radix-ui/react-popover";
 import { Calendar } from "../ui/calendar";
 import { format } from "date-fns";
@@ -126,11 +126,12 @@ const AssignTaskComponent = ({prodId}:AssignTasksProps) => {
       setIsloading(true);
     const userid = localStorage.getItem("x-auth-id");
     const creatorid = +userid!;
+    const docUrl = await uploadDataonCloudinary(TaskDocument);
     const productId = +prodId;
     if(StartDate && Tags && PinnedComment && TaskDocument && Priority){
       console.log({...values , StartDate , Tags , TaskDocument , PinnedComment , Priority}); 
       const res = await AssignNewTasks({ data:{
-        title:values.name , desc:values.detail , dueDate:StartDate , documents:"thisisdocunment" , comment:PinnedComment , creatorid:creatorid , priority:Priority , prodId:productId , status:"Not Started yet" , tags:Tags , taskmembersNow   :TaskmembersforPost
+        title:values.name , desc:values.detail , dueDate:StartDate , documents:docUrl , comment:PinnedComment , creatorid:creatorid , priority:Priority , prodId:productId , status:"Not Started yet" , tags:Tags , taskmembersNow   :TaskmembersforPost
       }});
       if(res.status == 200){
         setIsloading(false);

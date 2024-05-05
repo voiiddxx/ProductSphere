@@ -2,6 +2,7 @@
 import {
   Check,
   CheckCheck,
+  Dot,
   Github,
   Hash,
   ImagePlus,
@@ -99,6 +100,8 @@ const CreateProduct = () => {
   const [AddSkill, setAddSkill] = useState<any>(null);
   const [productSkills, setproductSkills] = useState<any>([]);
   const [ProductCode, setProductCode] = useState<any>(null);
+  const [productUrl, setproductUrl] = useState<any>(null);
+  const [productCategory, setproductCategory] = useState<any>(null);
 
   const [isLoading, setisLoading] = useState<boolean>(false);
 
@@ -143,7 +146,9 @@ const CreateProduct = () => {
       ProductColor &&
       StartDate &&
       endDate &&
-      ProductCode
+      ProductCode &&
+      productUrl &&
+      productCategory
     ) {
       console.log("this is image url: ", productLogo);
 
@@ -162,7 +167,7 @@ const CreateProduct = () => {
           endDate: endDate,
           productcolor: ProductColor,
           productlogo: imageUrl,
-          url: "thisisurl",
+          url: productUrl,
           ownerId: parsedData,
           productCode: ProductCode,
           skills: productSkills,
@@ -347,14 +352,20 @@ const CreateProduct = () => {
                 <Button className="w-full mt-4" variant={"outline"}>
                   Cancel
                 </Button>
-                {
-                  isLoading == true ? <Button disabled className="w-full flex justify-center items-center gap-2 mt-4 bg-indigo-700" type="submit">
+                {isLoading == true ? (
+                  <Button
+                    disabled
+                    className="w-full flex justify-center items-center gap-2 mt-4 bg-indigo-700"
+                    type="submit"
+                  >
                     <LoaderIcon className="text-zinc-300 animate-spin" />
                     <p>Please wait...</p>
-                </Button> : <Button className="w-full mt-4 bg-indigo-700" type="submit">
-                  Submit
-                </Button>
-                } 
+                  </Button>
+                ) : (
+                  <Button className="w-full mt-4 bg-indigo-700" type="submit">
+                    Submit
+                  </Button>
+                )}
               </div>
             </form>
           </Form>
@@ -580,6 +591,54 @@ const CreateProduct = () => {
           </div>
 
           {/* row 5 */}
+          <div className="mt-10 flex items-center flex-row-reverse justify-between w-full gap-4">
+            <div className="w-full" >
+              <p className="text-sm font-medium">Product url</p>
+              <Input
+                onChange={(e) => {
+                  setproductUrl(e.target.value);
+                }}
+                className="mt-2"
+                placeholder="Enter Your product url"
+              />
+            </div>
+            <div className="w-full" >
+            <p className="text-sm font-medium">Product Category</p>
+              <Select onValueChange={(val)=>{
+                setproductCategory(val)
+              }} > 
+                <SelectTrigger className="w-full mt-2">
+                  <SelectValue placeholder="Category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Saas">
+                    <div className="flex gap-2 items-center text-indigo-700" >
+                    <Dot className="text-indigo-700" absoluteStrokeWidth strokeWidth={7} />
+                    <p>Saas</p>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="Finance">
+                  <div className="flex gap-2 items-center text-green-700" >
+                    <Dot className="" absoluteStrokeWidth strokeWidth={7} />
+                    <p>Finance</p>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="Management">
+                  <div className="flex gap-2 items-center text-orange-700" >
+                    <Dot className="" absoluteStrokeWidth strokeWidth={7} />
+                    <p>Management</p>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="marketing">
+                  <div className="flex gap-2 items-center text-red-700" >
+                    <Dot className="" absoluteStrokeWidth strokeWidth={7} />
+                    <p>Marketing</p>
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
